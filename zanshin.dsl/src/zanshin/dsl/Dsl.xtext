@@ -1,0 +1,36 @@
+grammar zanshin.dsl.Dsl with org.eclipse.xtext.common.Terminals
+
+generate dsl "http://www.dsl.zanshin/Dsl"
+
+Model: 
+	scope+=Scope*;
+	
+Project:
+	'project' importedNamespace=QualifiedNameWithWildcard;
+
+QualifiedName:
+    STRING ('.' STRING)*;
+    
+QualifiedNameWithWildcard:
+    QualifiedName '.*'?;
+
+Type:
+	Success | Failure;
+	
+Success:
+	'Success' (array ?='[' (length=INT)? ']')? name=STRING;
+
+Failure:
+	'Failure' (array ?='[' (length=INT)? ']')? name=STRING;
+
+TestQuantity:
+	'Part' INT;
+	
+Scope:
+	Project
+	'Simulation' name=ID (length=INT)?
+		((testquantity+=TestQuantity)?
+		(commands+=Commands))*;
+		
+Commands:
+	Type;
