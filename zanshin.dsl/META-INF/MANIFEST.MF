@@ -7,5 +7,23 @@ Bundle-SymbolicName: zanshin.dsl; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.xbase,
- org.eclipse.equinox.common;bundle-version="3.5.0"
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib,
+ org.antlr.runtime,
+ org.eclipse.xtext.util,
+ org.eclipse.xtend.lib,
+ org.eclipse.emf.common
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: zanshin.dsl.parser.antlr,
+ zanshin.dsl.dsl,
+ zanshin.dsl.serializer,
+ zanshin.dsl.scoping,
+ zanshin.dsl.generator,
+ zanshin.dsl,
+ zanshin.dsl.validation,
+ zanshin.dsl.dsl.impl,
+ zanshin.dsl.dsl.util,
+ zanshin.dsl.parser.antlr.internal,
+ zanshin.dsl.services
+Import-Package: org.apache.log4j
