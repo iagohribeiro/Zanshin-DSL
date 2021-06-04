@@ -8,6 +8,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import zanshin.dsl.dsl.DslPackage;
 import zanshin.dsl.dsl.Type;
@@ -20,6 +21,7 @@ import zanshin.dsl.dsl.Type;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link zanshin.dsl.dsl.impl.TypeImpl#getSimulationType <em>Simulation Type</em>}</li>
  *   <li>{@link zanshin.dsl.dsl.impl.TypeImpl#isArray <em>Array</em>}</li>
  *   <li>{@link zanshin.dsl.dsl.impl.TypeImpl#getLength <em>Length</em>}</li>
  *   <li>{@link zanshin.dsl.dsl.impl.TypeImpl#getName <em>Name</em>}</li>
@@ -27,8 +29,28 @@ import zanshin.dsl.dsl.Type;
  *
  * @generated
  */
-public class TypeImpl extends CommandsImpl implements Type
+public class TypeImpl extends MinimalEObjectImpl.Container implements Type
 {
+  /**
+   * The default value of the '{@link #getSimulationType() <em>Simulation Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getSimulationType()
+   * @generated
+   * @ordered
+   */
+  protected static final String SIMULATION_TYPE_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getSimulationType() <em>Simulation Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getSimulationType()
+   * @generated
+   * @ordered
+   */
+  protected String simulationType = SIMULATION_TYPE_EDEFAULT;
+
   /**
    * The default value of the '{@link #isArray() <em>Array</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -115,6 +137,29 @@ public class TypeImpl extends CommandsImpl implements Type
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getSimulationType()
+  {
+    return simulationType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setSimulationType(String newSimulationType)
+  {
+    String oldSimulationType = simulationType;
+    simulationType = newSimulationType;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, DslPackage.TYPE__SIMULATION_TYPE, oldSimulationType, simulationType));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public boolean isArray()
   {
     return array;
@@ -189,6 +234,8 @@ public class TypeImpl extends CommandsImpl implements Type
   {
     switch (featureID)
     {
+      case DslPackage.TYPE__SIMULATION_TYPE:
+        return getSimulationType();
       case DslPackage.TYPE__ARRAY:
         return isArray();
       case DslPackage.TYPE__LENGTH:
@@ -209,6 +256,9 @@ public class TypeImpl extends CommandsImpl implements Type
   {
     switch (featureID)
     {
+      case DslPackage.TYPE__SIMULATION_TYPE:
+        setSimulationType((String)newValue);
+        return;
       case DslPackage.TYPE__ARRAY:
         setArray((Boolean)newValue);
         return;
@@ -232,6 +282,9 @@ public class TypeImpl extends CommandsImpl implements Type
   {
     switch (featureID)
     {
+      case DslPackage.TYPE__SIMULATION_TYPE:
+        setSimulationType(SIMULATION_TYPE_EDEFAULT);
+        return;
       case DslPackage.TYPE__ARRAY:
         setArray(ARRAY_EDEFAULT);
         return;
@@ -255,6 +308,8 @@ public class TypeImpl extends CommandsImpl implements Type
   {
     switch (featureID)
     {
+      case DslPackage.TYPE__SIMULATION_TYPE:
+        return SIMULATION_TYPE_EDEFAULT == null ? simulationType != null : !SIMULATION_TYPE_EDEFAULT.equals(simulationType);
       case DslPackage.TYPE__ARRAY:
         return array != ARRAY_EDEFAULT;
       case DslPackage.TYPE__LENGTH:
@@ -276,7 +331,9 @@ public class TypeImpl extends CommandsImpl implements Type
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (array: ");
+    result.append(" (simulationType: ");
+    result.append(simulationType);
+    result.append(", array: ");
     result.append(array);
     result.append(", length: ");
     result.append(length);

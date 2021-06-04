@@ -1,11 +1,11 @@
 '.'=12
 '.*'=13
-'Failure'=16
-'Part'=17
-'Simulation'=18
-'Success'=14
-'['=19
-']'=15
+'Failure'=19
+'Part'=15
+'Simulation'=16
+'Success'=17
+'['=18
+']'=14
 'project'=11
 RULE_ANY_OTHER=10
 RULE_ID=6

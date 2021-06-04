@@ -34,22 +34,64 @@ class DslGenerator extends AbstractGenerator {
 	}
 	
 	def CharSequence simulation(Scope scope){
+		val String projectName = scope.project.importedNamespace.replace(" ", "").replace("\"","");
+		val String simulationName = scope.name;
+		
 		'''
-		package it.unitn.disi.zanshin.simulation.cases.project.«scope.project.importedNamespace.replace(" ", "").replace("\"","")»;
+		package it.unitn.disi.zanshin.simulation.cases.«projectName»;
 		
 		import it.unitn.disi.zanshin.simulation.Logger;
 		import it.unitn.disi.zanshin.simulation.cases.SimulationPart;
 		
-		public class «scope.name.replace(" ", "").replace("\"","")» extends AbstractAtmSimulation {
+		public final class «simulationName» extends Abstract«projectName.toFirstUpper»Simulation {
 			
-			private static final Logger log = new Logger(AtmAR2FailureSimulation.class);
+			private static final Logger log = new Logger(«simulationName».class);
 			
 			/** @see it.unitn.disi.zanshin.simulation.cases.AbstractSimulation#doInit() */
 			@Override
-			protected void doInit() throws Exception {
-				// Registers the «scope.project.importedNamespace.replace(" ", "").replace("\"","")» Simulation as target system in Zanshin.
+			public void doInit() throws Exception {
+				// Registers the «projectName» Simulation as target system in Zanshin.
 				registerTargetSystem();
-		
+				«FOR i:0 ..< scope.commands.size»
+				«val commands = scope.commands.get(i)»
+				«val index = i+1»
+				«val String simulationType = commands.type.simulationType»
+				«val String requeriment = commands.type.name»
+				
+				// Adds the part «index» of the simulation to the list.
+				parts.add(new SimulationPart() {
+					@Override
+					public void run() throws Exception {
+						// Creates a user session, as if someone were using the «projectName».
+						sessionId = zanshin.createUserSession(targetSystemId);
+						log.info("Created a new user session with id: {0}", sessionId); //$NON-NLS-1$
+						
+						«IF index == 1»
+						log.info("Current incident took more than 3 minutes do dispatch!"); //$NON-NLS-1$
+						«ELSE»
+						log.info("Current incident took more than 3 minutes do dispatch!"); //$NON-NLS-1$
+						«ENDIF»
+						zanshin.logRequirementStart(targetSystemId, sessionId, «requeriment»);
+						«IF commands.type.array»
+						«FOR j:0 ..< commands.type.length»
+						zanshin.logRequirement«simulationType»(targetSystemId, sessionId, «requeriment»);
+						«ENDFOR»
+						«ELSE»
+						zanshin.logRequirement«simulationType»(targetSystemId, sessionId, «requeriment»);
+						«ENDIF»
+						// Ends the user session.
+						zanshin.disposeUserSession(targetSystemId, sessionId);
+					}
+					@Override
+					public boolean shouldWait() {
+						«IF index == scope.length»
+						return false;
+						«ELSE»
+						return true;
+						«ENDIF»
+					}
+				});
+				«ENDFOR»
 			}
 		}
 		'''

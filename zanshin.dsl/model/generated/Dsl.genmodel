@@ -13,19 +13,25 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dsl.ecore#//Project/importedNamespace"/>
     </genClasses>
     <genClasses ecoreClass="Dsl.ecore#//Type">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dsl.ecore#//Type/simulationType"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dsl.ecore#//Type/array"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dsl.ecore#//Type/length"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dsl.ecore#//Type/name"/>
     </genClasses>
     <genClasses ecoreClass="Dsl.ecore#//Success"/>
     <genClasses ecoreClass="Dsl.ecore#//Failure"/>
+    <genClasses ecoreClass="Dsl.ecore#//TestQuantity">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dsl.ecore#//TestQuantity/number"/>
+    </genClasses>
     <genClasses ecoreClass="Dsl.ecore#//Scope">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//Scope/project"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dsl.ecore#//Scope/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dsl.ecore#//Scope/length"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dsl.ecore#//Scope/testquantity"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//Scope/testquantity"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//Scope/commands"/>
     </genClasses>
-    <genClasses ecoreClass="Dsl.ecore#//Commands"/>
+    <genClasses ecoreClass="Dsl.ecore#//Commands">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//Commands/type"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -14,12 +14,14 @@ import org.eclipse.xtext.serializer.ISerializationContext;
 import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
+import zanshin.dsl.dsl.Commands;
 import zanshin.dsl.dsl.DslPackage;
 import zanshin.dsl.dsl.Failure;
 import zanshin.dsl.dsl.Model;
 import zanshin.dsl.dsl.Project;
 import zanshin.dsl.dsl.Scope;
 import zanshin.dsl.dsl.Success;
+import zanshin.dsl.dsl.TestQuantity;
 import zanshin.dsl.services.DslGrammarAccess;
 
 @SuppressWarnings("all")
@@ -36,6 +38,9 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == DslPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
+			case DslPackage.COMMANDS:
+				sequence_Commands(context, (Commands) semanticObject); 
+				return; 
 			case DslPackage.FAILURE:
 				sequence_Failure(context, (Failure) semanticObject); 
 				return; 
@@ -51,6 +56,9 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case DslPackage.SUCCESS:
 				sequence_Success(context, (Success) semanticObject); 
 				return; 
+			case DslPackage.TEST_QUANTITY:
+				sequence_TestQuantity(context, (TestQuantity) semanticObject); 
+				return; 
 			}
 		if (errorAcceptor != null)
 			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
@@ -58,12 +66,29 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     Type returns Failure
-	 *     Failure returns Failure
-	 *     Commands returns Failure
+	 *     Commands returns Commands
 	 *
 	 * Constraint:
-	 *     ((array?='[' length=INT?)? name=STRING)
+	 *     type=Type
+	 */
+	protected void sequence_Commands(ISerializationContext context, Commands semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, DslPackage.Literals.COMMANDS__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DslPackage.Literals.COMMANDS__TYPE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getCommandsAccess().getTypeTypeParserRuleCall_0(), semanticObject.getType());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Type returns Failure
+	 *     Failure returns Failure
+	 *
+	 * Constraint:
+	 *     (simulationType='Failure' (array?='[' length=INT?)? name=STRING)
 	 */
 	protected void sequence_Failure(ISerializationContext context, Failure semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -116,13 +141,30 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Contexts:
 	 *     Type returns Success
 	 *     Success returns Success
-	 *     Commands returns Success
 	 *
 	 * Constraint:
-	 *     ((array?='[' length=INT?)? name=STRING)
+	 *     (simulationType='Success' (array?='[' length=INT?)? name=STRING)
 	 */
 	protected void sequence_Success(ISerializationContext context, Success semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     TestQuantity returns TestQuantity
+	 *
+	 * Constraint:
+	 *     number=INT
+	 */
+	protected void sequence_TestQuantity(ISerializationContext context, TestQuantity semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, DslPackage.Literals.TEST_QUANTITY__NUMBER) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DslPackage.Literals.TEST_QUANTITY__NUMBER));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getTestQuantityAccess().getNumberINTTerminalRuleCall_1_0(), semanticObject.getNumber());
+		feeder.finish();
 	}
 	
 	

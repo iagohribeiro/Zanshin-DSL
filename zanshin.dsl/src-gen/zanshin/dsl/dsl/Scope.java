@@ -108,20 +108,20 @@ public interface Scope extends EObject
   void setLength(int value);
 
   /**
-   * Returns the value of the '<em><b>Testquantity</b></em>' attribute list.
-   * The list contents are of type {@link java.lang.String}.
+   * Returns the value of the '<em><b>Testquantity</b></em>' containment reference list.
+   * The list contents are of type {@link zanshin.dsl.dsl.TestQuantity}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Testquantity</em>' attribute list isn't clear,
+   * If the meaning of the '<em>Testquantity</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Testquantity</em>' attribute list.
+   * @return the value of the '<em>Testquantity</em>' containment reference list.
    * @see zanshin.dsl.dsl.DslPackage#getScope_Testquantity()
-   * @model unique="false"
+   * @model containment="true"
    * @generated
    */
-  EList<String> getTestquantity();
+  EList<TestQuantity> getTestquantity();
 
   /**
    * Returns the value of the '<em><b>Commands</b></em>' containment reference list.

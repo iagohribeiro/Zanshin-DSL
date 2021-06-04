@@ -266,10 +266,20 @@ ruleSuccess returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='Success'
-		{
-			newLeafNode(otherlv_0, grammarAccess.getSuccessAccess().getSuccessKeyword_0());
-		}
+		(
+			(
+				lv_simulationType_0_0='Success'
+				{
+					newLeafNode(lv_simulationType_0_0, grammarAccess.getSuccessAccess().getSimulationTypeSuccessKeyword_0_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getSuccessRule());
+					}
+					setWithLastConsumed($current, "simulationType", lv_simulationType_0_0, "Success");
+				}
+			)
+		)
 		(
 			(
 				(
@@ -345,10 +355,20 @@ ruleFailure returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='Failure'
-		{
-			newLeafNode(otherlv_0, grammarAccess.getFailureAccess().getFailureKeyword_0());
-		}
+		(
+			(
+				lv_simulationType_0_0='Failure'
+				{
+					newLeafNode(lv_simulationType_0_0, grammarAccess.getFailureAccess().getSimulationTypeFailureKeyword_0_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getFailureRule());
+					}
+					setWithLastConsumed($current, "simulationType", lv_simulationType_0_0, "Failure");
+				}
+			)
+		)
 		(
 			(
 				(
@@ -409,14 +429,14 @@ ruleFailure returns [EObject current=null]
 ;
 
 // Entry rule entryRuleTestQuantity
-entryRuleTestQuantity returns [String current=null]:
+entryRuleTestQuantity returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getTestQuantityRule()); }
 	iv_ruleTestQuantity=ruleTestQuantity
-	{ $current=$iv_ruleTestQuantity.current.getText(); }
+	{ $current=$iv_ruleTestQuantity.current; }
 	EOF;
 
 // Rule TestQuantity
-ruleTestQuantity returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+ruleTestQuantity returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -424,18 +444,28 @@ ruleTestQuantity returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleTo
 	leaveRule();
 }:
 	(
-		kw='Part'
+		otherlv_0='Part'
 		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getTestQuantityAccess().getPartKeyword_0());
+			newLeafNode(otherlv_0, grammarAccess.getTestQuantityAccess().getPartKeyword_0());
 		}
-		this_INT_1=RULE_INT
-		{
-			$current.merge(this_INT_1);
-		}
-		{
-			newLeafNode(this_INT_1, grammarAccess.getTestQuantityAccess().getINTTerminalRuleCall_1());
-		}
+		(
+			(
+				lv_number_1_0=RULE_INT
+				{
+					newLeafNode(lv_number_1_0, grammarAccess.getTestQuantityAccess().getNumberINTTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getTestQuantityRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"number",
+						lv_number_1_0,
+						"org.eclipse.xtext.common.Terminals.INT");
+				}
+			)
+		)
 	)
 ;
 
@@ -572,14 +602,25 @@ ruleCommands returns [EObject current=null]
 @after {
 	leaveRule();
 }:
-	{
-		newCompositeNode(grammarAccess.getCommandsAccess().getTypeParserRuleCall());
-	}
-	this_Type_0=ruleType
-	{
-		$current = $this_Type_0.current;
-		afterParserOrEnumRuleCall();
-	}
+	(
+		(
+			{
+				newCompositeNode(grammarAccess.getCommandsAccess().getTypeTypeParserRuleCall_0());
+			}
+			lv_type_0_0=ruleType
+			{
+				if ($current==null) {
+					$current = createModelElementForParent(grammarAccess.getCommandsRule());
+				}
+				set(
+					$current,
+					"type",
+					lv_type_0_0,
+					"zanshin.dsl.Dsl.Type");
+				afterParserOrEnumRuleCall();
+			}
+		)
+	)
 ;
 
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;

@@ -290,9 +290,9 @@ ruleCommands
 	}
 	:
 	(
-		{ before(grammarAccess.getCommandsAccess().getTypeParserRuleCall()); }
-		ruleType
-		{ after(grammarAccess.getCommandsAccess().getTypeParserRuleCall()); }
+		{ before(grammarAccess.getCommandsAccess().getTypeAssignment()); }
+		(rule__Commands__TypeAssignment)
+		{ after(grammarAccess.getCommandsAccess().getTypeAssignment()); }
 	)
 ;
 finally {
@@ -554,9 +554,9 @@ rule__Success__Group__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getSuccessAccess().getSuccessKeyword_0()); }
-	'Success'
-	{ after(grammarAccess.getSuccessAccess().getSuccessKeyword_0()); }
+	{ before(grammarAccess.getSuccessAccess().getSimulationTypeAssignment_0()); }
+	(rule__Success__SimulationTypeAssignment_0)
+	{ after(grammarAccess.getSuccessAccess().getSimulationTypeAssignment_0()); }
 )
 ;
 finally {
@@ -716,9 +716,9 @@ rule__Failure__Group__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getFailureAccess().getFailureKeyword_0()); }
-	'Failure'
-	{ after(grammarAccess.getFailureAccess().getFailureKeyword_0()); }
+	{ before(grammarAccess.getFailureAccess().getSimulationTypeAssignment_0()); }
+	(rule__Failure__SimulationTypeAssignment_0)
+	{ after(grammarAccess.getFailureAccess().getSimulationTypeAssignment_0()); }
 )
 ;
 finally {
@@ -904,9 +904,9 @@ rule__TestQuantity__Group__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getTestQuantityAccess().getINTTerminalRuleCall_1()); }
-	RULE_INT
-	{ after(grammarAccess.getTestQuantityAccess().getINTTerminalRuleCall_1()); }
+	{ before(grammarAccess.getTestQuantityAccess().getNumberAssignment_1()); }
+	(rule__TestQuantity__NumberAssignment_1)
+	{ after(grammarAccess.getTestQuantityAccess().getNumberAssignment_1()); }
 )
 ;
 finally {
@@ -1133,6 +1133,25 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+rule__Success__SimulationTypeAssignment_0
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getSuccessAccess().getSimulationTypeSuccessKeyword_0_0()); }
+		(
+			{ before(grammarAccess.getSuccessAccess().getSimulationTypeSuccessKeyword_0_0()); }
+			'Success'
+			{ after(grammarAccess.getSuccessAccess().getSimulationTypeSuccessKeyword_0_0()); }
+		)
+		{ after(grammarAccess.getSuccessAccess().getSimulationTypeSuccessKeyword_0_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 rule__Success__ArrayAssignment_1_0
 	@init {
 		int stackSize = keepStackSize();
@@ -1182,6 +1201,25 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+rule__Failure__SimulationTypeAssignment_0
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getFailureAccess().getSimulationTypeFailureKeyword_0_0()); }
+		(
+			{ before(grammarAccess.getFailureAccess().getSimulationTypeFailureKeyword_0_0()); }
+			'Failure'
+			{ after(grammarAccess.getFailureAccess().getSimulationTypeFailureKeyword_0_0()); }
+		)
+		{ after(grammarAccess.getFailureAccess().getSimulationTypeFailureKeyword_0_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 rule__Failure__ArrayAssignment_1_0
 	@init {
 		int stackSize = keepStackSize();
@@ -1225,6 +1263,21 @@ rule__Failure__NameAssignment_2
 		{ before(grammarAccess.getFailureAccess().getNameSTRINGTerminalRuleCall_2_0()); }
 		RULE_STRING
 		{ after(grammarAccess.getFailureAccess().getNameSTRINGTerminalRuleCall_2_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__TestQuantity__NumberAssignment_1
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getTestQuantityAccess().getNumberINTTerminalRuleCall_1_0()); }
+		RULE_INT
+		{ after(grammarAccess.getTestQuantityAccess().getNumberINTTerminalRuleCall_1_0()); }
 	)
 ;
 finally {
@@ -1300,6 +1353,21 @@ rule__Scope__CommandsAssignment_4_1
 		{ before(grammarAccess.getScopeAccess().getCommandsCommandsParserRuleCall_4_1_0()); }
 		ruleCommands
 		{ after(grammarAccess.getScopeAccess().getCommandsCommandsParserRuleCall_4_1_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Commands__TypeAssignment
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getCommandsAccess().getTypeTypeParserRuleCall_0()); }
+		ruleType
+		{ after(grammarAccess.getCommandsAccess().getTypeTypeParserRuleCall_0()); }
 	)
 ;
 finally {

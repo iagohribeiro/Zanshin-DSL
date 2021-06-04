@@ -4,6 +4,7 @@
 package zanshin.dsl.generator;
 
 import com.google.common.collect.Iterables;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -11,9 +12,13 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
+import org.eclipse.xtext.xbase.lib.ExclusiveRange;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.eclipse.xtext.xbase.lib.StringExtensions;
+import zanshin.dsl.dsl.Commands;
 import zanshin.dsl.dsl.Project;
 import zanshin.dsl.dsl.Scope;
+import zanshin.dsl.dsl.Type;
 
 /**
  * Generates code from your model files on save.
@@ -47,63 +52,213 @@ public class DslGenerator extends AbstractGenerator {
   }
   
   public CharSequence simulation(final Scope scope) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package it.unitn.disi.zanshin.simulation.cases.project.");
-    Project _project = scope.getProject();
-    String _importedNamespace = _project.getImportedNamespace();
-    String _replace = _importedNamespace.replace(" ", "");
-    String _replace_1 = _replace.replace("\"", "");
-    _builder.append(_replace_1, "");
-    _builder.append(";");
-    _builder.newLineIfNotEmpty();
-    _builder.newLine();
-    _builder.append("import it.unitn.disi.zanshin.simulation.Logger;");
-    _builder.newLine();
-    _builder.append("import it.unitn.disi.zanshin.simulation.cases.SimulationPart;");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("public class ");
-    String _name = scope.getName();
-    String _replace_2 = _name.replace(" ", "");
-    String _replace_3 = _replace_2.replace("\"", "");
-    _builder.append(_replace_3, "");
-    _builder.append(" extends AbstractAtmSimulation {");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("private static final Logger log = new Logger(AtmAR2FailureSimulation.class);");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("/** @see it.unitn.disi.zanshin.simulation.cases.AbstractSimulation#doInit() */");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("@Override");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("protected void doInit() throws Exception {");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("// Registers the ");
-    Project _project_1 = scope.getProject();
-    String _importedNamespace_1 = _project_1.getImportedNamespace();
-    String _replace_4 = _importedNamespace_1.replace(" ", "");
-    String _replace_5 = _replace_4.replace("\"", "");
-    _builder.append(_replace_5, "\t\t");
-    _builder.append(" Simulation as target system in Zanshin.");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("registerTargetSystem();");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    return _builder;
+    CharSequence _xblockexpression = null;
+    {
+      Project _project = scope.getProject();
+      String _importedNamespace = _project.getImportedNamespace();
+      String _replace = _importedNamespace.replace(" ", "");
+      final String projectName = _replace.replace("\"", "");
+      final String simulationName = scope.getName();
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("package it.unitn.disi.zanshin.simulation.cases.");
+      _builder.append(projectName, "");
+      _builder.append(";");
+      _builder.newLineIfNotEmpty();
+      _builder.newLine();
+      _builder.append("import it.unitn.disi.zanshin.simulation.Logger;");
+      _builder.newLine();
+      _builder.append("import it.unitn.disi.zanshin.simulation.cases.SimulationPart;");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("public final class ");
+      _builder.append(simulationName, "");
+      _builder.append(" extends Abstract");
+      String _firstUpper = StringExtensions.toFirstUpper(projectName);
+      _builder.append(_firstUpper, "");
+      _builder.append("Simulation {");
+      _builder.newLineIfNotEmpty();
+      _builder.append("\t");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("private static final Logger log = new Logger(");
+      _builder.append(simulationName, "\t");
+      _builder.append(".class);");
+      _builder.newLineIfNotEmpty();
+      _builder.append("\t");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("/** @see it.unitn.disi.zanshin.simulation.cases.AbstractSimulation#doInit() */");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("@Override");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("public void doInit() throws Exception {");
+      _builder.newLine();
+      _builder.append("\t\t");
+      _builder.append("// Registers the ");
+      _builder.append(projectName, "\t\t");
+      _builder.append(" Simulation as target system in Zanshin.");
+      _builder.newLineIfNotEmpty();
+      _builder.append("\t\t");
+      _builder.append("registerTargetSystem();");
+      _builder.newLine();
+      {
+        EList<Commands> _commands = scope.getCommands();
+        int _size = _commands.size();
+        ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _size, true);
+        for(final Integer i : _doubleDotLessThan) {
+          _builder.append("\t\t");
+          EList<Commands> _commands_1 = scope.getCommands();
+          final Commands commands = _commands_1.get((i).intValue());
+          _builder.newLineIfNotEmpty();
+          _builder.append("\t\t");
+          final int index = ((i).intValue() + 1);
+          _builder.newLineIfNotEmpty();
+          _builder.append("\t\t");
+          Type _type = commands.getType();
+          final String simulationType = _type.getSimulationType();
+          _builder.newLineIfNotEmpty();
+          _builder.append("\t\t");
+          Type _type_1 = commands.getType();
+          final String requeriment = _type_1.getName();
+          _builder.newLineIfNotEmpty();
+          _builder.append("\t\t");
+          _builder.newLine();
+          _builder.append("\t\t");
+          _builder.append("// Adds the part ");
+          _builder.append(index, "\t\t");
+          _builder.append(" of the simulation to the list.");
+          _builder.newLineIfNotEmpty();
+          _builder.append("\t\t");
+          _builder.append("parts.add(new SimulationPart() {");
+          _builder.newLine();
+          _builder.append("\t\t");
+          _builder.append("\t");
+          _builder.append("@Override");
+          _builder.newLine();
+          _builder.append("\t\t");
+          _builder.append("\t");
+          _builder.append("public void run() throws Exception {");
+          _builder.newLine();
+          _builder.append("\t\t");
+          _builder.append("\t\t");
+          _builder.append("// Creates a user session, as if someone were using the ");
+          _builder.append(projectName, "\t\t\t\t");
+          _builder.append(".");
+          _builder.newLineIfNotEmpty();
+          _builder.append("\t\t");
+          _builder.append("\t\t");
+          _builder.append("sessionId = zanshin.createUserSession(targetSystemId);");
+          _builder.newLine();
+          _builder.append("\t\t");
+          _builder.append("\t\t");
+          _builder.append("log.info(\"Created a new user session with id: {0}\", sessionId); //$NON-NLS-1$");
+          _builder.newLine();
+          _builder.append("\t\t");
+          _builder.append("\t\t");
+          _builder.newLine();
+          {
+            if ((index == 1)) {
+              _builder.append("\t\t");
+              _builder.append("\t\t");
+              _builder.append("log.info(\"Current incident took more than 3 minutes do dispatch!\"); //$NON-NLS-1$");
+              _builder.newLine();
+            } else {
+              _builder.append("\t\t");
+              _builder.append("\t\t");
+              _builder.append("log.info(\"Current incident took more than 3 minutes do dispatch!\"); //$NON-NLS-1$");
+              _builder.newLine();
+            }
+          }
+          _builder.append("\t\t");
+          _builder.append("\t\t");
+          _builder.append("zanshin.logRequirementStart(targetSystemId, sessionId, ");
+          _builder.append(requeriment, "\t\t\t\t");
+          _builder.append(");");
+          _builder.newLineIfNotEmpty();
+          {
+            Type _type_2 = commands.getType();
+            boolean _isArray = _type_2.isArray();
+            if (_isArray) {
+              {
+                Type _type_3 = commands.getType();
+                int _length = _type_3.getLength();
+                ExclusiveRange _doubleDotLessThan_1 = new ExclusiveRange(0, _length, true);
+                for(final Integer j : _doubleDotLessThan_1) {
+                  _builder.append("\t\t");
+                  _builder.append("\t\t");
+                  _builder.append("zanshin.logRequirement");
+                  _builder.append(simulationType, "\t\t\t\t");
+                  _builder.append("(targetSystemId, sessionId, ");
+                  _builder.append(requeriment, "\t\t\t\t");
+                  _builder.append(");");
+                  _builder.newLineIfNotEmpty();
+                }
+              }
+            } else {
+              _builder.append("\t\t");
+              _builder.append("\t\t");
+              _builder.append("zanshin.logRequirement");
+              _builder.append(simulationType, "\t\t\t\t");
+              _builder.append("(targetSystemId, sessionId, ");
+              _builder.append(requeriment, "\t\t\t\t");
+              _builder.append(");");
+              _builder.newLineIfNotEmpty();
+            }
+          }
+          _builder.append("\t\t");
+          _builder.append("\t\t");
+          _builder.append("// Ends the user session.");
+          _builder.newLine();
+          _builder.append("\t\t");
+          _builder.append("\t\t");
+          _builder.append("zanshin.disposeUserSession(targetSystemId, sessionId);");
+          _builder.newLine();
+          _builder.append("\t\t");
+          _builder.append("\t");
+          _builder.append("}");
+          _builder.newLine();
+          _builder.append("\t\t");
+          _builder.append("\t");
+          _builder.append("@Override");
+          _builder.newLine();
+          _builder.append("\t\t");
+          _builder.append("\t");
+          _builder.append("public boolean shouldWait() {");
+          _builder.newLine();
+          {
+            int _length_1 = scope.getLength();
+            boolean _equals = (index == _length_1);
+            if (_equals) {
+              _builder.append("\t\t");
+              _builder.append("\t\t");
+              _builder.append("return false;");
+              _builder.newLine();
+            } else {
+              _builder.append("\t\t");
+              _builder.append("\t\t");
+              _builder.append("return true;");
+              _builder.newLine();
+            }
+          }
+          _builder.append("\t\t");
+          _builder.append("\t");
+          _builder.append("}");
+          _builder.newLine();
+          _builder.append("\t\t");
+          _builder.append("});");
+          _builder.newLine();
+        }
+      }
+      _builder.append("\t");
+      _builder.append("}");
+      _builder.newLine();
+      _builder.append("}");
+      _builder.newLine();
+      _xblockexpression = _builder;
+    }
+    return _xblockexpression;
   }
   
   public CharSequence TargetSystem(final Scope scope) {

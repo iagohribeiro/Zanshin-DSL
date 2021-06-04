@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -24,6 +23,7 @@ import zanshin.dsl.dsl.Commands;
 import zanshin.dsl.dsl.DslPackage;
 import zanshin.dsl.dsl.Project;
 import zanshin.dsl.dsl.Scope;
+import zanshin.dsl.dsl.TestQuantity;
 
 /**
  * <!-- begin-user-doc -->
@@ -95,14 +95,14 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope
   protected int length = LENGTH_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getTestquantity() <em>Testquantity</em>}' attribute list.
+   * The cached value of the '{@link #getTestquantity() <em>Testquantity</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getTestquantity()
    * @generated
    * @ordered
    */
-  protected EList<String> testquantity;
+  protected EList<TestQuantity> testquantity;
 
   /**
    * The cached value of the '{@link #getCommands() <em>Commands</em>}' containment reference list.
@@ -234,11 +234,11 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<String> getTestquantity()
+  public EList<TestQuantity> getTestquantity()
   {
     if (testquantity == null)
     {
-      testquantity = new EDataTypeEList<String>(String.class, this, DslPackage.SCOPE__TESTQUANTITY);
+      testquantity = new EObjectContainmentEList<TestQuantity>(TestQuantity.class, this, DslPackage.SCOPE__TESTQUANTITY);
     }
     return testquantity;
   }
@@ -269,6 +269,8 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope
     {
       case DslPackage.SCOPE__PROJECT:
         return basicSetProject(null, msgs);
+      case DslPackage.SCOPE__TESTQUANTITY:
+        return ((InternalEList<?>)getTestquantity()).basicRemove(otherEnd, msgs);
       case DslPackage.SCOPE__COMMANDS:
         return ((InternalEList<?>)getCommands()).basicRemove(otherEnd, msgs);
     }
@@ -321,7 +323,7 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope
         return;
       case DslPackage.SCOPE__TESTQUANTITY:
         getTestquantity().clear();
-        getTestquantity().addAll((Collection<? extends String>)newValue);
+        getTestquantity().addAll((Collection<? extends TestQuantity>)newValue);
         return;
       case DslPackage.SCOPE__COMMANDS:
         getCommands().clear();
@@ -399,8 +401,6 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope
     result.append(name);
     result.append(", length: ");
     result.append(length);
-    result.append(", testquantity: ");
-    result.append(testquantity);
     result.append(')');
     return result.toString();
   }

@@ -91,7 +91,6 @@ public class DslSwitch<T> extends Switch<T>
       {
         Type type = (Type)theEObject;
         T result = caseType(type);
-        if (result == null) result = caseCommands(type);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -100,7 +99,6 @@ public class DslSwitch<T> extends Switch<T>
         Success success = (Success)theEObject;
         T result = caseSuccess(success);
         if (result == null) result = caseType(success);
-        if (result == null) result = caseCommands(success);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -109,7 +107,13 @@ public class DslSwitch<T> extends Switch<T>
         Failure failure = (Failure)theEObject;
         T result = caseFailure(failure);
         if (result == null) result = caseType(failure);
-        if (result == null) result = caseCommands(failure);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case DslPackage.TEST_QUANTITY:
+      {
+        TestQuantity testQuantity = (TestQuantity)theEObject;
+        T result = caseTestQuantity(testQuantity);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -207,6 +211,22 @@ public class DslSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseFailure(Failure object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Test Quantity</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Test Quantity</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTestQuantity(TestQuantity object)
   {
     return null;
   }

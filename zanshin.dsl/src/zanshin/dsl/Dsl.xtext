@@ -18,13 +18,13 @@ Type:
 	Success | Failure;
 	
 Success:
-	'Success' (array ?='[' (length=INT)? ']')? name = STRING;
+	simulationType = 'Success' (array ?='[' (length=INT)? ']')? name = STRING;
 
 Failure:
-	'Failure' (array ?='[' (length=INT)? ']')? name = STRING;
+	simulationType = 'Failure' (array ?='[' (length=INT)? ']')? name = STRING;
 
 TestQuantity:
-	'Part' INT;
+	'Part' number = INT;
 	
 Scope:
 	project = Project
@@ -33,4 +33,4 @@ Scope:
 		(commands+=Commands))*;
 		
 Commands:
-	Type;
+	type = Type;

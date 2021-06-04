@@ -128,7 +128,8 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	public class SuccessElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "zanshin.dsl.Dsl.Success");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cSuccessKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cSimulationTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cSimulationTypeSuccessKeyword_0_0 = (Keyword)cSimulationTypeAssignment_0.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Assignment cArrayAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
 		private final Keyword cArrayLeftSquareBracketKeyword_1_0_0 = (Keyword)cArrayAssignment_1_0.eContents().get(0);
@@ -139,14 +140,17 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNameSTRINGTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
 		
 		//Success:
-		//	'Success' (array?='[' length=INT? ']')? name=STRING;
+		//	simulationType='Success' (array?='[' length=INT? ']')? name=STRING;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Success' (array?='[' length=INT? ']')? name=STRING
+		//simulationType='Success' (array?='[' length=INT? ']')? name=STRING
 		public Group getGroup() { return cGroup; }
 		
+		//simulationType='Success'
+		public Assignment getSimulationTypeAssignment_0() { return cSimulationTypeAssignment_0; }
+		
 		//'Success'
-		public Keyword getSuccessKeyword_0() { return cSuccessKeyword_0; }
+		public Keyword getSimulationTypeSuccessKeyword_0_0() { return cSimulationTypeSuccessKeyword_0_0; }
 		
 		//(array?='[' length=INT? ']')?
 		public Group getGroup_1() { return cGroup_1; }
@@ -175,7 +179,8 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	public class FailureElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "zanshin.dsl.Dsl.Failure");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cFailureKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cSimulationTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cSimulationTypeFailureKeyword_0_0 = (Keyword)cSimulationTypeAssignment_0.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Assignment cArrayAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
 		private final Keyword cArrayLeftSquareBracketKeyword_1_0_0 = (Keyword)cArrayAssignment_1_0.eContents().get(0);
@@ -186,14 +191,17 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNameSTRINGTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
 		
 		//Failure:
-		//	'Failure' (array?='[' length=INT? ']')? name=STRING;
+		//	simulationType='Failure' (array?='[' length=INT? ']')? name=STRING;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Failure' (array?='[' length=INT? ']')? name=STRING
+		//simulationType='Failure' (array?='[' length=INT? ']')? name=STRING
 		public Group getGroup() { return cGroup; }
 		
+		//simulationType='Failure'
+		public Assignment getSimulationTypeAssignment_0() { return cSimulationTypeAssignment_0; }
+		
 		//'Failure'
-		public Keyword getFailureKeyword_0() { return cFailureKeyword_0; }
+		public Keyword getSimulationTypeFailureKeyword_0_0() { return cSimulationTypeFailureKeyword_0_0; }
 		
 		//(array?='[' length=INT? ']')?
 		public Group getGroup_1() { return cGroup_1; }
@@ -223,20 +231,24 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "zanshin.dsl.Dsl.TestQuantity");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cPartKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final RuleCall cINTTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Assignment cNumberAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNumberINTTerminalRuleCall_1_0 = (RuleCall)cNumberAssignment_1.eContents().get(0);
 		
 		//TestQuantity:
-		//	'Part' INT;
+		//	'Part' number=INT;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Part' INT
+		//'Part' number=INT
 		public Group getGroup() { return cGroup; }
 		
 		//'Part'
 		public Keyword getPartKeyword_0() { return cPartKeyword_0; }
 		
+		//number=INT
+		public Assignment getNumberAssignment_1() { return cNumberAssignment_1; }
+		
 		//INT
-		public RuleCall getINTTerminalRuleCall_1() { return cINTTerminalRuleCall_1; }
+		public RuleCall getNumberINTTerminalRuleCall_1_0() { return cNumberINTTerminalRuleCall_1_0; }
 	}
 	public class ScopeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "zanshin.dsl.Dsl.Scope");
@@ -301,14 +313,18 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	public class CommandsElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "zanshin.dsl.Dsl.Commands");
-		private final RuleCall cTypeParserRuleCall = (RuleCall)rule.eContents().get(1);
+		private final Assignment cTypeAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cTypeTypeParserRuleCall_0 = (RuleCall)cTypeAssignment.eContents().get(0);
 		
 		//Commands:
-		//	Type;
+		//	type=Type;
 		@Override public ParserRule getRule() { return rule; }
 		
+		//type=Type
+		public Assignment getTypeAssignment() { return cTypeAssignment; }
+		
 		//Type
-		public RuleCall getTypeParserRuleCall() { return cTypeParserRuleCall; }
+		public RuleCall getTypeTypeParserRuleCall_0() { return cTypeTypeParserRuleCall_0; }
 	}
 	
 	
@@ -422,7 +438,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Success:
-	//	'Success' (array?='[' length=INT? ']')? name=STRING;
+	//	simulationType='Success' (array?='[' length=INT? ']')? name=STRING;
 	public SuccessElements getSuccessAccess() {
 		return pSuccess;
 	}
@@ -432,7 +448,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Failure:
-	//	'Failure' (array?='[' length=INT? ']')? name=STRING;
+	//	simulationType='Failure' (array?='[' length=INT? ']')? name=STRING;
 	public FailureElements getFailureAccess() {
 		return pFailure;
 	}
@@ -442,7 +458,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//TestQuantity:
-	//	'Part' INT;
+	//	'Part' number=INT;
 	public TestQuantityElements getTestQuantityAccess() {
 		return pTestQuantity;
 	}
@@ -464,7 +480,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Commands:
-	//	Type;
+	//	type=Type;
 	public CommandsElements getCommandsAccess() {
 		return pCommands;
 	}

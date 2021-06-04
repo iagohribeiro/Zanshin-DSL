@@ -3,6 +3,7 @@
  */
 package zanshin.dsl.dsl;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,6 +14,7 @@ package zanshin.dsl.dsl;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link zanshin.dsl.dsl.Type#getSimulationType <em>Simulation Type</em>}</li>
  *   <li>{@link zanshin.dsl.dsl.Type#isArray <em>Array</em>}</li>
  *   <li>{@link zanshin.dsl.dsl.Type#getLength <em>Length</em>}</li>
  *   <li>{@link zanshin.dsl.dsl.Type#getName <em>Name</em>}</li>
@@ -22,8 +24,34 @@ package zanshin.dsl.dsl;
  * @model
  * @generated
  */
-public interface Type extends Commands
+public interface Type extends EObject
 {
+  /**
+   * Returns the value of the '<em><b>Simulation Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Simulation Type</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Simulation Type</em>' attribute.
+   * @see #setSimulationType(String)
+   * @see zanshin.dsl.dsl.DslPackage#getType_SimulationType()
+   * @model
+   * @generated
+   */
+  String getSimulationType();
+
+  /**
+   * Sets the value of the '{@link zanshin.dsl.dsl.Type#getSimulationType <em>Simulation Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Simulation Type</em>' attribute.
+   * @see #getSimulationType()
+   * @generated
+   */
+  void setSimulationType(String value);
+
   /**
    * Returns the value of the '<em><b>Array</b></em>' attribute.
    * <!-- begin-user-doc -->

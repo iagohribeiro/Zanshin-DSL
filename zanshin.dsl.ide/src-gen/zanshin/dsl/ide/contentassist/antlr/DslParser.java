@@ -49,17 +49,21 @@ public class DslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getScopeAccess().getGroup_4(), "rule__Scope__Group_4__0");
 					put(grammarAccess.getModelAccess().getDslAssignment(), "rule__Model__DslAssignment");
 					put(grammarAccess.getProjectAccess().getImportedNamespaceAssignment_1(), "rule__Project__ImportedNamespaceAssignment_1");
+					put(grammarAccess.getSuccessAccess().getSimulationTypeAssignment_0(), "rule__Success__SimulationTypeAssignment_0");
 					put(grammarAccess.getSuccessAccess().getArrayAssignment_1_0(), "rule__Success__ArrayAssignment_1_0");
 					put(grammarAccess.getSuccessAccess().getLengthAssignment_1_1(), "rule__Success__LengthAssignment_1_1");
 					put(grammarAccess.getSuccessAccess().getNameAssignment_2(), "rule__Success__NameAssignment_2");
+					put(grammarAccess.getFailureAccess().getSimulationTypeAssignment_0(), "rule__Failure__SimulationTypeAssignment_0");
 					put(grammarAccess.getFailureAccess().getArrayAssignment_1_0(), "rule__Failure__ArrayAssignment_1_0");
 					put(grammarAccess.getFailureAccess().getLengthAssignment_1_1(), "rule__Failure__LengthAssignment_1_1");
 					put(grammarAccess.getFailureAccess().getNameAssignment_2(), "rule__Failure__NameAssignment_2");
+					put(grammarAccess.getTestQuantityAccess().getNumberAssignment_1(), "rule__TestQuantity__NumberAssignment_1");
 					put(grammarAccess.getScopeAccess().getProjectAssignment_0(), "rule__Scope__ProjectAssignment_0");
 					put(grammarAccess.getScopeAccess().getNameAssignment_2(), "rule__Scope__NameAssignment_2");
 					put(grammarAccess.getScopeAccess().getLengthAssignment_3(), "rule__Scope__LengthAssignment_3");
 					put(grammarAccess.getScopeAccess().getTestquantityAssignment_4_0(), "rule__Scope__TestquantityAssignment_4_0");
 					put(grammarAccess.getScopeAccess().getCommandsAssignment_4_1(), "rule__Scope__CommandsAssignment_4_1");
+					put(grammarAccess.getCommandsAccess().getTypeAssignment(), "rule__Commands__TypeAssignment");
 				}
 			};
 		}

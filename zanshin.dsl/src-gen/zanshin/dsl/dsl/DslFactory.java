@@ -69,6 +69,15 @@ public interface DslFactory extends EFactory
   Failure createFailure();
 
   /**
+   * Returns a new object of class '<em>Test Quantity</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Test Quantity</em>'.
+   * @generated
+   */
+  TestQuantity createTestQuantity();
+
+  /**
    * Returns a new object of class '<em>Scope</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
