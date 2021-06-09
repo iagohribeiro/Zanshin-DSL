@@ -17,6 +17,7 @@ import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransi
 import zanshin.dsl.dsl.Commands;
 import zanshin.dsl.dsl.DslPackage;
 import zanshin.dsl.dsl.Failure;
+import zanshin.dsl.dsl.Log;
 import zanshin.dsl.dsl.Model;
 import zanshin.dsl.dsl.Project;
 import zanshin.dsl.dsl.Scope;
@@ -43,6 +44,9 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case DslPackage.FAILURE:
 				sequence_Failure(context, (Failure) semanticObject); 
+				return; 
+			case DslPackage.LOG:
+				sequence_Log(context, (Log) semanticObject); 
 				return; 
 			case DslPackage.MODEL:
 				sequence_Model(context, (Model) semanticObject); 
@@ -97,6 +101,24 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     Log returns Log
+	 *
+	 * Constraint:
+	 *     message=STRING
+	 */
+	protected void sequence_Log(ISerializationContext context, Log semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, DslPackage.Literals.LOG__MESSAGE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DslPackage.Literals.LOG__MESSAGE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getLogAccess().getMessageSTRINGTerminalRuleCall_1_0(), semanticObject.getMessage());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Model returns Model
 	 *
 	 * Constraint:
@@ -130,7 +152,7 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Scope returns Scope
 	 *
 	 * Constraint:
-	 *     (project=Project name=ID length=INT? (testquantity+=TestQuantity? commands+=Commands)*)
+	 *     (project=Project name=ID length=INT? (testquantity+=TestQuantity? commands+=Commands message+=Log?)*)
 	 */
 	protected void sequence_Scope(ISerializationContext context, Scope semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

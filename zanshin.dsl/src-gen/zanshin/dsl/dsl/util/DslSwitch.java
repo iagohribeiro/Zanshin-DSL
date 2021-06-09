@@ -117,6 +117,13 @@ public class DslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case DslPackage.LOG:
+      {
+        Log log = (Log)theEObject;
+        T result = caseLog(log);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case DslPackage.SCOPE:
       {
         Scope scope = (Scope)theEObject;
@@ -227,6 +234,22 @@ public class DslSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseTestQuantity(TestQuantity object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Log</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Log</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseLog(Log object)
   {
     return null;
   }

@@ -18,7 +18,7 @@ class DslGenerator extends AbstractGenerator {
 	
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		for(e:resource.allContents.toIterable.filter(Scope)){
-			val String projectName = e.project.importedNamespace.replace(" ", "").replace("\"","");
+			var String projectName = e.project.importedNamespace.replace(" ", "").replace("\"","");
 			
 			fsa.generateFile(
 		   		"/" + projectName + "/" + projectName + ".java", e.simulation
@@ -34,9 +34,9 @@ class DslGenerator extends AbstractGenerator {
 	}
 	
 	def CharSequence simulation(Scope scope){
-		val String projectName = scope.project.importedNamespace.replace(" ", "").replace("\"","");
-		val String simulationName = scope.name;
-		
+		var String projectName = scope.project.importedNamespace.replace(" ", "").replace("\"","");
+		var String simulationName = scope.name;
+
 		'''
 		package it.unitn.disi.zanshin.simulation.cases.«projectName»;
 		
@@ -53,11 +53,17 @@ class DslGenerator extends AbstractGenerator {
 				// Registers the «projectName» Simulation as target system in Zanshin.
 				registerTargetSystem();
 				«FOR i:0 ..< scope.commands.size»
-				«val commands = scope.commands.get(i)»
-				«val index = i+1»
-				«val String simulationType = commands.type.simulationType»
-				«val String requeriment = commands.type.name»
+				«var commands = scope.commands.get(i)»
+				«var index = i+1»
+				«var String simulationType = commands.type.simulationType»
+				«var String requirement = commands.type.name»
 				
+				//---------------Variables test---------------
+				//		Requeriments:
+				//            
+				//		
+				//--------------------------------------------
+
 				// Adds the part «index» of the simulation to the list.
 				parts.add(new SimulationPart() {
 					@Override
@@ -66,18 +72,18 @@ class DslGenerator extends AbstractGenerator {
 						sessionId = zanshin.createUserSession(targetSystemId);
 						log.info("Created a new user session with id: {0}", sessionId); //$NON-NLS-1$
 						
-						«IF index == 1»
-						log.info("Current incident took more than 3 minutes do dispatch!"); //$NON-NLS-1$
+						«IF scope.message.size == 0»
+						log.info("Empty Log"); //$NON-NLS-1$
 						«ELSE»
-						log.info("Current incident took more than 3 minutes do dispatch!"); //$NON-NLS-1$
+						log.info("«scope.message.get(i).message»"); //$NON-NLS-1$
 						«ENDIF»
-						zanshin.logRequirementStart(targetSystemId, sessionId, «requeriment»);
+						zanshin.logRequirementStart(targetSystemId, sessionId, «requirement»);
 						«IF commands.type.array»
 						«FOR j:0 ..< commands.type.length»
-						zanshin.logRequirement«simulationType»(targetSystemId, sessionId, «requeriment»);
+						zanshin.logRequirement«simulationType»(targetSystemId, sessionId, «requirement»);
 						«ENDFOR»
 						«ELSE»
-						zanshin.logRequirement«simulationType»(targetSystemId, sessionId, «requeriment»);
+						zanshin.logRequirement«simulationType»(targetSystemId, sessionId, «requirement»);
 						«ENDIF»
 						// Ends the user session.
 						zanshin.disposeUserSession(targetSystemId, sessionId);
@@ -97,13 +103,114 @@ class DslGenerator extends AbstractGenerator {
 		'''
 	}
 	def CharSequence TargetSystem(Scope scope){
-		''' Test TargetSystem
-		«scope.name.replace(" ", "").replace("\"","")»
+		var String projectName = scope.project.importedNamespace.replace(" ", "").replace("\"","");
+		'''
+		package it.unitn.disi.zanshin.simulation.cases.«projectName»;
+		
+		import java.util.Map;
+		
+		import it.unitn.disi.zanshin.simulation.SimulatedTargetSystem;
+		
+		public class «projectName.toFirstUpper»SimulatedTargetSystem extends SimulatedTargetSystem {
+			/** The object in which the simulation thread is sleeping, and therefore used to "wake it up". */
+			private Object lock;
+		
+			/** Constructor. */
+			public «projectName.toFirstUpper»SimulatedTargetSystem(Object lock) {
+				this.lock = lock;
+			}
+		
+			/** @see it.unitn.disi.zanshin.simulation.SimulatedTargetSystem#initiate(java.lang.Long, java.lang.String) */
+			@Override
+			public void initiate(Long sessionId, String reqName) {
+				super.initiate(sessionId, reqName);
+		
+				// Initiate is the last command of the Retry strategy, thus we should notify the simulation to continue, as this
+				synchronized (lock) {
+					lock.notifyAll();
+				}
+			}
+		
+			/** @see it.unitn.disi.zanshin.simulation.SimulatedTargetSystem#abort(java.lang.Long, java.lang.String) */
+			@Override
+			public void abort(Long sessionId, String awreqName) {
+				super.abort(sessionId, awreqName);
+				
+				// After two attempts of the Retry strategy, Zanshin replies with an Abort, also for the AR1 simulation.
+				synchronized (lock) {
+					lock.notifyAll();
+				}
+			}
+			
+			public void applyConfig(Map<String, String> newConfig) {
+				super.applyConfig(newConfig);
+				
+				// ApplyConfig is the last command of the Reconfiguration strategy, thus we should notify the simulation to
+				// continue, as this strategy is selected to deal with failures of AR4.
+				synchronized (lock) {
+					lock.notifyAll();
+				}		
+			}
+		}
 		'''
 	}
 	def CharSequence AbstractSimulation(Scope scope){
-		'''Test AbstractSimulation
-		«scope.name.replace(" ", "").replace("\"","")»
+		var String projectName = scope.project.importedNamespace.replace(" ", "").replace("\"","");
+		var String [] requirementsList = newArrayOfSize(500);
+		var int lastIndex = 0;
+		
+		for (i:0 ..< scope.commands.size){
+			var command = scope.commands.get(i);
+			
+			if(!requirementsList.contains(command.type.name) && i < 500){
+				requirementsList.set(lastIndex,command.type.name);
+				lastIndex++;
+			}
+		}
+		
+		'''
+		package it.unitn.disi.zanshin.simulation.cases.«projectName»;
+		
+		import it.unitn.disi.zanshin.simulation.Logger;
+		import it.unitn.disi.zanshin.simulation.SimulationUtils;
+		import it.unitn.disi.zanshin.simulation.cases.AbstractSimulation;
+		
+		import java.io.IOException;
+		
+		public abstract class Abstract«projectName.toFirstUpper»Simulation extends AbstractSimulation {
+			private static final Logger log = new Logger(Abstract«projectName.toFirstUpper»Simulation.class);
+		
+			protected static final String BASE_PATH = Abstract«projectName.toFirstUpper»Simulation.class.getPackage().getName().replace('.', '/') + '/';
+		
+			protected static final String META_MODEL_FILE_PATH = BASE_PATH + "«projectName».ecore"; //$NON-NLS-1$
+		
+			protected static final String MODEL_FILE_PATH = BASE_PATH + "model.«projectName»"; //$NON-NLS-1$
+			
+			«FOR requirement:requirementsList»
+			«var formatedRequeriment = requirement.replace("_"," ").toFirstUpper.replace(" ","")»
+			protected static final String «requirement» = "«formatedRequeriment»"; //$NON-NLS-1$
+			«ENDFOR»
+			
+		
+			protected static Object lock = new Object();
+		
+			protected String targetSystemId;
+		
+			protected Long sessionId;
+		
+			protected void registerTargetSystem() throws IOException {
+				// Registers the «projectName.toFirstUpper» simulation as target system in Zanshin, if not already registered.
+				log.info("Registering the «projectName.toFirstUpper» Simulation as a target system in Zanshin!!!"); //$NON-NLS-1$
+				targetSystemId = SimulationUtils.registerTargetSystem(zanshin, new «projectName.toFirstUpper»SimulatedTargetSystem(lock), META_MODEL_FILE_PATH, MODEL_FILE_PATH);
+				log.info("Target system registered as: {0}", targetSystemId); //$NON-NLS-1$
+			}
+		
+			/** @see it.unitn.disi.zanshin.simulation.cases.Simulation#getLock() */
+			@Override
+			public Object getLock() {
+				return lock;
+			}
+		}
 		'''
 	}
 }

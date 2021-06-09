@@ -307,6 +307,34 @@ public interface DslPackage extends EPackage
   int TEST_QUANTITY_FEATURE_COUNT = 1;
 
   /**
+   * The meta object id for the '{@link zanshin.dsl.dsl.impl.LogImpl <em>Log</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see zanshin.dsl.dsl.impl.LogImpl
+   * @see zanshin.dsl.dsl.impl.DslPackageImpl#getLog()
+   * @generated
+   */
+  int LOG = 6;
+
+  /**
+   * The feature id for the '<em><b>Message</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LOG__MESSAGE = 0;
+
+  /**
+   * The number of structural features of the '<em>Log</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LOG_FEATURE_COUNT = 1;
+
+  /**
    * The meta object id for the '{@link zanshin.dsl.dsl.impl.ScopeImpl <em>Scope</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -314,7 +342,7 @@ public interface DslPackage extends EPackage
    * @see zanshin.dsl.dsl.impl.DslPackageImpl#getScope()
    * @generated
    */
-  int SCOPE = 6;
+  int SCOPE = 7;
 
   /**
    * The feature id for the '<em><b>Project</b></em>' containment reference.
@@ -362,13 +390,22 @@ public interface DslPackage extends EPackage
   int SCOPE__COMMANDS = 4;
 
   /**
+   * The feature id for the '<em><b>Message</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SCOPE__MESSAGE = 5;
+
+  /**
    * The number of structural features of the '<em>Scope</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SCOPE_FEATURE_COUNT = 5;
+  int SCOPE_FEATURE_COUNT = 6;
 
   /**
    * The meta object id for the '{@link zanshin.dsl.dsl.impl.CommandsImpl <em>Commands</em>}' class.
@@ -378,7 +415,7 @@ public interface DslPackage extends EPackage
    * @see zanshin.dsl.dsl.impl.DslPackageImpl#getCommands()
    * @generated
    */
-  int COMMANDS = 7;
+  int COMMANDS = 8;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -537,6 +574,27 @@ public interface DslPackage extends EPackage
   EAttribute getTestQuantity_Number();
 
   /**
+   * Returns the meta object for class '{@link zanshin.dsl.dsl.Log <em>Log</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Log</em>'.
+   * @see zanshin.dsl.dsl.Log
+   * @generated
+   */
+  EClass getLog();
+
+  /**
+   * Returns the meta object for the attribute '{@link zanshin.dsl.dsl.Log#getMessage <em>Message</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Message</em>'.
+   * @see zanshin.dsl.dsl.Log#getMessage()
+   * @see #getLog()
+   * @generated
+   */
+  EAttribute getLog_Message();
+
+  /**
    * Returns the meta object for class '{@link zanshin.dsl.dsl.Scope <em>Scope</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -600,6 +658,17 @@ public interface DslPackage extends EPackage
    * @generated
    */
   EReference getScope_Commands();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link zanshin.dsl.dsl.Scope#getMessage <em>Message</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Message</em>'.
+   * @see zanshin.dsl.dsl.Scope#getMessage()
+   * @see #getScope()
+   * @generated
+   */
+  EReference getScope_Message();
 
   /**
    * Returns the meta object for class '{@link zanshin.dsl.dsl.Commands <em>Commands</em>}'.
@@ -762,6 +831,24 @@ public interface DslPackage extends EPackage
     EAttribute TEST_QUANTITY__NUMBER = eINSTANCE.getTestQuantity_Number();
 
     /**
+     * The meta object literal for the '{@link zanshin.dsl.dsl.impl.LogImpl <em>Log</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see zanshin.dsl.dsl.impl.LogImpl
+     * @see zanshin.dsl.dsl.impl.DslPackageImpl#getLog()
+     * @generated
+     */
+    EClass LOG = eINSTANCE.getLog();
+
+    /**
+     * The meta object literal for the '<em><b>Message</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute LOG__MESSAGE = eINSTANCE.getLog_Message();
+
+    /**
      * The meta object literal for the '{@link zanshin.dsl.dsl.impl.ScopeImpl <em>Scope</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -810,6 +897,14 @@ public interface DslPackage extends EPackage
      * @generated
      */
     EReference SCOPE__COMMANDS = eINSTANCE.getScope_Commands();
+
+    /**
+     * The meta object literal for the '<em><b>Message</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SCOPE__MESSAGE = eINSTANCE.getScope_Message();
 
     /**
      * The meta object literal for the '{@link zanshin.dsl.dsl.impl.CommandsImpl <em>Commands</em>}' class.

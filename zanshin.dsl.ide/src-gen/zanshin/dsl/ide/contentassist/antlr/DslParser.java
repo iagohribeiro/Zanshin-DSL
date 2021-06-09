@@ -45,6 +45,7 @@ public class DslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getFailureAccess().getGroup(), "rule__Failure__Group__0");
 					put(grammarAccess.getFailureAccess().getGroup_1(), "rule__Failure__Group_1__0");
 					put(grammarAccess.getTestQuantityAccess().getGroup(), "rule__TestQuantity__Group__0");
+					put(grammarAccess.getLogAccess().getGroup(), "rule__Log__Group__0");
 					put(grammarAccess.getScopeAccess().getGroup(), "rule__Scope__Group__0");
 					put(grammarAccess.getScopeAccess().getGroup_4(), "rule__Scope__Group_4__0");
 					put(grammarAccess.getModelAccess().getDslAssignment(), "rule__Model__DslAssignment");
@@ -58,11 +59,13 @@ public class DslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getFailureAccess().getLengthAssignment_1_1(), "rule__Failure__LengthAssignment_1_1");
 					put(grammarAccess.getFailureAccess().getNameAssignment_2(), "rule__Failure__NameAssignment_2");
 					put(grammarAccess.getTestQuantityAccess().getNumberAssignment_1(), "rule__TestQuantity__NumberAssignment_1");
+					put(grammarAccess.getLogAccess().getMessageAssignment_1(), "rule__Log__MessageAssignment_1");
 					put(grammarAccess.getScopeAccess().getProjectAssignment_0(), "rule__Scope__ProjectAssignment_0");
 					put(grammarAccess.getScopeAccess().getNameAssignment_2(), "rule__Scope__NameAssignment_2");
 					put(grammarAccess.getScopeAccess().getLengthAssignment_3(), "rule__Scope__LengthAssignment_3");
 					put(grammarAccess.getScopeAccess().getTestquantityAssignment_4_0(), "rule__Scope__TestquantityAssignment_4_0");
 					put(grammarAccess.getScopeAccess().getCommandsAssignment_4_1(), "rule__Scope__CommandsAssignment_4_1");
+					put(grammarAccess.getScopeAccess().getMessageAssignment_4_2(), "rule__Scope__MessageAssignment_4_2");
 					put(grammarAccess.getCommandsAccess().getTypeAssignment(), "rule__Commands__TypeAssignment");
 				}
 			};

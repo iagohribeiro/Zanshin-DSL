@@ -106,6 +106,11 @@ public class DslAdapterFactory extends AdapterFactoryImpl
         return createTestQuantityAdapter();
       }
       @Override
+      public Adapter caseLog(Log object)
+      {
+        return createLogAdapter();
+      }
+      @Override
       public Adapter caseScope(Scope object)
       {
         return createScopeAdapter();
@@ -223,6 +228,21 @@ public class DslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createTestQuantityAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link zanshin.dsl.dsl.Log <em>Log</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see zanshin.dsl.dsl.Log
+   * @generated
+   */
+  public Adapter createLogAdapter()
   {
     return null;
   }

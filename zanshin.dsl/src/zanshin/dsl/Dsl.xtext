@@ -25,12 +25,16 @@ Failure:
 
 TestQuantity:
 	'Part' number = INT;
+
+Log:
+	'Log' message = STRING;
 	
 Scope:
 	project = Project
 	'Simulation' name = ID (length=INT)?
 		((testquantity+=TestQuantity)?
-		(commands+=Commands))*;
+		(commands+=Commands)
+		(message+=Log)?)*;
 		
 Commands:
 	type = Type;

@@ -71,6 +71,7 @@ public class DslFactoryImpl extends EFactoryImpl implements DslFactory
       case DslPackage.SUCCESS: return createSuccess();
       case DslPackage.FAILURE: return createFailure();
       case DslPackage.TEST_QUANTITY: return createTestQuantity();
+      case DslPackage.LOG: return createLog();
       case DslPackage.SCOPE: return createScope();
       case DslPackage.COMMANDS: return createCommands();
       default:
@@ -142,6 +143,17 @@ public class DslFactoryImpl extends EFactoryImpl implements DslFactory
   {
     TestQuantityImpl testQuantity = new TestQuantityImpl();
     return testQuantity;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Log createLog()
+  {
+    LogImpl log = new LogImpl();
+    return log;
   }
 
   /**

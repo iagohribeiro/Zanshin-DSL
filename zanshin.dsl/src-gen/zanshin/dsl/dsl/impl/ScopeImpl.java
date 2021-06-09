@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import zanshin.dsl.dsl.Commands;
 import zanshin.dsl.dsl.DslPackage;
+import zanshin.dsl.dsl.Log;
 import zanshin.dsl.dsl.Project;
 import zanshin.dsl.dsl.Scope;
 import zanshin.dsl.dsl.TestQuantity;
@@ -38,6 +39,7 @@ import zanshin.dsl.dsl.TestQuantity;
  *   <li>{@link zanshin.dsl.dsl.impl.ScopeImpl#getLength <em>Length</em>}</li>
  *   <li>{@link zanshin.dsl.dsl.impl.ScopeImpl#getTestquantity <em>Testquantity</em>}</li>
  *   <li>{@link zanshin.dsl.dsl.impl.ScopeImpl#getCommands <em>Commands</em>}</li>
+ *   <li>{@link zanshin.dsl.dsl.impl.ScopeImpl#getMessage <em>Message</em>}</li>
  * </ul>
  *
  * @generated
@@ -113,6 +115,16 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope
    * @ordered
    */
   protected EList<Commands> commands;
+
+  /**
+   * The cached value of the '{@link #getMessage() <em>Message</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getMessage()
+   * @generated
+   * @ordered
+   */
+  protected EList<Log> message;
 
   /**
    * <!-- begin-user-doc -->
@@ -262,6 +274,20 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<Log> getMessage()
+  {
+    if (message == null)
+    {
+      message = new EObjectContainmentEList<Log>(Log.class, this, DslPackage.SCOPE__MESSAGE);
+    }
+    return message;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -273,6 +299,8 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope
         return ((InternalEList<?>)getTestquantity()).basicRemove(otherEnd, msgs);
       case DslPackage.SCOPE__COMMANDS:
         return ((InternalEList<?>)getCommands()).basicRemove(otherEnd, msgs);
+      case DslPackage.SCOPE__MESSAGE:
+        return ((InternalEList<?>)getMessage()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -297,6 +325,8 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope
         return getTestquantity();
       case DslPackage.SCOPE__COMMANDS:
         return getCommands();
+      case DslPackage.SCOPE__MESSAGE:
+        return getMessage();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -329,6 +359,10 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope
         getCommands().clear();
         getCommands().addAll((Collection<? extends Commands>)newValue);
         return;
+      case DslPackage.SCOPE__MESSAGE:
+        getMessage().clear();
+        getMessage().addAll((Collection<? extends Log>)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -358,6 +392,9 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope
       case DslPackage.SCOPE__COMMANDS:
         getCommands().clear();
         return;
+      case DslPackage.SCOPE__MESSAGE:
+        getMessage().clear();
+        return;
     }
     super.eUnset(featureID);
   }
@@ -382,6 +419,8 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope
         return testquantity != null && !testquantity.isEmpty();
       case DslPackage.SCOPE__COMMANDS:
         return commands != null && !commands.isEmpty();
+      case DslPackage.SCOPE__MESSAGE:
+        return message != null && !message.isEmpty();
     }
     return super.eIsSet(featureID);
   }

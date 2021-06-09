@@ -469,6 +469,47 @@ ruleTestQuantity returns [EObject current=null]
 	)
 ;
 
+// Entry rule entryRuleLog
+entryRuleLog returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getLogRule()); }
+	iv_ruleLog=ruleLog
+	{ $current=$iv_ruleLog.current; }
+	EOF;
+
+// Rule Log
+ruleLog returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='Log'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getLogAccess().getLogKeyword_0());
+		}
+		(
+			(
+				lv_message_1_0=RULE_STRING
+				{
+					newLeafNode(lv_message_1_0, grammarAccess.getLogAccess().getMessageSTRINGTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getLogRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"message",
+						lv_message_1_0,
+						"org.eclipse.xtext.common.Terminals.STRING");
+				}
+			)
+		)
+	)
+;
+
 // Entry rule entryRuleScope
 entryRuleScope returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getScopeRule()); }
@@ -583,6 +624,25 @@ ruleScope returns [EObject current=null]
 					}
 				)
 			)
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getScopeAccess().getMessageLogParserRuleCall_4_2_0());
+					}
+					lv_message_6_0=ruleLog
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getScopeRule());
+						}
+						add(
+							$current,
+							"message",
+							lv_message_6_0,
+							"zanshin.dsl.Dsl.Log");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)?
 		)*
 	)
 ;

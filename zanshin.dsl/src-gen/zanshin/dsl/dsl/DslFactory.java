@@ -78,6 +78,15 @@ public interface DslFactory extends EFactory
   TestQuantity createTestQuantity();
 
   /**
+   * Returns a new object of class '<em>Log</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Log</em>'.
+   * @generated
+   */
+  Log createLog();
+
+  /**
    * Returns a new object of class '<em>Scope</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

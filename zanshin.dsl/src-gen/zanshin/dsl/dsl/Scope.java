@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link zanshin.dsl.dsl.Scope#getLength <em>Length</em>}</li>
  *   <li>{@link zanshin.dsl.dsl.Scope#getTestquantity <em>Testquantity</em>}</li>
  *   <li>{@link zanshin.dsl.dsl.Scope#getCommands <em>Commands</em>}</li>
+ *   <li>{@link zanshin.dsl.dsl.Scope#getMessage <em>Message</em>}</li>
  * </ul>
  *
  * @see zanshin.dsl.dsl.DslPackage#getScope()
@@ -138,5 +139,21 @@ public interface Scope extends EObject
    * @generated
    */
   EList<Commands> getCommands();
+
+  /**
+   * Returns the value of the '<em><b>Message</b></em>' containment reference list.
+   * The list contents are of type {@link zanshin.dsl.dsl.Log}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Message</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Message</em>' containment reference list.
+   * @see zanshin.dsl.dsl.DslPackage#getScope_Message()
+   * @model containment="true"
+   * @generated
+   */
+  EList<Log> getMessage();
 
 } // Scope
