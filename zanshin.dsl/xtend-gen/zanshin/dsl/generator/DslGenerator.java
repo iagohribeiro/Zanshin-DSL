@@ -3,6 +3,7 @@
  */
 package zanshin.dsl.generator;
 
+import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import java.util.List;
 import org.eclipse.emf.common.util.EList;
@@ -15,13 +16,14 @@ import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
 import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.ExclusiveRange;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 import zanshin.dsl.dsl.Commands;
 import zanshin.dsl.dsl.Log;
 import zanshin.dsl.dsl.Project;
 import zanshin.dsl.dsl.Scope;
-import zanshin.dsl.dsl.Type;
+import zanshin.dsl.dsl.TestType;
 
 /**
  * Generates code from your model files on save.
@@ -41,15 +43,19 @@ public class DslGenerator extends AbstractGenerator {
         String _importedNamespace = _project.getImportedNamespace();
         String _replace = _importedNamespace.replace(" ", "");
         String projectName = _replace.replace("\"", "");
+        InputOutput.<String>println(projectName);
         CharSequence _simulation = this.simulation(e);
         fsa.generateFile(
           (((("/" + projectName) + "/") + projectName) + ".java"), _simulation);
         CharSequence _TargetSystem = this.TargetSystem(e);
         fsa.generateFile(
           ((("/" + projectName) + "/SimulatedTargetSystem") + ".java"), _TargetSystem);
+        String _firstUpper = StringExtensions.toFirstUpper(projectName);
+        String _plus = ((("/" + projectName) + "/Abstract") + _firstUpper);
+        String _plus_1 = (_plus + "Simulation");
+        String _plus_2 = (_plus_1 + ".java");
         CharSequence _AbstractSimulation = this.AbstractSimulation(e);
-        fsa.generateFile(
-          ((((("/" + projectName) + "/Abstract") + projectName) + "Simulation") + ".java"), _AbstractSimulation);
+        fsa.generateFile(_plus_2, _AbstractSimulation);
       }
     }
   }
@@ -63,6 +69,28 @@ public class DslGenerator extends AbstractGenerator {
       String projectName = _replace.replace("\"", "");
       String simulationName = scope.getName();
       StringConcatenation _builder = new StringConcatenation();
+      _builder.append("//Command Size");
+      _builder.newLine();
+      {
+        EList<Commands> _commands = scope.getCommands();
+        int _size = _commands.size();
+        ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _size, true);
+        for(final Integer i : _doubleDotLessThan) {
+          EList<Commands> _commands_1 = scope.getCommands();
+          Commands command = _commands_1.get((i).intValue());
+          _builder.newLineIfNotEmpty();
+          EList<Commands> _commands_2 = scope.getCommands();
+          int _size_1 = _commands_2.size();
+          _builder.append(_size_1, "");
+          _builder.newLineIfNotEmpty();
+          _builder.append("//Test Type Size");
+          _builder.newLine();
+          EList<TestType> _testtype = command.getTesttype();
+          int _size_2 = _testtype.size();
+          _builder.append(_size_2, "");
+          _builder.newLineIfNotEmpty();
+        }
+      }
       _builder.append("package it.unitn.disi.zanshin.simulation.cases.");
       _builder.append(projectName, "");
       _builder.append(";");
@@ -107,43 +135,17 @@ public class DslGenerator extends AbstractGenerator {
       _builder.append("registerTargetSystem();");
       _builder.newLine();
       {
-        EList<Commands> _commands = scope.getCommands();
-        int _size = _commands.size();
-        ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _size, true);
-        for(final Integer i : _doubleDotLessThan) {
+        EList<Commands> _commands_3 = scope.getCommands();
+        int _size_3 = _commands_3.size();
+        ExclusiveRange _doubleDotLessThan_1 = new ExclusiveRange(0, _size_3, true);
+        for(final Integer i_1 : _doubleDotLessThan_1) {
           _builder.append("\t\t");
-          EList<Commands> _commands_1 = scope.getCommands();
-          Commands commands = _commands_1.get((i).intValue());
+          EList<Commands> _commands_4 = scope.getCommands();
+          Commands commands = _commands_4.get((i_1).intValue());
           _builder.newLineIfNotEmpty();
           _builder.append("\t\t");
-          int index = ((i).intValue() + 1);
+          int index = ((i_1).intValue() + 1);
           _builder.newLineIfNotEmpty();
-          _builder.append("\t\t");
-          Type _type = commands.getType();
-          String simulationType = _type.getSimulationType();
-          _builder.newLineIfNotEmpty();
-          _builder.append("\t\t");
-          Type _type_1 = commands.getType();
-          String requirement = _type_1.getName();
-          _builder.newLineIfNotEmpty();
-          _builder.append("\t\t");
-          _builder.newLine();
-          _builder.append("\t\t");
-          _builder.append("//---------------Variables test---------------");
-          _builder.newLine();
-          _builder.append("\t\t");
-          _builder.append("//\t\tRequeriments:");
-          _builder.newLine();
-          _builder.append("\t\t");
-          _builder.append("//            ");
-          _builder.newLine();
-          _builder.append("\t\t");
-          _builder.append("//\t\t");
-          _builder.newLine();
-          _builder.append("\t\t");
-          _builder.append("//--------------------------------------------");
-          _builder.newLine();
-          _builder.newLine();
           _builder.append("\t\t");
           _builder.append("// Adds the part ");
           _builder.append(index, "\t\t");
@@ -174,13 +176,9 @@ public class DslGenerator extends AbstractGenerator {
           _builder.append("\t\t");
           _builder.append("log.info(\"Created a new user session with id: {0}\", sessionId); //$NON-NLS-1$");
           _builder.newLine();
-          _builder.append("\t\t");
-          _builder.append("\t\t");
-          _builder.newLine();
           {
-            EList<Log> _message = scope.getMessage();
-            int _size_1 = _message.size();
-            boolean _equals = (_size_1 == 0);
+            Log _message = commands.getMessage();
+            boolean _equals = Objects.equal(_message, null);
             if (_equals) {
               _builder.append("\t\t");
               _builder.append("\t\t");
@@ -190,9 +188,8 @@ public class DslGenerator extends AbstractGenerator {
               _builder.append("\t\t");
               _builder.append("\t\t");
               _builder.append("log.info(\"");
-              EList<Log> _message_1 = scope.getMessage();
-              Log _get = _message_1.get((i).intValue());
-              String _message_2 = _get.getMessage();
+              Log _message_1 = commands.getMessage();
+              String _message_2 = _message_1.getMessage();
               _builder.append(_message_2, "\t\t\t\t");
               _builder.append("\"); //$NON-NLS-1$");
               _builder.newLineIfNotEmpty();
@@ -200,19 +197,32 @@ public class DslGenerator extends AbstractGenerator {
           }
           _builder.append("\t\t");
           _builder.append("\t\t");
+          EList<TestType> _testtype_1 = commands.getTesttype();
+          TestType _get = _testtype_1.get((i_1).intValue());
+          String simulationType = _get.getSimulationType();
+          _builder.newLineIfNotEmpty();
+          _builder.append("\t\t");
+          _builder.append("\t\t");
+          EList<TestType> _testtype_2 = commands.getTesttype();
+          TestType _get_1 = _testtype_2.get((i_1).intValue());
+          String requirement = _get_1.getName();
+          _builder.newLineIfNotEmpty();
+          _builder.append("\t\t");
+          _builder.append("\t\t");
           _builder.append("zanshin.logRequirementStart(targetSystemId, sessionId, ");
           _builder.append(requirement, "\t\t\t\t");
           _builder.append(");");
           _builder.newLineIfNotEmpty();
           {
-            Type _type_2 = commands.getType();
-            boolean _isArray = _type_2.isArray();
+            EList<TestType> _testtype_3 = commands.getTesttype();
+            TestType _get_2 = _testtype_3.get((i_1).intValue());
+            boolean _isArray = _get_2.isArray();
             if (_isArray) {
               {
-                Type _type_3 = commands.getType();
-                int _length = _type_3.getLength();
-                ExclusiveRange _doubleDotLessThan_1 = new ExclusiveRange(0, _length, true);
-                for(final Integer j : _doubleDotLessThan_1) {
+                EList<TestType> _testtype_4 = commands.getTesttype();
+                int _size_4 = _testtype_4.size();
+                ExclusiveRange _doubleDotLessThan_2 = new ExclusiveRange(0, _size_4, true);
+                for(final Integer z : _doubleDotLessThan_2) {
                   _builder.append("\t\t");
                   _builder.append("\t\t");
                   _builder.append("zanshin.logRequirement");
@@ -255,8 +265,8 @@ public class DslGenerator extends AbstractGenerator {
           _builder.append("public boolean shouldWait() {");
           _builder.newLine();
           {
-            int _length_1 = scope.getLength();
-            boolean _equals_1 = (index == _length_1);
+            int _length = scope.getLength();
+            boolean _equals_1 = (index == _length);
             if (_equals_1) {
               _builder.append("\t\t");
               _builder.append("\t\t");
@@ -444,11 +454,17 @@ public class DslGenerator extends AbstractGenerator {
         {
           EList<Commands> _commands_1 = scope.getCommands();
           Commands command = _commands_1.get((i).intValue());
-          if (((!((List<String>)Conversions.doWrapArray(requirementsList)).contains(command.getType().getName())) && ((i).intValue() < 500))) {
-            Type _type = command.getType();
-            String _name = _type.getName();
-            requirementsList[lastIndex] = _name;
-            lastIndex++;
+          EList<TestType> _testtype = command.getTesttype();
+          int _size_1 = _testtype.size();
+          ExclusiveRange _doubleDotLessThan_1 = new ExclusiveRange(0, _size_1, true);
+          for (final Integer j : _doubleDotLessThan_1) {
+            if (((!((List<String>)Conversions.doWrapArray(requirementsList)).contains(command.getTesttype().get((j).intValue()).getName())) && ((i).intValue() < 500))) {
+              EList<TestType> _testtype_1 = command.getTesttype();
+              TestType _get = _testtype_1.get((j).intValue());
+              String _name = _get.getName();
+              requirementsList[lastIndex] = _name;
+              lastIndex++;
+            }
           }
         }
       }
@@ -502,23 +518,25 @@ public class DslGenerator extends AbstractGenerator {
       _builder.newLine();
       {
         for(final String requirement : requirementsList) {
-          _builder.append("\t");
-          String _replace_1 = requirement.replace("_", " ");
-          String _firstUpper_3 = StringExtensions.toFirstUpper(_replace_1);
-          String formatedRequeriment = _firstUpper_3.replace(" ", "");
-          _builder.newLineIfNotEmpty();
-          _builder.append("\t");
-          _builder.append("protected static final String ");
-          _builder.append(requirement, "\t");
-          _builder.append(" = \"");
-          _builder.append(formatedRequeriment, "\t");
-          _builder.append("\"; //$NON-NLS-1$");
-          _builder.newLineIfNotEmpty();
+          {
+            boolean _notEquals = (!Objects.equal(requirement, null));
+            if (_notEquals) {
+              _builder.append("\t");
+              String _replace_1 = requirement.replace("_", " ");
+              String _firstUpper_3 = StringExtensions.toFirstUpper(_replace_1);
+              String formatedRequeriment = _firstUpper_3.replace(" ", "");
+              _builder.newLineIfNotEmpty();
+              _builder.append("\t");
+              _builder.append("protected static final String ");
+              _builder.append(requirement, "\t");
+              _builder.append(" = \"");
+              _builder.append(formatedRequeriment, "\t");
+              _builder.append("\"; //$NON-NLS-1$");
+              _builder.newLineIfNotEmpty();
+            }
+          }
         }
       }
-      _builder.append("\t");
-      _builder.newLine();
-      _builder.newLine();
       _builder.append("\t");
       _builder.append("protected static Object lock = new Object();");
       _builder.newLine();

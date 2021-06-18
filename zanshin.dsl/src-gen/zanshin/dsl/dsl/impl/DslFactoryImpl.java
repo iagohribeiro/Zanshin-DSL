@@ -67,7 +67,7 @@ public class DslFactoryImpl extends EFactoryImpl implements DslFactory
     {
       case DslPackage.MODEL: return createModel();
       case DslPackage.PROJECT: return createProject();
-      case DslPackage.TYPE: return createType();
+      case DslPackage.TEST_TYPE: return createTestType();
       case DslPackage.SUCCESS: return createSuccess();
       case DslPackage.FAILURE: return createFailure();
       case DslPackage.TEST_QUANTITY: return createTestQuantity();
@@ -106,10 +106,10 @@ public class DslFactoryImpl extends EFactoryImpl implements DslFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Type createType()
+  public TestType createTestType()
   {
-    TypeImpl type = new TypeImpl();
-    return type;
+    TestTypeImpl testType = new TestTypeImpl();
+    return testType;
   }
 
   /**

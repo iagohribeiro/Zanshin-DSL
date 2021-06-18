@@ -86,9 +86,9 @@ public class DslAdapterFactory extends AdapterFactoryImpl
         return createProjectAdapter();
       }
       @Override
-      public Adapter caseType(Type object)
+      public Adapter caseTestType(TestType object)
       {
-        return createTypeAdapter();
+        return createTestTypeAdapter();
       }
       @Override
       public Adapter caseSuccess(Success object)
@@ -173,16 +173,16 @@ public class DslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link zanshin.dsl.dsl.Type <em>Type</em>}'.
+   * Creates a new adapter for an object of class '{@link zanshin.dsl.dsl.TestType <em>Test Type</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see zanshin.dsl.dsl.Type
+   * @see zanshin.dsl.dsl.TestType
    * @generated
    */
-  public Adapter createTypeAdapter()
+  public Adapter createTestTypeAdapter()
   {
     return null;
   }

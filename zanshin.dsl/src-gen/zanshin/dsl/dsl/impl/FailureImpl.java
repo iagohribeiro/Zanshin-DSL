@@ -15,7 +15,7 @@ import zanshin.dsl.dsl.Failure;
  *
  * @generated
  */
-public class FailureImpl extends TypeImpl implements Failure
+public class FailureImpl extends TestTypeImpl implements Failure
 {
   /**
    * <!-- begin-user-doc -->

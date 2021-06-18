@@ -15,7 +15,7 @@ import zanshin.dsl.dsl.Success;
  *
  * @generated
  */
-public class SuccessImpl extends TypeImpl implements Success
+public class SuccessImpl extends TestTypeImpl implements Success
 {
   /**
    * <!-- begin-user-doc -->

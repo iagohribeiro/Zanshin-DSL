@@ -11,25 +11,25 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import zanshin.dsl.dsl.DslPackage;
-import zanshin.dsl.dsl.Type;
+import zanshin.dsl.dsl.TestType;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Type</b></em>'.
+ * An implementation of the model object '<em><b>Test Type</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link zanshin.dsl.dsl.impl.TypeImpl#getSimulationType <em>Simulation Type</em>}</li>
- *   <li>{@link zanshin.dsl.dsl.impl.TypeImpl#isArray <em>Array</em>}</li>
- *   <li>{@link zanshin.dsl.dsl.impl.TypeImpl#getLength <em>Length</em>}</li>
- *   <li>{@link zanshin.dsl.dsl.impl.TypeImpl#getName <em>Name</em>}</li>
+ *   <li>{@link zanshin.dsl.dsl.impl.TestTypeImpl#getSimulationType <em>Simulation Type</em>}</li>
+ *   <li>{@link zanshin.dsl.dsl.impl.TestTypeImpl#isArray <em>Array</em>}</li>
+ *   <li>{@link zanshin.dsl.dsl.impl.TestTypeImpl#getLength <em>Length</em>}</li>
+ *   <li>{@link zanshin.dsl.dsl.impl.TestTypeImpl#getName <em>Name</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class TypeImpl extends MinimalEObjectImpl.Container implements Type
+public class TestTypeImpl extends MinimalEObjectImpl.Container implements TestType
 {
   /**
    * The default value of the '{@link #getSimulationType() <em>Simulation Type</em>}' attribute.
@@ -116,7 +116,7 @@ public class TypeImpl extends MinimalEObjectImpl.Container implements Type
    * <!-- end-user-doc -->
    * @generated
    */
-  protected TypeImpl()
+  protected TestTypeImpl()
   {
     super();
   }
@@ -129,7 +129,7 @@ public class TypeImpl extends MinimalEObjectImpl.Container implements Type
   @Override
   protected EClass eStaticClass()
   {
-    return DslPackage.Literals.TYPE;
+    return DslPackage.Literals.TEST_TYPE;
   }
 
   /**
@@ -152,7 +152,7 @@ public class TypeImpl extends MinimalEObjectImpl.Container implements Type
     String oldSimulationType = simulationType;
     simulationType = newSimulationType;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DslPackage.TYPE__SIMULATION_TYPE, oldSimulationType, simulationType));
+      eNotify(new ENotificationImpl(this, Notification.SET, DslPackage.TEST_TYPE__SIMULATION_TYPE, oldSimulationType, simulationType));
   }
 
   /**
@@ -175,7 +175,7 @@ public class TypeImpl extends MinimalEObjectImpl.Container implements Type
     boolean oldArray = array;
     array = newArray;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DslPackage.TYPE__ARRAY, oldArray, array));
+      eNotify(new ENotificationImpl(this, Notification.SET, DslPackage.TEST_TYPE__ARRAY, oldArray, array));
   }
 
   /**
@@ -198,7 +198,7 @@ public class TypeImpl extends MinimalEObjectImpl.Container implements Type
     int oldLength = length;
     length = newLength;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DslPackage.TYPE__LENGTH, oldLength, length));
+      eNotify(new ENotificationImpl(this, Notification.SET, DslPackage.TEST_TYPE__LENGTH, oldLength, length));
   }
 
   /**
@@ -221,7 +221,7 @@ public class TypeImpl extends MinimalEObjectImpl.Container implements Type
     String oldName = name;
     name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DslPackage.TYPE__NAME, oldName, name));
+      eNotify(new ENotificationImpl(this, Notification.SET, DslPackage.TEST_TYPE__NAME, oldName, name));
   }
 
   /**
@@ -234,13 +234,13 @@ public class TypeImpl extends MinimalEObjectImpl.Container implements Type
   {
     switch (featureID)
     {
-      case DslPackage.TYPE__SIMULATION_TYPE:
+      case DslPackage.TEST_TYPE__SIMULATION_TYPE:
         return getSimulationType();
-      case DslPackage.TYPE__ARRAY:
+      case DslPackage.TEST_TYPE__ARRAY:
         return isArray();
-      case DslPackage.TYPE__LENGTH:
+      case DslPackage.TEST_TYPE__LENGTH:
         return getLength();
-      case DslPackage.TYPE__NAME:
+      case DslPackage.TEST_TYPE__NAME:
         return getName();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -256,16 +256,16 @@ public class TypeImpl extends MinimalEObjectImpl.Container implements Type
   {
     switch (featureID)
     {
-      case DslPackage.TYPE__SIMULATION_TYPE:
+      case DslPackage.TEST_TYPE__SIMULATION_TYPE:
         setSimulationType((String)newValue);
         return;
-      case DslPackage.TYPE__ARRAY:
+      case DslPackage.TEST_TYPE__ARRAY:
         setArray((Boolean)newValue);
         return;
-      case DslPackage.TYPE__LENGTH:
+      case DslPackage.TEST_TYPE__LENGTH:
         setLength((Integer)newValue);
         return;
-      case DslPackage.TYPE__NAME:
+      case DslPackage.TEST_TYPE__NAME:
         setName((String)newValue);
         return;
     }
@@ -282,16 +282,16 @@ public class TypeImpl extends MinimalEObjectImpl.Container implements Type
   {
     switch (featureID)
     {
-      case DslPackage.TYPE__SIMULATION_TYPE:
+      case DslPackage.TEST_TYPE__SIMULATION_TYPE:
         setSimulationType(SIMULATION_TYPE_EDEFAULT);
         return;
-      case DslPackage.TYPE__ARRAY:
+      case DslPackage.TEST_TYPE__ARRAY:
         setArray(ARRAY_EDEFAULT);
         return;
-      case DslPackage.TYPE__LENGTH:
+      case DslPackage.TEST_TYPE__LENGTH:
         setLength(LENGTH_EDEFAULT);
         return;
-      case DslPackage.TYPE__NAME:
+      case DslPackage.TEST_TYPE__NAME:
         setName(NAME_EDEFAULT);
         return;
     }
@@ -308,13 +308,13 @@ public class TypeImpl extends MinimalEObjectImpl.Container implements Type
   {
     switch (featureID)
     {
-      case DslPackage.TYPE__SIMULATION_TYPE:
+      case DslPackage.TEST_TYPE__SIMULATION_TYPE:
         return SIMULATION_TYPE_EDEFAULT == null ? simulationType != null : !SIMULATION_TYPE_EDEFAULT.equals(simulationType);
-      case DslPackage.TYPE__ARRAY:
+      case DslPackage.TEST_TYPE__ARRAY:
         return array != ARRAY_EDEFAULT;
-      case DslPackage.TYPE__LENGTH:
+      case DslPackage.TEST_TYPE__LENGTH:
         return length != LENGTH_EDEFAULT;
-      case DslPackage.TYPE__NAME:
+      case DslPackage.TEST_TYPE__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
     }
     return super.eIsSet(featureID);
@@ -343,4 +343,4 @@ public class TypeImpl extends MinimalEObjectImpl.Container implements Type
     return result.toString();
   }
 
-} //TypeImpl
+} //TestTypeImpl

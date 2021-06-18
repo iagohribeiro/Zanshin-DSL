@@ -7,24 +7,24 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Type</b></em>'.
+ * A representation of the model object '<em><b>Test Type</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link zanshin.dsl.dsl.Type#getSimulationType <em>Simulation Type</em>}</li>
- *   <li>{@link zanshin.dsl.dsl.Type#isArray <em>Array</em>}</li>
- *   <li>{@link zanshin.dsl.dsl.Type#getLength <em>Length</em>}</li>
- *   <li>{@link zanshin.dsl.dsl.Type#getName <em>Name</em>}</li>
+ *   <li>{@link zanshin.dsl.dsl.TestType#getSimulationType <em>Simulation Type</em>}</li>
+ *   <li>{@link zanshin.dsl.dsl.TestType#isArray <em>Array</em>}</li>
+ *   <li>{@link zanshin.dsl.dsl.TestType#getLength <em>Length</em>}</li>
+ *   <li>{@link zanshin.dsl.dsl.TestType#getName <em>Name</em>}</li>
  * </ul>
  *
- * @see zanshin.dsl.dsl.DslPackage#getType()
+ * @see zanshin.dsl.dsl.DslPackage#getTestType()
  * @model
  * @generated
  */
-public interface Type extends EObject
+public interface TestType extends EObject
 {
   /**
    * Returns the value of the '<em><b>Simulation Type</b></em>' attribute.
@@ -36,14 +36,14 @@ public interface Type extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Simulation Type</em>' attribute.
    * @see #setSimulationType(String)
-   * @see zanshin.dsl.dsl.DslPackage#getType_SimulationType()
+   * @see zanshin.dsl.dsl.DslPackage#getTestType_SimulationType()
    * @model
    * @generated
    */
   String getSimulationType();
 
   /**
-   * Sets the value of the '{@link zanshin.dsl.dsl.Type#getSimulationType <em>Simulation Type</em>}' attribute.
+   * Sets the value of the '{@link zanshin.dsl.dsl.TestType#getSimulationType <em>Simulation Type</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Simulation Type</em>' attribute.
@@ -62,14 +62,14 @@ public interface Type extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Array</em>' attribute.
    * @see #setArray(boolean)
-   * @see zanshin.dsl.dsl.DslPackage#getType_Array()
+   * @see zanshin.dsl.dsl.DslPackage#getTestType_Array()
    * @model
    * @generated
    */
   boolean isArray();
 
   /**
-   * Sets the value of the '{@link zanshin.dsl.dsl.Type#isArray <em>Array</em>}' attribute.
+   * Sets the value of the '{@link zanshin.dsl.dsl.TestType#isArray <em>Array</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Array</em>' attribute.
@@ -88,14 +88,14 @@ public interface Type extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Length</em>' attribute.
    * @see #setLength(int)
-   * @see zanshin.dsl.dsl.DslPackage#getType_Length()
+   * @see zanshin.dsl.dsl.DslPackage#getTestType_Length()
    * @model
    * @generated
    */
   int getLength();
 
   /**
-   * Sets the value of the '{@link zanshin.dsl.dsl.Type#getLength <em>Length</em>}' attribute.
+   * Sets the value of the '{@link zanshin.dsl.dsl.TestType#getLength <em>Length</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Length</em>' attribute.
@@ -114,14 +114,14 @@ public interface Type extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Name</em>' attribute.
    * @see #setName(String)
-   * @see zanshin.dsl.dsl.DslPackage#getType_Name()
+   * @see zanshin.dsl.dsl.DslPackage#getTestType_Name()
    * @model
    * @generated
    */
   String getName();
 
   /**
-   * Sets the value of the '{@link zanshin.dsl.dsl.Type#getName <em>Name</em>}' attribute.
+   * Sets the value of the '{@link zanshin.dsl.dsl.TestType#getName <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Name</em>' attribute.
@@ -130,4 +130,4 @@ public interface Type extends EObject
    */
   void setName(String value);
 
-} // Type
+} // TestType

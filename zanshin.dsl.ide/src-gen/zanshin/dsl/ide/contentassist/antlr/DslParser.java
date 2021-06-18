@@ -35,7 +35,7 @@ public class DslParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
-					put(grammarAccess.getTypeAccess().getAlternatives(), "rule__Type__Alternatives");
+					put(grammarAccess.getTestTypeAccess().getAlternatives(), "rule__TestType__Alternatives");
 					put(grammarAccess.getProjectAccess().getGroup(), "rule__Project__Group__0");
 					put(grammarAccess.getQualifiedNameAccess().getGroup(), "rule__QualifiedName__Group__0");
 					put(grammarAccess.getQualifiedNameAccess().getGroup_1(), "rule__QualifiedName__Group_1__0");
@@ -47,7 +47,7 @@ public class DslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTestQuantityAccess().getGroup(), "rule__TestQuantity__Group__0");
 					put(grammarAccess.getLogAccess().getGroup(), "rule__Log__Group__0");
 					put(grammarAccess.getScopeAccess().getGroup(), "rule__Scope__Group__0");
-					put(grammarAccess.getScopeAccess().getGroup_4(), "rule__Scope__Group_4__0");
+					put(grammarAccess.getCommandsAccess().getGroup(), "rule__Commands__Group__0");
 					put(grammarAccess.getModelAccess().getDslAssignment(), "rule__Model__DslAssignment");
 					put(grammarAccess.getProjectAccess().getImportedNamespaceAssignment_1(), "rule__Project__ImportedNamespaceAssignment_1");
 					put(grammarAccess.getSuccessAccess().getSimulationTypeAssignment_0(), "rule__Success__SimulationTypeAssignment_0");
@@ -63,10 +63,10 @@ public class DslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getScopeAccess().getProjectAssignment_0(), "rule__Scope__ProjectAssignment_0");
 					put(grammarAccess.getScopeAccess().getNameAssignment_2(), "rule__Scope__NameAssignment_2");
 					put(grammarAccess.getScopeAccess().getLengthAssignment_3(), "rule__Scope__LengthAssignment_3");
-					put(grammarAccess.getScopeAccess().getTestquantityAssignment_4_0(), "rule__Scope__TestquantityAssignment_4_0");
-					put(grammarAccess.getScopeAccess().getCommandsAssignment_4_1(), "rule__Scope__CommandsAssignment_4_1");
-					put(grammarAccess.getScopeAccess().getMessageAssignment_4_2(), "rule__Scope__MessageAssignment_4_2");
-					put(grammarAccess.getCommandsAccess().getTypeAssignment(), "rule__Commands__TypeAssignment");
+					put(grammarAccess.getScopeAccess().getCommandsAssignment_4(), "rule__Scope__CommandsAssignment_4");
+					put(grammarAccess.getCommandsAccess().getTestquantityAssignment_0(), "rule__Commands__TestquantityAssignment_0");
+					put(grammarAccess.getCommandsAccess().getTesttypeAssignment_1(), "rule__Commands__TesttypeAssignment_1");
+					put(grammarAccess.getCommandsAccess().getMessageAssignment_2(), "rule__Commands__MessageAssignment_2");
 				}
 			};
 		}

@@ -3,8 +3,12 @@
  */
 package zanshin.dsl.dsl.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -12,9 +16,14 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+
 import zanshin.dsl.dsl.Commands;
 import zanshin.dsl.dsl.DslPackage;
-import zanshin.dsl.dsl.Type;
+import zanshin.dsl.dsl.Log;
+import zanshin.dsl.dsl.TestQuantity;
+import zanshin.dsl.dsl.TestType;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,7 +33,9 @@ import zanshin.dsl.dsl.Type;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link zanshin.dsl.dsl.impl.CommandsImpl#getType <em>Type</em>}</li>
+ *   <li>{@link zanshin.dsl.dsl.impl.CommandsImpl#getTestquantity <em>Testquantity</em>}</li>
+ *   <li>{@link zanshin.dsl.dsl.impl.CommandsImpl#getTesttype <em>Testtype</em>}</li>
+ *   <li>{@link zanshin.dsl.dsl.impl.CommandsImpl#getMessage <em>Message</em>}</li>
  * </ul>
  *
  * @generated
@@ -32,14 +43,34 @@ import zanshin.dsl.dsl.Type;
 public class CommandsImpl extends MinimalEObjectImpl.Container implements Commands
 {
   /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
+   * The cached value of the '{@link #getTestquantity() <em>Testquantity</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getType()
+   * @see #getTestquantity()
    * @generated
    * @ordered
    */
-  protected Type type;
+  protected EList<TestQuantity> testquantity;
+
+  /**
+   * The cached value of the '{@link #getTesttype() <em>Testtype</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTesttype()
+   * @generated
+   * @ordered
+   */
+  protected EList<TestType> testtype;
+
+  /**
+   * The cached value of the '{@link #getMessage() <em>Message</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getMessage()
+   * @generated
+   * @ordered
+   */
+  protected Log message;
 
   /**
    * <!-- begin-user-doc -->
@@ -67,9 +98,13 @@ public class CommandsImpl extends MinimalEObjectImpl.Container implements Comman
    * <!-- end-user-doc -->
    * @generated
    */
-  public Type getType()
+  public EList<TestQuantity> getTestquantity()
   {
-    return type;
+    if (testquantity == null)
+    {
+      testquantity = new EObjectContainmentEList<TestQuantity>(TestQuantity.class, this, DslPackage.COMMANDS__TESTQUANTITY);
+    }
+    return testquantity;
   }
 
   /**
@@ -77,13 +112,37 @@ public class CommandsImpl extends MinimalEObjectImpl.Container implements Comman
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetType(Type newType, NotificationChain msgs)
+  public EList<TestType> getTesttype()
   {
-    Type oldType = type;
-    type = newType;
+    if (testtype == null)
+    {
+      testtype = new EObjectContainmentEList<TestType>(TestType.class, this, DslPackage.COMMANDS__TESTTYPE);
+    }
+    return testtype;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Log getMessage()
+  {
+    return message;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetMessage(Log newMessage, NotificationChain msgs)
+  {
+    Log oldMessage = message;
+    message = newMessage;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DslPackage.COMMANDS__TYPE, oldType, newType);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DslPackage.COMMANDS__MESSAGE, oldMessage, newMessage);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -94,20 +153,20 @@ public class CommandsImpl extends MinimalEObjectImpl.Container implements Comman
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setType(Type newType)
+  public void setMessage(Log newMessage)
   {
-    if (newType != type)
+    if (newMessage != message)
     {
       NotificationChain msgs = null;
-      if (type != null)
-        msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DslPackage.COMMANDS__TYPE, null, msgs);
-      if (newType != null)
-        msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DslPackage.COMMANDS__TYPE, null, msgs);
-      msgs = basicSetType(newType, msgs);
+      if (message != null)
+        msgs = ((InternalEObject)message).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DslPackage.COMMANDS__MESSAGE, null, msgs);
+      if (newMessage != null)
+        msgs = ((InternalEObject)newMessage).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DslPackage.COMMANDS__MESSAGE, null, msgs);
+      msgs = basicSetMessage(newMessage, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DslPackage.COMMANDS__TYPE, newType, newType));
+      eNotify(new ENotificationImpl(this, Notification.SET, DslPackage.COMMANDS__MESSAGE, newMessage, newMessage));
   }
 
   /**
@@ -120,8 +179,12 @@ public class CommandsImpl extends MinimalEObjectImpl.Container implements Comman
   {
     switch (featureID)
     {
-      case DslPackage.COMMANDS__TYPE:
-        return basicSetType(null, msgs);
+      case DslPackage.COMMANDS__TESTQUANTITY:
+        return ((InternalEList<?>)getTestquantity()).basicRemove(otherEnd, msgs);
+      case DslPackage.COMMANDS__TESTTYPE:
+        return ((InternalEList<?>)getTesttype()).basicRemove(otherEnd, msgs);
+      case DslPackage.COMMANDS__MESSAGE:
+        return basicSetMessage(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -136,8 +199,12 @@ public class CommandsImpl extends MinimalEObjectImpl.Container implements Comman
   {
     switch (featureID)
     {
-      case DslPackage.COMMANDS__TYPE:
-        return getType();
+      case DslPackage.COMMANDS__TESTQUANTITY:
+        return getTestquantity();
+      case DslPackage.COMMANDS__TESTTYPE:
+        return getTesttype();
+      case DslPackage.COMMANDS__MESSAGE:
+        return getMessage();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -147,13 +214,22 @@ public class CommandsImpl extends MinimalEObjectImpl.Container implements Comman
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
-      case DslPackage.COMMANDS__TYPE:
-        setType((Type)newValue);
+      case DslPackage.COMMANDS__TESTQUANTITY:
+        getTestquantity().clear();
+        getTestquantity().addAll((Collection<? extends TestQuantity>)newValue);
+        return;
+      case DslPackage.COMMANDS__TESTTYPE:
+        getTesttype().clear();
+        getTesttype().addAll((Collection<? extends TestType>)newValue);
+        return;
+      case DslPackage.COMMANDS__MESSAGE:
+        setMessage((Log)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -169,8 +245,14 @@ public class CommandsImpl extends MinimalEObjectImpl.Container implements Comman
   {
     switch (featureID)
     {
-      case DslPackage.COMMANDS__TYPE:
-        setType((Type)null);
+      case DslPackage.COMMANDS__TESTQUANTITY:
+        getTestquantity().clear();
+        return;
+      case DslPackage.COMMANDS__TESTTYPE:
+        getTesttype().clear();
+        return;
+      case DslPackage.COMMANDS__MESSAGE:
+        setMessage((Log)null);
         return;
     }
     super.eUnset(featureID);
@@ -186,8 +268,12 @@ public class CommandsImpl extends MinimalEObjectImpl.Container implements Comman
   {
     switch (featureID)
     {
-      case DslPackage.COMMANDS__TYPE:
-        return type != null;
+      case DslPackage.COMMANDS__TESTQUANTITY:
+        return testquantity != null && !testquantity.isEmpty();
+      case DslPackage.COMMANDS__TESTTYPE:
+        return testtype != null && !testtype.isEmpty();
+      case DslPackage.COMMANDS__MESSAGE:
+        return message != null;
     }
     return super.eIsSet(featureID);
   }

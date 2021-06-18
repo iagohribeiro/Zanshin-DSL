@@ -3,7 +3,7 @@ grammar zanshin.dsl.Dsl with org.eclipse.xtext.common.Terminals
 generate dsl "http://www.dsl.zanshin/Dsl"
 
 Model: 
-	dsl+=Scope*;
+	(dsl+=Scope)*;
 	
 Project:
 	'project' importedNamespace = QualifiedNameWithWildcard;
@@ -14,14 +14,14 @@ QualifiedName:
 QualifiedNameWithWildcard:
     QualifiedName '.*'?;
 
-Type:
+TestType:
 	Success | Failure;
 	
 Success:
-	simulationType = 'Success' (array ?='[' (length=INT)? ']')? name = STRING;
+	simulationType='Success' (array ?='[' (length=INT)? ']')? name = STRING;
 
 Failure:
-	simulationType = 'Failure' (array ?='[' (length=INT)? ']')? name = STRING;
+	simulationType='Failure' (array ?='[' (length=INT)? ']')? name = STRING;
 
 TestQuantity:
 	'Part' number = INT;
@@ -32,9 +32,9 @@ Log:
 Scope:
 	project = Project
 	'Simulation' name = ID (length=INT)?
-		((testquantity+=TestQuantity)?
-		(commands+=Commands)
-		(message+=Log)?)*;
+		(commands+=Commands)*;
 		
 Commands:
-	type = Type;
+	(testquantity+=TestQuantity)?
+	(testtype+=TestType)+
+	(message=Log)?;

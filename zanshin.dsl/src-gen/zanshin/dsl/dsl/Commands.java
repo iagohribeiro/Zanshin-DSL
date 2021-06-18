@@ -3,6 +3,8 @@
  */
 package zanshin.dsl.dsl;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -14,7 +16,9 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link zanshin.dsl.dsl.Commands#getType <em>Type</em>}</li>
+ *   <li>{@link zanshin.dsl.dsl.Commands#getTestquantity <em>Testquantity</em>}</li>
+ *   <li>{@link zanshin.dsl.dsl.Commands#getTesttype <em>Testtype</em>}</li>
+ *   <li>{@link zanshin.dsl.dsl.Commands#getMessage <em>Message</em>}</li>
  * </ul>
  *
  * @see zanshin.dsl.dsl.DslPackage#getCommands()
@@ -24,29 +28,61 @@ import org.eclipse.emf.ecore.EObject;
 public interface Commands extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Type</b></em>' containment reference.
+   * Returns the value of the '<em><b>Testquantity</b></em>' containment reference list.
+   * The list contents are of type {@link zanshin.dsl.dsl.TestQuantity}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Type</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Testquantity</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Type</em>' containment reference.
-   * @see #setType(Type)
-   * @see zanshin.dsl.dsl.DslPackage#getCommands_Type()
+   * @return the value of the '<em>Testquantity</em>' containment reference list.
+   * @see zanshin.dsl.dsl.DslPackage#getCommands_Testquantity()
    * @model containment="true"
    * @generated
    */
-  Type getType();
+  EList<TestQuantity> getTestquantity();
 
   /**
-   * Sets the value of the '{@link zanshin.dsl.dsl.Commands#getType <em>Type</em>}' containment reference.
+   * Returns the value of the '<em><b>Testtype</b></em>' containment reference list.
+   * The list contents are of type {@link zanshin.dsl.dsl.TestType}.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Testtype</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Type</em>' containment reference.
-   * @see #getType()
+   * @return the value of the '<em>Testtype</em>' containment reference list.
+   * @see zanshin.dsl.dsl.DslPackage#getCommands_Testtype()
+   * @model containment="true"
    * @generated
    */
-  void setType(Type value);
+  EList<TestType> getTesttype();
+
+  /**
+   * Returns the value of the '<em><b>Message</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Message</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Message</em>' containment reference.
+   * @see #setMessage(Log)
+   * @see zanshin.dsl.dsl.DslPackage#getCommands_Message()
+   * @model containment="true"
+   * @generated
+   */
+  Log getMessage();
+
+  /**
+   * Sets the value of the '{@link zanshin.dsl.dsl.Commands#getMessage <em>Message</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Message</em>' containment reference.
+   * @see #getMessage()
+   * @generated
+   */
+  void setMessage(Log value);
 
 } // Commands

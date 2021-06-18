@@ -42,13 +42,13 @@ public interface DslFactory extends EFactory
   Project createProject();
 
   /**
-   * Returns a new object of class '<em>Type</em>'.
+   * Returns a new object of class '<em>Test Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Type</em>'.
+   * @return a new object of class '<em>Test Type</em>'.
    * @generated
    */
-  Type createType();
+  TestType createTestType();
 
   /**
    * Returns a new object of class '<em>Success</em>'.

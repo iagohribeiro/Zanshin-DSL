@@ -20,7 +20,7 @@ import zanshin.dsl.dsl.Project;
 import zanshin.dsl.dsl.Scope;
 import zanshin.dsl.dsl.Success;
 import zanshin.dsl.dsl.TestQuantity;
-import zanshin.dsl.dsl.Type;
+import zanshin.dsl.dsl.TestType;
 
 /**
  * <!-- begin-user-doc -->
@@ -49,7 +49,7 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass typeEClass = null;
+  private EClass testTypeEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -201,9 +201,9 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getType()
+  public EClass getTestType()
   {
-    return typeEClass;
+    return testTypeEClass;
   }
 
   /**
@@ -211,9 +211,9 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getType_SimulationType()
+  public EAttribute getTestType_SimulationType()
   {
-    return (EAttribute)typeEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)testTypeEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -221,9 +221,9 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getType_Array()
+  public EAttribute getTestType_Array()
   {
-    return (EAttribute)typeEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)testTypeEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -231,9 +231,9 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getType_Length()
+  public EAttribute getTestType_Length()
   {
-    return (EAttribute)typeEClass.getEStructuralFeatures().get(2);
+    return (EAttribute)testTypeEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -241,9 +241,9 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getType_Name()
+  public EAttribute getTestType_Name()
   {
-    return (EAttribute)typeEClass.getEStructuralFeatures().get(3);
+    return (EAttribute)testTypeEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -351,29 +351,9 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getScope_Testquantity()
-  {
-    return (EReference)scopeEClass.getEStructuralFeatures().get(3);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getScope_Commands()
   {
-    return (EReference)scopeEClass.getEStructuralFeatures().get(4);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getScope_Message()
-  {
-    return (EReference)scopeEClass.getEStructuralFeatures().get(5);
+    return (EReference)scopeEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -391,9 +371,29 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getCommands_Type()
+  public EReference getCommands_Testquantity()
   {
     return (EReference)commandsEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getCommands_Testtype()
+  {
+    return (EReference)commandsEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getCommands_Message()
+  {
+    return (EReference)commandsEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -432,11 +432,11 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
     projectEClass = createEClass(PROJECT);
     createEAttribute(projectEClass, PROJECT__IMPORTED_NAMESPACE);
 
-    typeEClass = createEClass(TYPE);
-    createEAttribute(typeEClass, TYPE__SIMULATION_TYPE);
-    createEAttribute(typeEClass, TYPE__ARRAY);
-    createEAttribute(typeEClass, TYPE__LENGTH);
-    createEAttribute(typeEClass, TYPE__NAME);
+    testTypeEClass = createEClass(TEST_TYPE);
+    createEAttribute(testTypeEClass, TEST_TYPE__SIMULATION_TYPE);
+    createEAttribute(testTypeEClass, TEST_TYPE__ARRAY);
+    createEAttribute(testTypeEClass, TEST_TYPE__LENGTH);
+    createEAttribute(testTypeEClass, TEST_TYPE__NAME);
 
     successEClass = createEClass(SUCCESS);
 
@@ -452,12 +452,12 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
     createEReference(scopeEClass, SCOPE__PROJECT);
     createEAttribute(scopeEClass, SCOPE__NAME);
     createEAttribute(scopeEClass, SCOPE__LENGTH);
-    createEReference(scopeEClass, SCOPE__TESTQUANTITY);
     createEReference(scopeEClass, SCOPE__COMMANDS);
-    createEReference(scopeEClass, SCOPE__MESSAGE);
 
     commandsEClass = createEClass(COMMANDS);
-    createEReference(commandsEClass, COMMANDS__TYPE);
+    createEReference(commandsEClass, COMMANDS__TESTQUANTITY);
+    createEReference(commandsEClass, COMMANDS__TESTTYPE);
+    createEReference(commandsEClass, COMMANDS__MESSAGE);
   }
 
   /**
@@ -489,8 +489,8 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    successEClass.getESuperTypes().add(this.getType());
-    failureEClass.getESuperTypes().add(this.getType());
+    successEClass.getESuperTypes().add(this.getTestType());
+    failureEClass.getESuperTypes().add(this.getTestType());
 
     // Initialize classes and features; add operations and parameters
     initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -499,11 +499,11 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
     initEClass(projectEClass, Project.class, "Project", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getProject_ImportedNamespace(), ecorePackage.getEString(), "importedNamespace", null, 0, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(typeEClass, Type.class, "Type", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getType_SimulationType(), ecorePackage.getEString(), "simulationType", null, 0, 1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getType_Array(), ecorePackage.getEBoolean(), "array", null, 0, 1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getType_Length(), ecorePackage.getEInt(), "length", null, 0, 1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getType_Name(), ecorePackage.getEString(), "name", null, 0, 1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(testTypeEClass, TestType.class, "TestType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getTestType_SimulationType(), ecorePackage.getEString(), "simulationType", null, 0, 1, TestType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getTestType_Array(), ecorePackage.getEBoolean(), "array", null, 0, 1, TestType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getTestType_Length(), ecorePackage.getEInt(), "length", null, 0, 1, TestType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getTestType_Name(), ecorePackage.getEString(), "name", null, 0, 1, TestType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(successEClass, Success.class, "Success", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -519,12 +519,12 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
     initEReference(getScope_Project(), this.getProject(), null, "project", null, 0, 1, Scope.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getScope_Name(), ecorePackage.getEString(), "name", null, 0, 1, Scope.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getScope_Length(), ecorePackage.getEInt(), "length", null, 0, 1, Scope.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getScope_Testquantity(), this.getTestQuantity(), null, "testquantity", null, 0, -1, Scope.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getScope_Commands(), this.getCommands(), null, "commands", null, 0, -1, Scope.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getScope_Message(), this.getLog(), null, "message", null, 0, -1, Scope.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(commandsEClass, Commands.class, "Commands", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getCommands_Type(), this.getType(), null, "type", null, 0, 1, Commands.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCommands_Testquantity(), this.getTestQuantity(), null, "testquantity", null, 0, -1, Commands.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCommands_Testtype(), this.getTestType(), null, "testtype", null, 0, -1, Commands.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCommands_Message(), this.getLog(), null, "message", null, 0, 1, Commands.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

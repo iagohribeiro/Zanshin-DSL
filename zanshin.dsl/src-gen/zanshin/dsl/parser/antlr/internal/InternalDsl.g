@@ -214,15 +214,15 @@ ruleQualifiedNameWithWildcard returns [AntlrDatatypeRuleToken current=new AntlrD
 	)
 ;
 
-// Entry rule entryRuleType
-entryRuleType returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getTypeRule()); }
-	iv_ruleType=ruleType
-	{ $current=$iv_ruleType.current; }
+// Entry rule entryRuleTestType
+entryRuleTestType returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getTestTypeRule()); }
+	iv_ruleTestType=ruleTestType
+	{ $current=$iv_ruleTestType.current; }
 	EOF;
 
-// Rule Type
-ruleType returns [EObject current=null]
+// Rule TestType
+ruleTestType returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -231,7 +231,7 @@ ruleType returns [EObject current=null]
 }:
 	(
 		{
-			newCompositeNode(grammarAccess.getTypeAccess().getSuccessParserRuleCall_0());
+			newCompositeNode(grammarAccess.getTestTypeAccess().getSuccessParserRuleCall_0());
 		}
 		this_Success_0=ruleSuccess
 		{
@@ -240,7 +240,7 @@ ruleType returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getTypeAccess().getFailureParserRuleCall_1());
+			newCompositeNode(grammarAccess.getTestTypeAccess().getFailureParserRuleCall_1());
 		}
 		this_Failure_1=ruleFailure
 		{
@@ -587,62 +587,22 @@ ruleScope returns [EObject current=null]
 		)?
 		(
 			(
-				(
-					{
-						newCompositeNode(grammarAccess.getScopeAccess().getTestquantityTestQuantityParserRuleCall_4_0_0());
+				{
+					newCompositeNode(grammarAccess.getScopeAccess().getCommandsCommandsParserRuleCall_4_0());
+				}
+				lv_commands_4_0=ruleCommands
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getScopeRule());
 					}
-					lv_testquantity_4_0=ruleTestQuantity
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getScopeRule());
-						}
-						add(
-							$current,
-							"testquantity",
-							lv_testquantity_4_0,
-							"zanshin.dsl.Dsl.TestQuantity");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)?
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getScopeAccess().getCommandsCommandsParserRuleCall_4_1_0());
-					}
-					lv_commands_5_0=ruleCommands
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getScopeRule());
-						}
-						add(
-							$current,
-							"commands",
-							lv_commands_5_0,
-							"zanshin.dsl.Dsl.Commands");
-						afterParserOrEnumRuleCall();
-					}
-				)
+					add(
+						$current,
+						"commands",
+						lv_commands_4_0,
+						"zanshin.dsl.Dsl.Commands");
+					afterParserOrEnumRuleCall();
+				}
 			)
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getScopeAccess().getMessageLogParserRuleCall_4_2_0());
-					}
-					lv_message_6_0=ruleLog
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getScopeRule());
-						}
-						add(
-							$current,
-							"message",
-							lv_message_6_0,
-							"zanshin.dsl.Dsl.Log");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)?
 		)*
 	)
 ;
@@ -664,22 +624,62 @@ ruleCommands returns [EObject current=null]
 }:
 	(
 		(
-			{
-				newCompositeNode(grammarAccess.getCommandsAccess().getTypeTypeParserRuleCall_0());
-			}
-			lv_type_0_0=ruleType
-			{
-				if ($current==null) {
-					$current = createModelElementForParent(grammarAccess.getCommandsRule());
+			(
+				{
+					newCompositeNode(grammarAccess.getCommandsAccess().getTestquantityTestQuantityParserRuleCall_0_0());
 				}
-				set(
-					$current,
-					"type",
-					lv_type_0_0,
-					"zanshin.dsl.Dsl.Type");
-				afterParserOrEnumRuleCall();
-			}
-		)
+				lv_testquantity_0_0=ruleTestQuantity
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getCommandsRule());
+					}
+					add(
+						$current,
+						"testquantity",
+						lv_testquantity_0_0,
+						"zanshin.dsl.Dsl.TestQuantity");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getCommandsAccess().getTesttypeTestTypeParserRuleCall_1_0());
+				}
+				lv_testtype_1_0=ruleTestType
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getCommandsRule());
+					}
+					add(
+						$current,
+						"testtype",
+						lv_testtype_1_0,
+						"zanshin.dsl.Dsl.TestType");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)+
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getCommandsAccess().getMessageLogParserRuleCall_2_0());
+				}
+				lv_message_2_0=ruleLog
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getCommandsRule());
+					}
+					set(
+						$current,
+						"message",
+						lv_message_2_0,
+						"zanshin.dsl.Dsl.Log");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
 	)
 ;
 

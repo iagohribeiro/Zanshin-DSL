@@ -73,22 +73,16 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Commands returns Commands
 	 *
 	 * Constraint:
-	 *     type=Type
+	 *     (testquantity+=TestQuantity? testtype+=TestType+ message=Log?)
 	 */
 	protected void sequence_Commands(ISerializationContext context, Commands semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, DslPackage.Literals.COMMANDS__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DslPackage.Literals.COMMANDS__TYPE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getCommandsAccess().getTypeTypeParserRuleCall_0(), semanticObject.getType());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
 	 * Contexts:
-	 *     Type returns Failure
+	 *     TestType returns Failure
 	 *     Failure returns Failure
 	 *
 	 * Constraint:
@@ -152,7 +146,7 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Scope returns Scope
 	 *
 	 * Constraint:
-	 *     (project=Project name=ID length=INT? (testquantity+=TestQuantity? commands+=Commands message+=Log?)*)
+	 *     (project=Project name=ID length=INT? commands+=Commands*)
 	 */
 	protected void sequence_Scope(ISerializationContext context, Scope semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -161,7 +155,7 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     Type returns Success
+	 *     TestType returns Success
 	 *     Success returns Success
 	 *
 	 * Constraint:

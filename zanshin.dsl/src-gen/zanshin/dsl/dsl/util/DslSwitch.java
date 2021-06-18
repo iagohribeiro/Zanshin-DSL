@@ -87,10 +87,10 @@ public class DslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case DslPackage.TYPE:
+      case DslPackage.TEST_TYPE:
       {
-        Type type = (Type)theEObject;
-        T result = caseType(type);
+        TestType testType = (TestType)theEObject;
+        T result = caseTestType(testType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -98,7 +98,7 @@ public class DslSwitch<T> extends Switch<T>
       {
         Success success = (Success)theEObject;
         T result = caseSuccess(success);
-        if (result == null) result = caseType(success);
+        if (result == null) result = caseTestType(success);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -106,7 +106,7 @@ public class DslSwitch<T> extends Switch<T>
       {
         Failure failure = (Failure)theEObject;
         T result = caseFailure(failure);
-        if (result == null) result = caseType(failure);
+        if (result == null) result = caseTestType(failure);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -175,17 +175,17 @@ public class DslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Type</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Test Type</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Type</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Test Type</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseType(Type object)
+  public T caseTestType(TestType object)
   {
     return null;
   }

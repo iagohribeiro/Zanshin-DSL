@@ -14,6 +14,6 @@ package zanshin.dsl.dsl;
  * @model
  * @generated
  */
-public interface Success extends Type
+public interface Success extends TestType
 {
 } // Success

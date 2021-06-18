@@ -8,14 +8,14 @@
   <eClassifiers xsi:type="ecore:EClass" name="Project">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="importedNamespace" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Type">
+  <eClassifiers xsi:type="ecore:EClass" name="TestType">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="simulationType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="array" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="length" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Success" eSuperTypes="#//Type"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Failure" eSuperTypes="#//Type"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Success" eSuperTypes="#//TestType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Failure" eSuperTypes="#//TestType"/>
   <eClassifiers xsi:type="ecore:EClass" name="TestQuantity">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="number" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
@@ -27,14 +27,15 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="length" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="testquantity" upperBound="-1"
-        eType="#//TestQuantity" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="commands" upperBound="-1"
         eType="#//Commands" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="message" upperBound="-1"
-        eType="#//Log" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Commands">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="testquantity" upperBound="-1"
+        eType="#//TestQuantity" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="testtype" upperBound="-1"
+        eType="#//TestType" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="message" eType="#//Log"
+        containment="true"/>
   </eClassifiers>
 </ecore:EPackage>
