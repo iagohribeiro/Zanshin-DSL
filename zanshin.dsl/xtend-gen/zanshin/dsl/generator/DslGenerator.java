@@ -5,6 +5,7 @@ package zanshin.dsl.generator;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
+import java.util.Hashtable;
 import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
@@ -16,7 +17,6 @@ import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
 import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.ExclusiveRange;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 import zanshin.dsl.dsl.Commands;
@@ -43,7 +43,6 @@ public class DslGenerator extends AbstractGenerator {
         String _importedNamespace = _project.getImportedNamespace();
         String _replace = _importedNamespace.replace(" ", "");
         String projectName = _replace.replace("\"", "");
-        InputOutput.<String>println(projectName);
         CharSequence _simulation = this.simulation(e);
         fsa.generateFile(
           (((("/" + projectName) + "/") + projectName) + ".java"), _simulation);
@@ -68,29 +67,36 @@ public class DslGenerator extends AbstractGenerator {
       String _replace = _importedNamespace.replace(" ", "");
       String projectName = _replace.replace("\"", "");
       String simulationName = scope.getName();
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("//Command Size");
-      _builder.newLine();
-      {
-        EList<Commands> _commands = scope.getCommands();
-        int _size = _commands.size();
-        ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _size, true);
-        for(final Integer i : _doubleDotLessThan) {
+      Hashtable<String, Integer> elementsList = new Hashtable<String, Integer>();
+      Hashtable<String, Integer> repeatedElements = new Hashtable<String, Integer>();
+      EList<Commands> _commands = scope.getCommands();
+      int _size = _commands.size();
+      ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _size, true);
+      for (final Integer i : _doubleDotLessThan) {
+        {
           EList<Commands> _commands_1 = scope.getCommands();
-          Commands command = _commands_1.get((i).intValue());
-          _builder.newLineIfNotEmpty();
-          EList<Commands> _commands_2 = scope.getCommands();
-          int _size_1 = _commands_2.size();
-          _builder.append(_size_1, "");
-          _builder.newLineIfNotEmpty();
-          _builder.append("//Test Type Size");
-          _builder.newLine();
-          EList<TestType> _testtype = command.getTesttype();
-          int _size_2 = _testtype.size();
-          _builder.append(_size_2, "");
-          _builder.newLineIfNotEmpty();
+          Commands commands = _commands_1.get((i).intValue());
+          EList<TestType> _testtype = commands.getTesttype();
+          int _size_1 = _testtype.size();
+          ExclusiveRange _doubleDotLessThan_1 = new ExclusiveRange(0, _size_1, true);
+          for (final Integer z : _doubleDotLessThan_1) {
+            {
+              EList<TestType> _testtype_1 = commands.getTesttype();
+              TestType _get = _testtype_1.get((z).intValue());
+              String _name = _get.getName();
+              String requirementWithID = (_name + Integer.valueOf(((i).intValue() + 1)));
+              boolean _containsKey = elementsList.containsKey(requirementWithID);
+              boolean _not = (!_containsKey);
+              if (_not) {
+                elementsList.put(requirementWithID, z);
+              } else {
+                repeatedElements.put(requirementWithID, z);
+              }
+            }
+          }
         }
       }
+      StringConcatenation _builder = new StringConcatenation();
       _builder.append("package it.unitn.disi.zanshin.simulation.cases.");
       _builder.append(projectName, "");
       _builder.append(";");
@@ -135,13 +141,13 @@ public class DslGenerator extends AbstractGenerator {
       _builder.append("registerTargetSystem();");
       _builder.newLine();
       {
-        EList<Commands> _commands_3 = scope.getCommands();
-        int _size_3 = _commands_3.size();
-        ExclusiveRange _doubleDotLessThan_1 = new ExclusiveRange(0, _size_3, true);
+        EList<Commands> _commands_1 = scope.getCommands();
+        int _size_1 = _commands_1.size();
+        ExclusiveRange _doubleDotLessThan_1 = new ExclusiveRange(0, _size_1, true);
         for(final Integer i_1 : _doubleDotLessThan_1) {
           _builder.append("\t\t");
-          EList<Commands> _commands_4 = scope.getCommands();
-          Commands commands = _commands_4.get((i_1).intValue());
+          EList<Commands> _commands_2 = scope.getCommands();
+          Commands commands = _commands_2.get((i_1).intValue());
           _builder.newLineIfNotEmpty();
           _builder.append("\t\t");
           int index = ((i_1).intValue() + 1);
@@ -197,34 +203,68 @@ public class DslGenerator extends AbstractGenerator {
           }
           _builder.append("\t\t");
           _builder.append("\t\t");
-          EList<TestType> _testtype_1 = commands.getTesttype();
-          TestType _get = _testtype_1.get((i_1).intValue());
-          String simulationType = _get.getSimulationType();
-          _builder.newLineIfNotEmpty();
-          _builder.append("\t\t");
-          _builder.append("\t\t");
-          EList<TestType> _testtype_2 = commands.getTesttype();
-          TestType _get_1 = _testtype_2.get((i_1).intValue());
-          String requirement = _get_1.getName();
-          _builder.newLineIfNotEmpty();
-          _builder.append("\t\t");
-          _builder.append("\t\t");
-          _builder.append("zanshin.logRequirementStart(targetSystemId, sessionId, ");
-          _builder.append(requirement, "\t\t\t\t");
-          _builder.append(");");
-          _builder.newLineIfNotEmpty();
+          _builder.newLine();
           {
-            EList<TestType> _testtype_3 = commands.getTesttype();
-            TestType _get_2 = _testtype_3.get((i_1).intValue());
-            boolean _isArray = _get_2.isArray();
-            if (_isArray) {
+            EList<TestType> _testtype = commands.getTesttype();
+            int _size_2 = _testtype.size();
+            ExclusiveRange _doubleDotLessThan_2 = new ExclusiveRange(0, _size_2, true);
+            for(final Integer z : _doubleDotLessThan_2) {
+              _builder.append("\t\t");
+              _builder.append("\t");
+              EList<TestType> _testtype_1 = commands.getTesttype();
+              TestType _get = _testtype_1.get((z).intValue());
+              String simulationType = _get.getSimulationType();
+              _builder.newLineIfNotEmpty();
+              _builder.append("\t\t");
+              _builder.append("\t");
+              EList<TestType> _testtype_2 = commands.getTesttype();
+              TestType _get_1 = _testtype_2.get((z).intValue());
+              String requirement = _get_1.getName();
+              _builder.newLineIfNotEmpty();
+              _builder.append("\t\t");
+              _builder.append("\t");
+              EList<TestType> _testtype_3 = commands.getTesttype();
+              TestType _get_2 = _testtype_3.get((z).intValue());
+              String _name = _get_2.getName();
+              String requirementWithID = (_name + Integer.valueOf(((i_1).intValue() + 1)));
+              _builder.newLineIfNotEmpty();
+              {
+                if ((elementsList.containsKey(requirementWithID) && (z.compareTo(elementsList.get(requirementWithID)) <= 0))) {
+                  _builder.append("\t\t");
+                  _builder.append("\t");
+                  _builder.append("\t");
+                  _builder.append("zanshin.logRequirementStart(targetSystemId, sessionId, ");
+                  _builder.append(requirement, "\t\t\t\t");
+                  _builder.append(");");
+                  _builder.newLineIfNotEmpty();
+                }
+              }
               {
                 EList<TestType> _testtype_4 = commands.getTesttype();
-                int _size_4 = _testtype_4.size();
-                ExclusiveRange _doubleDotLessThan_2 = new ExclusiveRange(0, _size_4, true);
-                for(final Integer z : _doubleDotLessThan_2) {
+                TestType _get_3 = _testtype_4.get((z).intValue());
+                boolean _isArray = _get_3.isArray();
+                if (_isArray) {
+                  {
+                    EList<TestType> _testtype_5 = commands.getTesttype();
+                    TestType _get_4 = _testtype_5.get((z).intValue());
+                    int _length = _get_4.getLength();
+                    ExclusiveRange _doubleDotLessThan_3 = new ExclusiveRange(0, _length, true);
+                    for(final Integer j : _doubleDotLessThan_3) {
+                      _builder.append("\t\t");
+                      _builder.append("\t");
+                      _builder.append("\t");
+                      _builder.append("zanshin.logRequirement");
+                      _builder.append(simulationType, "\t\t\t\t");
+                      _builder.append("(targetSystemId, sessionId, ");
+                      _builder.append(requirement, "\t\t\t\t");
+                      _builder.append(");");
+                      _builder.newLineIfNotEmpty();
+                    }
+                  }
+                } else {
                   _builder.append("\t\t");
-                  _builder.append("\t\t");
+                  _builder.append("\t");
+                  _builder.append("\t");
                   _builder.append("zanshin.logRequirement");
                   _builder.append(simulationType, "\t\t\t\t");
                   _builder.append("(targetSystemId, sessionId, ");
@@ -233,17 +273,11 @@ public class DslGenerator extends AbstractGenerator {
                   _builder.newLineIfNotEmpty();
                 }
               }
-            } else {
-              _builder.append("\t\t");
-              _builder.append("\t\t");
-              _builder.append("zanshin.logRequirement");
-              _builder.append(simulationType, "\t\t\t\t");
-              _builder.append("(targetSystemId, sessionId, ");
-              _builder.append(requirement, "\t\t\t\t");
-              _builder.append(");");
-              _builder.newLineIfNotEmpty();
             }
           }
+          _builder.append("\t\t");
+          _builder.append("\t\t");
+          _builder.newLine();
           _builder.append("\t\t");
           _builder.append("\t\t");
           _builder.append("// Ends the user session.");
@@ -265,8 +299,8 @@ public class DslGenerator extends AbstractGenerator {
           _builder.append("public boolean shouldWait() {");
           _builder.newLine();
           {
-            int _length = scope.getLength();
-            boolean _equals_1 = (index == _length);
+            int _length_1 = scope.getLength();
+            boolean _equals_1 = (index == _length_1);
             if (_equals_1) {
               _builder.append("\t\t");
               _builder.append("\t\t");

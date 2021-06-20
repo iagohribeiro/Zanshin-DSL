@@ -8,6 +8,7 @@ import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
 import zanshin.dsl.dsl.Scope
+import java.util.Hashtable
 
 /**
  * Generates code from your model files on save.
@@ -19,7 +20,7 @@ class DslGenerator extends AbstractGenerator {
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		for(e:resource.allContents.toIterable.filter(Scope)){
 			var String projectName = e.project.importedNamespace.replace(" ", "").replace("\"","");
-			
+
 			fsa.generateFile(
 		   		"/" + projectName + "/" + projectName + ".java", e.simulation
 		   	);
@@ -28,15 +29,37 @@ class DslGenerator extends AbstractGenerator {
 			);
 			
 			fsa.generateFile(
-		   		 "/" + projectName + "/Abstract" + projectName + "Simulation" + ".java", e.AbstractSimulation
+		   		 "/" + projectName + "/Abstract" + projectName.toFirstUpper + "Simulation" + ".java", e.AbstractSimulation
 			);
 		}
 	}
 	
-	def CharSequence simulation(Scope scope){
+ 	def CharSequence simulation(Scope scope){
 		var String projectName = scope.project.importedNamespace.replace(" ", "").replace("\"","");
 		var String simulationName = scope.name;
-
+		
+		var Hashtable<String, Integer> elementsList= new Hashtable<String, Integer>();
+		var Hashtable<String, Integer> repeatedElements= new Hashtable<String, Integer>();
+		
+		for (i:0 ..< scope.commands.size)
+		{
+			var commands = scope.commands.get(i)
+			
+			for (z:0 ..< commands.testtype.size)
+			{
+				var String requirementWithID = commands.testtype.get(z).name + (i+1)
+				
+				if(!elementsList.containsKey(requirementWithID))
+				{
+					elementsList.put(requirementWithID,z)
+				}
+				else
+				{
+					repeatedElements.put(requirementWithID,z)
+				}
+			}
+		}
+		
 		'''
 		package it.unitn.disi.zanshin.simulation.cases.«projectName»;
 		
@@ -55,15 +78,6 @@ class DslGenerator extends AbstractGenerator {
 				«FOR i:0 ..< scope.commands.size»
 				«var commands = scope.commands.get(i)»
 				«var index = i+1»
-				«var String simulationType = commands.type.simulationType»
-				«var String requirement = commands.type.name»
-				
-				//---------------Variables test---------------
-				//		Requeriments:
-				//            
-				//		
-				//--------------------------------------------
-
 				// Adds the part «index» of the simulation to the list.
 				parts.add(new SimulationPart() {
 					@Override
@@ -71,20 +85,28 @@ class DslGenerator extends AbstractGenerator {
 						// Creates a user session, as if someone were using the «projectName».
 						sessionId = zanshin.createUserSession(targetSystemId);
 						log.info("Created a new user session with id: {0}", sessionId); //$NON-NLS-1$
-						
-						«IF scope.message.size == 0»
+						«IF commands.message == null»
 						log.info("Empty Log"); //$NON-NLS-1$
 						«ELSE»
-						log.info("«scope.message.get(i).message»"); //$NON-NLS-1$
+						log.info("«commands.message.message»"); //$NON-NLS-1$
 						«ENDIF»
+						
+					«FOR z:0 ..< commands.testtype.size»
+					«var String simulationType = commands.testtype.get(z).simulationType»
+					«var String requirement = commands.testtype.get(z).name»
+					«var String requirementWithID = commands.testtype.get(z).name + (i+1)»
+						«IF elementsList.containsKey(requirementWithID) && z <= elementsList.get(requirementWithID)»
 						zanshin.logRequirementStart(targetSystemId, sessionId, «requirement»);
-						«IF commands.type.array»
-						«FOR j:0 ..< commands.type.length»
+						«ENDIF»
+						«IF commands.testtype.get(z).array»
+						«FOR j:0 ..< commands.testtype.get(z).length»
 						zanshin.logRequirement«simulationType»(targetSystemId, sessionId, «requirement»);
 						«ENDFOR»
 						«ELSE»
 						zanshin.logRequirement«simulationType»(targetSystemId, sessionId, «requirement»);
 						«ENDIF»
+					«ENDFOR»
+						
 						// Ends the user session.
 						zanshin.disposeUserSession(targetSystemId, sessionId);
 					}
@@ -102,6 +124,7 @@ class DslGenerator extends AbstractGenerator {
 		}
 		'''
 	}
+	
 	def CharSequence TargetSystem(Scope scope){
 		var String projectName = scope.project.importedNamespace.replace(" ", "").replace("\"","");
 		'''
@@ -154,17 +177,23 @@ class DslGenerator extends AbstractGenerator {
 		}
 		'''
 	}
+	
 	def CharSequence AbstractSimulation(Scope scope){
 		var String projectName = scope.project.importedNamespace.replace(" ", "").replace("\"","");
 		var String [] requirementsList = newArrayOfSize(500);
 		var int lastIndex = 0;
 		
-		for (i:0 ..< scope.commands.size){
+		for (i:0 ..< scope.commands.size)
+		{
 			var command = scope.commands.get(i);
-			
-			if(!requirementsList.contains(command.type.name) && i < 500){
-				requirementsList.set(lastIndex,command.type.name);
-				lastIndex++;
+				
+			for (j:0 ..< command.testtype.size)
+			{
+				if(!requirementsList.contains(command.testtype.get(j).name) && i < 500)
+				{
+					requirementsList.set(lastIndex,command.testtype.get(j).name);
+					lastIndex++;
+				}
 			}
 		}
 		
@@ -187,11 +216,11 @@ class DslGenerator extends AbstractGenerator {
 			protected static final String MODEL_FILE_PATH = BASE_PATH + "model.«projectName»"; //$NON-NLS-1$
 			
 			«FOR requirement:requirementsList»
-			«var formatedRequeriment = requirement.replace("_"," ").toFirstUpper.replace(" ","")»
+			«IF requirement != null»
+			«var String formatedRequeriment = requirement.replace("_"," ").toFirstUpper.replace(" ","")»
 			protected static final String «requirement» = "«formatedRequeriment»"; //$NON-NLS-1$
+			«ENDIF»
 			«ENDFOR»
-			
-		
 			protected static Object lock = new Object();
 		
 			protected String targetSystemId;
