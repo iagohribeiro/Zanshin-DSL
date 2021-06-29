@@ -418,7 +418,7 @@ public interface DslPackage extends EPackage
   int COMMANDS__TESTTYPE = 1;
 
   /**
-   * The feature id for the '<em><b>Message</b></em>' containment reference.
+   * The feature id for the '<em><b>Message</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -681,10 +681,10 @@ public interface DslPackage extends EPackage
   EReference getCommands_Testtype();
 
   /**
-   * Returns the meta object for the containment reference '{@link zanshin.dsl.dsl.Commands#getMessage <em>Message</em>}'.
+   * Returns the meta object for the containment reference list '{@link zanshin.dsl.dsl.Commands#getMessage <em>Message</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Message</em>'.
+   * @return the meta object for the containment reference list '<em>Message</em>'.
    * @see zanshin.dsl.dsl.Commands#getMessage()
    * @see #getCommands()
    * @generated
@@ -917,7 +917,7 @@ public interface DslPackage extends EPackage
     EReference COMMANDS__TESTTYPE = eINSTANCE.getCommands_Testtype();
 
     /**
-     * The meta object literal for the '<em><b>Message</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Message</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated

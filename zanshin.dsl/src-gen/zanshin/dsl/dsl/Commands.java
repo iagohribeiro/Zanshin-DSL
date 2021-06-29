@@ -60,29 +60,19 @@ public interface Commands extends EObject
   EList<TestType> getTesttype();
 
   /**
-   * Returns the value of the '<em><b>Message</b></em>' containment reference.
+   * Returns the value of the '<em><b>Message</b></em>' containment reference list.
+   * The list contents are of type {@link zanshin.dsl.dsl.Log}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Message</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Message</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Message</em>' containment reference.
-   * @see #setMessage(Log)
+   * @return the value of the '<em>Message</em>' containment reference list.
    * @see zanshin.dsl.dsl.DslPackage#getCommands_Message()
    * @model containment="true"
    * @generated
    */
-  Log getMessage();
-
-  /**
-   * Sets the value of the '{@link zanshin.dsl.dsl.Commands#getMessage <em>Message</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Message</em>' containment reference.
-   * @see #getMessage()
-   * @generated
-   */
-  void setMessage(Log value);
+  EList<Log> getMessage();
 
 } // Commands

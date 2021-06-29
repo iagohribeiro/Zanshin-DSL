@@ -1462,7 +1462,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                 int alt10=2;
                 int LA10_0 = input.LA(1);
 
-                if ( (LA10_0==14||(LA10_0>=17 && LA10_0<=18)) ) {
+                if ( (LA10_0==14||(LA10_0>=17 && LA10_0<=19)) ) {
                     alt10=1;
                 }
 
@@ -1564,7 +1564,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleCommands"
-    // InternalDsl.g:618:1: ruleCommands returns [EObject current=null] : ( ( (lv_testquantity_0_0= ruleTestQuantity ) )? ( (lv_testtype_1_0= ruleTestType ) )+ ( (lv_message_2_0= ruleLog ) )? ) ;
+    // InternalDsl.g:618:1: ruleCommands returns [EObject current=null] : ( ( (lv_testquantity_0_0= ruleTestQuantity ) )? ( (lv_testtype_1_0= ruleTestType ) )* ( (lv_message_2_0= ruleLog ) )+ ) ;
     public final EObject ruleCommands() throws RecognitionException {
         EObject current = null;
 
@@ -1579,11 +1579,11 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalDsl.g:624:2: ( ( ( (lv_testquantity_0_0= ruleTestQuantity ) )? ( (lv_testtype_1_0= ruleTestType ) )+ ( (lv_message_2_0= ruleLog ) )? ) )
-            // InternalDsl.g:625:2: ( ( (lv_testquantity_0_0= ruleTestQuantity ) )? ( (lv_testtype_1_0= ruleTestType ) )+ ( (lv_message_2_0= ruleLog ) )? )
+            // InternalDsl.g:624:2: ( ( ( (lv_testquantity_0_0= ruleTestQuantity ) )? ( (lv_testtype_1_0= ruleTestType ) )* ( (lv_message_2_0= ruleLog ) )+ ) )
+            // InternalDsl.g:625:2: ( ( (lv_testquantity_0_0= ruleTestQuantity ) )? ( (lv_testtype_1_0= ruleTestType ) )* ( (lv_message_2_0= ruleLog ) )+ )
             {
-            // InternalDsl.g:625:2: ( ( (lv_testquantity_0_0= ruleTestQuantity ) )? ( (lv_testtype_1_0= ruleTestType ) )+ ( (lv_message_2_0= ruleLog ) )? )
-            // InternalDsl.g:626:3: ( (lv_testquantity_0_0= ruleTestQuantity ) )? ( (lv_testtype_1_0= ruleTestType ) )+ ( (lv_message_2_0= ruleLog ) )?
+            // InternalDsl.g:625:2: ( ( (lv_testquantity_0_0= ruleTestQuantity ) )? ( (lv_testtype_1_0= ruleTestType ) )* ( (lv_message_2_0= ruleLog ) )+ )
+            // InternalDsl.g:626:3: ( (lv_testquantity_0_0= ruleTestQuantity ) )? ( (lv_testtype_1_0= ruleTestType ) )* ( (lv_message_2_0= ruleLog ) )+
             {
             // InternalDsl.g:626:3: ( (lv_testquantity_0_0= ruleTestQuantity ) )?
             int alt11=2;
@@ -1627,17 +1627,13 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalDsl.g:645:3: ( (lv_testtype_1_0= ruleTestType ) )+
-            int cnt12=0;
+            // InternalDsl.g:645:3: ( (lv_testtype_1_0= ruleTestType ) )*
             loop12:
             do {
                 int alt12=2;
                 int LA12_0 = input.LA(1);
 
-                if ( (LA12_0==14) ) {
-                    alt12=1;
-                }
-                else if ( (LA12_0==17) ) {
+                if ( (LA12_0==14||LA12_0==17) ) {
                     alt12=1;
                 }
 
@@ -1652,7 +1648,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
             	    					newCompositeNode(grammarAccess.getCommandsAccess().getTesttypeTestTypeParserRuleCall_1_0());
             	    				
-            	    pushFollow(FOLLOW_16);
+            	    pushFollow(FOLLOW_15);
             	    lv_testtype_1_0=ruleTestType();
 
             	    state._fsp--;
@@ -1676,55 +1672,63 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    if ( cnt12 >= 1 ) break loop12;
-                        EarlyExitException eee =
-                            new EarlyExitException(12, input);
-                        throw eee;
+            	    break loop12;
                 }
-                cnt12++;
             } while (true);
 
-            // InternalDsl.g:664:3: ( (lv_message_2_0= ruleLog ) )?
-            int alt13=2;
-            int LA13_0 = input.LA(1);
+            // InternalDsl.g:664:3: ( (lv_message_2_0= ruleLog ) )+
+            int cnt13=0;
+            loop13:
+            do {
+                int alt13=2;
+                int LA13_0 = input.LA(1);
 
-            if ( (LA13_0==19) ) {
-                alt13=1;
-            }
-            switch (alt13) {
-                case 1 :
-                    // InternalDsl.g:665:4: (lv_message_2_0= ruleLog )
-                    {
-                    // InternalDsl.g:665:4: (lv_message_2_0= ruleLog )
-                    // InternalDsl.g:666:5: lv_message_2_0= ruleLog
-                    {
-
-                    					newCompositeNode(grammarAccess.getCommandsAccess().getMessageLogParserRuleCall_2_0());
-                    				
-                    pushFollow(FOLLOW_2);
-                    lv_message_2_0=ruleLog();
-
-                    state._fsp--;
+                if ( (LA13_0==19) ) {
+                    alt13=1;
+                }
 
 
-                    					if (current==null) {
-                    						current = createModelElementForParent(grammarAccess.getCommandsRule());
-                    					}
-                    					set(
-                    						current,
-                    						"message",
-                    						lv_message_2_0,
-                    						"zanshin.dsl.Dsl.Log");
-                    					afterParserOrEnumRuleCall();
-                    				
+                switch (alt13) {
+            	case 1 :
+            	    // InternalDsl.g:665:4: (lv_message_2_0= ruleLog )
+            	    {
+            	    // InternalDsl.g:665:4: (lv_message_2_0= ruleLog )
+            	    // InternalDsl.g:666:5: lv_message_2_0= ruleLog
+            	    {
 
-                    }
+            	    					newCompositeNode(grammarAccess.getCommandsAccess().getMessageLogParserRuleCall_2_0());
+            	    				
+            	    pushFollow(FOLLOW_14);
+            	    lv_message_2_0=ruleLog();
+
+            	    state._fsp--;
 
 
-                    }
-                    break;
+            	    					if (current==null) {
+            	    						current = createModelElementForParent(grammarAccess.getCommandsRule());
+            	    					}
+            	    					add(
+            	    						current,
+            	    						"message",
+            	    						lv_message_2_0,
+            	    						"zanshin.dsl.Dsl.Log");
+            	    					afterParserOrEnumRuleCall();
+            	    				
 
-            }
+            	    }
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    if ( cnt13 >= 1 ) break loop13;
+                        EarlyExitException eee =
+                            new EarlyExitException(13, input);
+                        throw eee;
+                }
+                cnt13++;
+            } while (true);
 
 
             }
@@ -1764,9 +1768,8 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0000000000100000L});
     public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0000000000064022L});
-    public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x0000000000064002L});
-    public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0000000000064000L});
-    public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x00000000000E4002L});
+    public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x00000000000E4022L});
+    public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x00000000000E4002L});
+    public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x00000000000E4000L});
 
 }

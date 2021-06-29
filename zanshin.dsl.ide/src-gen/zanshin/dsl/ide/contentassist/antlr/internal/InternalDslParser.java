@@ -3389,7 +3389,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
                 int alt10=2;
                 int LA10_0 = input.LA(1);
 
-                if ( (LA10_0==15||LA10_0==18||LA10_0==20) ) {
+                if ( ((LA10_0>=15 && LA10_0<=16)||LA10_0==18||LA10_0==20) ) {
                     alt10=1;
                 }
 
@@ -3540,7 +3540,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             // InternalDsl.g:1162:1: ( rule__Commands__Group__1__Impl rule__Commands__Group__2 )
             // InternalDsl.g:1163:2: rule__Commands__Group__1__Impl rule__Commands__Group__2
             {
-            pushFollow(FOLLOW_16);
+            pushFollow(FOLLOW_15);
             rule__Commands__Group__1__Impl();
 
             state._fsp--;
@@ -3569,51 +3569,35 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Commands__Group__1__Impl"
-    // InternalDsl.g:1170:1: rule__Commands__Group__1__Impl : ( ( ( rule__Commands__TesttypeAssignment_1 ) ) ( ( rule__Commands__TesttypeAssignment_1 )* ) ) ;
+    // InternalDsl.g:1170:1: rule__Commands__Group__1__Impl : ( ( rule__Commands__TesttypeAssignment_1 )* ) ;
     public final void rule__Commands__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDsl.g:1174:1: ( ( ( ( rule__Commands__TesttypeAssignment_1 ) ) ( ( rule__Commands__TesttypeAssignment_1 )* ) ) )
-            // InternalDsl.g:1175:1: ( ( ( rule__Commands__TesttypeAssignment_1 ) ) ( ( rule__Commands__TesttypeAssignment_1 )* ) )
+            // InternalDsl.g:1174:1: ( ( ( rule__Commands__TesttypeAssignment_1 )* ) )
+            // InternalDsl.g:1175:1: ( ( rule__Commands__TesttypeAssignment_1 )* )
             {
-            // InternalDsl.g:1175:1: ( ( ( rule__Commands__TesttypeAssignment_1 ) ) ( ( rule__Commands__TesttypeAssignment_1 )* ) )
-            // InternalDsl.g:1176:2: ( ( rule__Commands__TesttypeAssignment_1 ) ) ( ( rule__Commands__TesttypeAssignment_1 )* )
-            {
-            // InternalDsl.g:1176:2: ( ( rule__Commands__TesttypeAssignment_1 ) )
-            // InternalDsl.g:1177:3: ( rule__Commands__TesttypeAssignment_1 )
+            // InternalDsl.g:1175:1: ( ( rule__Commands__TesttypeAssignment_1 )* )
+            // InternalDsl.g:1176:2: ( rule__Commands__TesttypeAssignment_1 )*
             {
              before(grammarAccess.getCommandsAccess().getTesttypeAssignment_1()); 
-            // InternalDsl.g:1178:3: ( rule__Commands__TesttypeAssignment_1 )
-            // InternalDsl.g:1178:4: rule__Commands__TesttypeAssignment_1
-            {
-            pushFollow(FOLLOW_14);
-            rule__Commands__TesttypeAssignment_1();
-
-            state._fsp--;
-
-
-            }
-
-             after(grammarAccess.getCommandsAccess().getTesttypeAssignment_1()); 
-
-            }
-
-            // InternalDsl.g:1181:2: ( ( rule__Commands__TesttypeAssignment_1 )* )
-            // InternalDsl.g:1182:3: ( rule__Commands__TesttypeAssignment_1 )*
-            {
-             before(grammarAccess.getCommandsAccess().getTesttypeAssignment_1()); 
-            // InternalDsl.g:1183:3: ( rule__Commands__TesttypeAssignment_1 )*
+            // InternalDsl.g:1177:2: ( rule__Commands__TesttypeAssignment_1 )*
             loop12:
             do {
                 int alt12=2;
-                alt12 = dfa12.predict(input);
+                int LA12_0 = input.LA(1);
+
+                if ( (LA12_0==18||LA12_0==20) ) {
+                    alt12=1;
+                }
+
+
                 switch (alt12) {
             	case 1 :
-            	    // InternalDsl.g:1183:4: rule__Commands__TesttypeAssignment_1
+            	    // InternalDsl.g:1177:3: rule__Commands__TesttypeAssignment_1
             	    {
-            	    pushFollow(FOLLOW_14);
+            	    pushFollow(FOLLOW_16);
             	    rule__Commands__TesttypeAssignment_1();
 
             	    state._fsp--;
@@ -3628,9 +3612,6 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             } while (true);
 
              after(grammarAccess.getCommandsAccess().getTesttypeAssignment_1()); 
-
-            }
-
 
             }
 
@@ -3653,14 +3634,14 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Commands__Group__2"
-    // InternalDsl.g:1192:1: rule__Commands__Group__2 : rule__Commands__Group__2__Impl ;
+    // InternalDsl.g:1185:1: rule__Commands__Group__2 : rule__Commands__Group__2__Impl ;
     public final void rule__Commands__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDsl.g:1196:1: ( rule__Commands__Group__2__Impl )
-            // InternalDsl.g:1197:2: rule__Commands__Group__2__Impl
+            // InternalDsl.g:1189:1: ( rule__Commands__Group__2__Impl )
+            // InternalDsl.g:1190:2: rule__Commands__Group__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Commands__Group__2__Impl();
@@ -3686,42 +3667,80 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Commands__Group__2__Impl"
-    // InternalDsl.g:1203:1: rule__Commands__Group__2__Impl : ( ( rule__Commands__MessageAssignment_2 )? ) ;
+    // InternalDsl.g:1196:1: rule__Commands__Group__2__Impl : ( ( ( rule__Commands__MessageAssignment_2 ) ) ( ( rule__Commands__MessageAssignment_2 )* ) ) ;
     public final void rule__Commands__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDsl.g:1207:1: ( ( ( rule__Commands__MessageAssignment_2 )? ) )
-            // InternalDsl.g:1208:1: ( ( rule__Commands__MessageAssignment_2 )? )
+            // InternalDsl.g:1200:1: ( ( ( ( rule__Commands__MessageAssignment_2 ) ) ( ( rule__Commands__MessageAssignment_2 )* ) ) )
+            // InternalDsl.g:1201:1: ( ( ( rule__Commands__MessageAssignment_2 ) ) ( ( rule__Commands__MessageAssignment_2 )* ) )
             {
-            // InternalDsl.g:1208:1: ( ( rule__Commands__MessageAssignment_2 )? )
-            // InternalDsl.g:1209:2: ( rule__Commands__MessageAssignment_2 )?
+            // InternalDsl.g:1201:1: ( ( ( rule__Commands__MessageAssignment_2 ) ) ( ( rule__Commands__MessageAssignment_2 )* ) )
+            // InternalDsl.g:1202:2: ( ( rule__Commands__MessageAssignment_2 ) ) ( ( rule__Commands__MessageAssignment_2 )* )
+            {
+            // InternalDsl.g:1202:2: ( ( rule__Commands__MessageAssignment_2 ) )
+            // InternalDsl.g:1203:3: ( rule__Commands__MessageAssignment_2 )
             {
              before(grammarAccess.getCommandsAccess().getMessageAssignment_2()); 
-            // InternalDsl.g:1210:2: ( rule__Commands__MessageAssignment_2 )?
-            int alt13=2;
-            int LA13_0 = input.LA(1);
+            // InternalDsl.g:1204:3: ( rule__Commands__MessageAssignment_2 )
+            // InternalDsl.g:1204:4: rule__Commands__MessageAssignment_2
+            {
+            pushFollow(FOLLOW_14);
+            rule__Commands__MessageAssignment_2();
 
-            if ( (LA13_0==16) ) {
-                alt13=1;
-            }
-            switch (alt13) {
-                case 1 :
-                    // InternalDsl.g:1210:3: rule__Commands__MessageAssignment_2
-                    {
-                    pushFollow(FOLLOW_2);
-                    rule__Commands__MessageAssignment_2();
+            state._fsp--;
 
-                    state._fsp--;
-
-
-                    }
-                    break;
 
             }
 
              after(grammarAccess.getCommandsAccess().getMessageAssignment_2()); 
+
+            }
+
+            // InternalDsl.g:1207:2: ( ( rule__Commands__MessageAssignment_2 )* )
+            // InternalDsl.g:1208:3: ( rule__Commands__MessageAssignment_2 )*
+            {
+             before(grammarAccess.getCommandsAccess().getMessageAssignment_2()); 
+            // InternalDsl.g:1209:3: ( rule__Commands__MessageAssignment_2 )*
+            loop13:
+            do {
+                int alt13=2;
+                int LA13_0 = input.LA(1);
+
+                if ( (LA13_0==16) ) {
+                    int LA13_2 = input.LA(2);
+
+                    if ( (LA13_2==RULE_STRING) ) {
+                        alt13=1;
+                    }
+
+
+                }
+
+
+                switch (alt13) {
+            	case 1 :
+            	    // InternalDsl.g:1209:4: rule__Commands__MessageAssignment_2
+            	    {
+            	    pushFollow(FOLLOW_14);
+            	    rule__Commands__MessageAssignment_2();
+
+            	    state._fsp--;
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop13;
+                }
+            } while (true);
+
+             after(grammarAccess.getCommandsAccess().getMessageAssignment_2()); 
+
+            }
+
 
             }
 
@@ -4508,53 +4527,6 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
     // Delegated rules
 
 
-    protected DFA12 dfa12 = new DFA12(this);
-    static final String dfa_1s = "\14\uffff";
-    static final String dfa_2s = "\1\1\13\uffff";
-    static final String dfa_3s = "\1\13\1\uffff\2\4\1\5\1\uffff\1\5\1\uffff\1\16\1\4\1\16\1\4";
-    static final String dfa_4s = "\1\24\1\uffff\2\23\1\16\1\uffff\1\16\1\uffff\1\16\1\4\1\16\1\4";
-    static final String dfa_5s = "\1\uffff\1\2\3\uffff\1\1\1\uffff\1\1\4\uffff";
-    static final String dfa_6s = "\14\uffff}>";
-    static final String[] dfa_7s = {
-            "\1\1\3\uffff\2\1\1\uffff\1\2\1\uffff\1\3",
-            "",
-            "\1\5\16\uffff\1\4",
-            "\1\7\16\uffff\1\6",
-            "\1\10\10\uffff\1\11",
-            "",
-            "\1\12\10\uffff\1\13",
-            "",
-            "\1\11",
-            "\1\5",
-            "\1\13",
-            "\1\7"
-    };
-
-    static final short[] dfa_1 = DFA.unpackEncodedString(dfa_1s);
-    static final short[] dfa_2 = DFA.unpackEncodedString(dfa_2s);
-    static final char[] dfa_3 = DFA.unpackEncodedStringToUnsignedChars(dfa_3s);
-    static final char[] dfa_4 = DFA.unpackEncodedStringToUnsignedChars(dfa_4s);
-    static final short[] dfa_5 = DFA.unpackEncodedString(dfa_5s);
-    static final short[] dfa_6 = DFA.unpackEncodedString(dfa_6s);
-    static final short[][] dfa_7 = unpackEncodedStringArray(dfa_7s);
-
-    class DFA12 extends DFA {
-
-        public DFA12(BaseRecognizer recognizer) {
-            this.recognizer = recognizer;
-            this.decisionNumber = 12;
-            this.eot = dfa_1;
-            this.eof = dfa_2;
-            this.min = dfa_3;
-            this.max = dfa_4;
-            this.accept = dfa_5;
-            this.special = dfa_6;
-            this.transition = dfa_7;
-        }
-        public String getDescription() {
-            return "()* loopback of 1183:3: ( rule__Commands__TesttypeAssignment_1 )*";
-        }
-    }
  
 
     public static final BitSet FOLLOW_1 = new BitSet(new long[]{0x0000000000000000L});
@@ -4569,9 +4541,9 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0000000000020000L});
     public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0000000000148020L});
-    public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x0000000000148002L});
-    public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0000000000148000L});
-    public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0000000000158020L});
+    public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x0000000000158002L});
+    public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0000000000158000L});
+    public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0000000000140002L});
 
 }

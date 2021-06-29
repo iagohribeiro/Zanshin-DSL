@@ -660,7 +660,7 @@ ruleCommands returns [EObject current=null]
 					afterParserOrEnumRuleCall();
 				}
 			)
-		)+
+		)*
 		(
 			(
 				{
@@ -671,7 +671,7 @@ ruleCommands returns [EObject current=null]
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getCommandsRule());
 					}
-					set(
+					add(
 						$current,
 						"message",
 						lv_message_2_0,
@@ -679,7 +679,7 @@ ruleCommands returns [EObject current=null]
 					afterParserOrEnumRuleCall();
 				}
 			)
-		)?
+		)+
 	)
 ;
 

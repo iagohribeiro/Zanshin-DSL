@@ -36,5 +36,5 @@ Scope:
 		
 Commands:
 	(testquantity+=TestQuantity)?
-	(testtype+=TestType)+
-	(message=Log)?;
+	(testtype+=TestType)*
+	(message+=Log)+;

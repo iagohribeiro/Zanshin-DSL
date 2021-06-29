@@ -168,22 +168,29 @@ public class DslGenerator extends AbstractGenerator {
           _builder.append("\t");
           _builder.append("public void run() throws Exception {");
           _builder.newLine();
-          _builder.append("\t\t");
-          _builder.append("\t\t");
-          _builder.append("// Creates a user session, as if someone were using the ");
-          _builder.append(projectName, "\t\t\t\t");
-          _builder.append(".");
-          _builder.newLineIfNotEmpty();
-          _builder.append("\t\t");
-          _builder.append("\t\t");
-          _builder.append("sessionId = zanshin.createUserSession(targetSystemId);");
-          _builder.newLine();
-          _builder.append("\t\t");
-          _builder.append("\t\t");
-          _builder.append("log.info(\"Created a new user session with id: {0}\", sessionId); //$NON-NLS-1$");
-          _builder.newLine();
           {
-            Log _message = commands.getMessage();
+            EList<TestType> _testtype = commands.getTesttype();
+            int _size_2 = _testtype.size();
+            boolean _notEquals = (_size_2 != 0);
+            if (_notEquals) {
+              _builder.append("\t\t");
+              _builder.append("\t\t");
+              _builder.append("// Creates a user session, as if someone were using the ");
+              _builder.append(projectName, "\t\t\t\t");
+              _builder.append(".");
+              _builder.newLineIfNotEmpty();
+              _builder.append("\t\t");
+              _builder.append("\t\t");
+              _builder.append("sessionId = zanshin.createUserSession(targetSystemId);");
+              _builder.newLine();
+              _builder.append("\t\t");
+              _builder.append("\t\t");
+              _builder.append("log.info(\"Created a new user session with id: {0}\", sessionId); //$NON-NLS-1$");
+              _builder.newLine();
+            }
+          }
+          {
+            EList<Log> _message = commands.getMessage();
             boolean _equals = Objects.equal(_message, null);
             if (_equals) {
               _builder.append("\t\t");
@@ -194,8 +201,9 @@ public class DslGenerator extends AbstractGenerator {
               _builder.append("\t\t");
               _builder.append("\t\t");
               _builder.append("log.info(\"");
-              Log _message_1 = commands.getMessage();
-              String _message_2 = _message_1.getMessage();
+              EList<Log> _message_1 = commands.getMessage();
+              Log _get = _message_1.get(0);
+              String _message_2 = _get.getMessage();
               _builder.append(_message_2, "\t\t\t\t");
               _builder.append("\"); //$NON-NLS-1$");
               _builder.newLineIfNotEmpty();
@@ -205,27 +213,27 @@ public class DslGenerator extends AbstractGenerator {
           _builder.append("\t\t");
           _builder.newLine();
           {
-            EList<TestType> _testtype = commands.getTesttype();
-            int _size_2 = _testtype.size();
-            ExclusiveRange _doubleDotLessThan_2 = new ExclusiveRange(0, _size_2, true);
+            EList<TestType> _testtype_1 = commands.getTesttype();
+            int _size_3 = _testtype_1.size();
+            ExclusiveRange _doubleDotLessThan_2 = new ExclusiveRange(0, _size_3, true);
             for(final Integer z : _doubleDotLessThan_2) {
-              _builder.append("\t\t");
-              _builder.append("\t");
-              EList<TestType> _testtype_1 = commands.getTesttype();
-              TestType _get = _testtype_1.get((z).intValue());
-              String simulationType = _get.getSimulationType();
-              _builder.newLineIfNotEmpty();
               _builder.append("\t\t");
               _builder.append("\t");
               EList<TestType> _testtype_2 = commands.getTesttype();
               TestType _get_1 = _testtype_2.get((z).intValue());
-              String requirement = _get_1.getName();
+              String simulationType = _get_1.getSimulationType();
               _builder.newLineIfNotEmpty();
               _builder.append("\t\t");
               _builder.append("\t");
               EList<TestType> _testtype_3 = commands.getTesttype();
               TestType _get_2 = _testtype_3.get((z).intValue());
-              String _name = _get_2.getName();
+              String requirement = _get_2.getName();
+              _builder.newLineIfNotEmpty();
+              _builder.append("\t\t");
+              _builder.append("\t");
+              EList<TestType> _testtype_4 = commands.getTesttype();
+              TestType _get_3 = _testtype_4.get((z).intValue());
+              String _name = _get_3.getName();
               String requirementWithID = (_name + Integer.valueOf(((i_1).intValue() + 1)));
               _builder.newLineIfNotEmpty();
               {
@@ -240,14 +248,14 @@ public class DslGenerator extends AbstractGenerator {
                 }
               }
               {
-                EList<TestType> _testtype_4 = commands.getTesttype();
-                TestType _get_3 = _testtype_4.get((z).intValue());
-                boolean _isArray = _get_3.isArray();
+                EList<TestType> _testtype_5 = commands.getTesttype();
+                TestType _get_4 = _testtype_5.get((z).intValue());
+                boolean _isArray = _get_4.isArray();
                 if (_isArray) {
                   {
-                    EList<TestType> _testtype_5 = commands.getTesttype();
-                    TestType _get_4 = _testtype_5.get((z).intValue());
-                    int _length = _get_4.getLength();
+                    EList<TestType> _testtype_6 = commands.getTesttype();
+                    TestType _get_5 = _testtype_6.get((z).intValue());
+                    int _length = _get_5.getLength();
                     ExclusiveRange _doubleDotLessThan_3 = new ExclusiveRange(0, _length, true);
                     for(final Integer j : _doubleDotLessThan_3) {
                       _builder.append("\t\t");
@@ -275,17 +283,24 @@ public class DslGenerator extends AbstractGenerator {
               }
             }
           }
-          _builder.append("\t\t");
-          _builder.append("\t\t");
-          _builder.newLine();
-          _builder.append("\t\t");
-          _builder.append("\t\t");
-          _builder.append("// Ends the user session.");
-          _builder.newLine();
-          _builder.append("\t\t");
-          _builder.append("\t\t");
-          _builder.append("zanshin.disposeUserSession(targetSystemId, sessionId);");
-          _builder.newLine();
+          {
+            EList<TestType> _testtype_7 = commands.getTesttype();
+            int _size_4 = _testtype_7.size();
+            boolean _notEquals_1 = (_size_4 != 0);
+            if (_notEquals_1) {
+              _builder.append("\t\t");
+              _builder.append("\t\t");
+              _builder.newLine();
+              _builder.append("\t\t");
+              _builder.append("\t\t");
+              _builder.append("// Ends the user session.");
+              _builder.newLine();
+              _builder.append("\t\t");
+              _builder.append("\t\t");
+              _builder.append("zanshin.disposeUserSession(targetSystemId, sessionId);");
+              _builder.newLine();
+            }
+          }
           _builder.append("\t\t");
           _builder.append("\t");
           _builder.append("}");

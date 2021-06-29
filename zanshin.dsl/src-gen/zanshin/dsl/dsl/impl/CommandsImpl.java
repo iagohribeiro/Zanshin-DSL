@@ -5,7 +5,6 @@ package zanshin.dsl.dsl.impl;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -13,7 +12,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -63,14 +61,14 @@ public class CommandsImpl extends MinimalEObjectImpl.Container implements Comman
   protected EList<TestType> testtype;
 
   /**
-   * The cached value of the '{@link #getMessage() <em>Message</em>}' containment reference.
+   * The cached value of the '{@link #getMessage() <em>Message</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getMessage()
    * @generated
    * @ordered
    */
-  protected Log message;
+  protected EList<Log> message;
 
   /**
    * <!-- begin-user-doc -->
@@ -126,47 +124,13 @@ public class CommandsImpl extends MinimalEObjectImpl.Container implements Comman
    * <!-- end-user-doc -->
    * @generated
    */
-  public Log getMessage()
+  public EList<Log> getMessage()
   {
+    if (message == null)
+    {
+      message = new EObjectContainmentEList<Log>(Log.class, this, DslPackage.COMMANDS__MESSAGE);
+    }
     return message;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetMessage(Log newMessage, NotificationChain msgs)
-  {
-    Log oldMessage = message;
-    message = newMessage;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DslPackage.COMMANDS__MESSAGE, oldMessage, newMessage);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setMessage(Log newMessage)
-  {
-    if (newMessage != message)
-    {
-      NotificationChain msgs = null;
-      if (message != null)
-        msgs = ((InternalEObject)message).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DslPackage.COMMANDS__MESSAGE, null, msgs);
-      if (newMessage != null)
-        msgs = ((InternalEObject)newMessage).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DslPackage.COMMANDS__MESSAGE, null, msgs);
-      msgs = basicSetMessage(newMessage, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DslPackage.COMMANDS__MESSAGE, newMessage, newMessage));
   }
 
   /**
@@ -184,7 +148,7 @@ public class CommandsImpl extends MinimalEObjectImpl.Container implements Comman
       case DslPackage.COMMANDS__TESTTYPE:
         return ((InternalEList<?>)getTesttype()).basicRemove(otherEnd, msgs);
       case DslPackage.COMMANDS__MESSAGE:
-        return basicSetMessage(null, msgs);
+        return ((InternalEList<?>)getMessage()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -229,7 +193,8 @@ public class CommandsImpl extends MinimalEObjectImpl.Container implements Comman
         getTesttype().addAll((Collection<? extends TestType>)newValue);
         return;
       case DslPackage.COMMANDS__MESSAGE:
-        setMessage((Log)newValue);
+        getMessage().clear();
+        getMessage().addAll((Collection<? extends Log>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -252,7 +217,7 @@ public class CommandsImpl extends MinimalEObjectImpl.Container implements Comman
         getTesttype().clear();
         return;
       case DslPackage.COMMANDS__MESSAGE:
-        setMessage((Log)null);
+        getMessage().clear();
         return;
     }
     super.eUnset(featureID);
@@ -273,7 +238,7 @@ public class CommandsImpl extends MinimalEObjectImpl.Container implements Comman
       case DslPackage.COMMANDS__TESTTYPE:
         return testtype != null && !testtype.isEmpty();
       case DslPackage.COMMANDS__MESSAGE:
-        return message != null;
+        return message != null && !message.isEmpty();
     }
     return super.eIsSet(featureID);
   }

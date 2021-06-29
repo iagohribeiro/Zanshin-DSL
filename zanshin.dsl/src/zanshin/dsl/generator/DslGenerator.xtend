@@ -82,13 +82,15 @@ class DslGenerator extends AbstractGenerator {
 				parts.add(new SimulationPart() {
 					@Override
 					public void run() throws Exception {
+						«IF commands.testtype.size != 0»
 						// Creates a user session, as if someone were using the «projectName».
 						sessionId = zanshin.createUserSession(targetSystemId);
 						log.info("Created a new user session with id: {0}", sessionId); //$NON-NLS-1$
+						«ENDIF»
 						«IF commands.message == null»
 						log.info("Empty Log"); //$NON-NLS-1$
 						«ELSE»
-						log.info("«commands.message.message»"); //$NON-NLS-1$
+						log.info("«commands.message.get(0).message»"); //$NON-NLS-1$
 						«ENDIF»
 						
 					«FOR z:0 ..< commands.testtype.size»
@@ -106,9 +108,11 @@ class DslGenerator extends AbstractGenerator {
 						zanshin.logRequirement«simulationType»(targetSystemId, sessionId, «requirement»);
 						«ENDIF»
 					«ENDFOR»
+						«IF commands.testtype.size != 0»
 						
 						// Ends the user session.
 						zanshin.disposeUserSession(targetSystemId, sessionId);
+						«ENDIF»
 					}
 					@Override
 					public boolean shouldWait() {

@@ -73,7 +73,7 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Commands returns Commands
 	 *
 	 * Constraint:
-	 *     (testquantity+=TestQuantity? testtype+=TestType+ message=Log?)
+	 *     (testquantity+=TestQuantity? testtype+=TestType* message+=Log+)
 	 */
 	protected void sequence_Commands(ISerializationContext context, Commands semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

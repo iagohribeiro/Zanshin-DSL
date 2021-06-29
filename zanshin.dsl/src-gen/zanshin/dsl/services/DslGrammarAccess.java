@@ -334,11 +334,11 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//Commands:
 		//	testquantity+=TestQuantity?
-		//	testtype+=TestType+
-		//	message=Log?;
+		//	testtype+=TestType*
+		//	message+=Log+;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//testquantity+=TestQuantity? testtype+=TestType+ message=Log?
+		//testquantity+=TestQuantity? testtype+=TestType* message+=Log+
 		public Group getGroup() { return cGroup; }
 		
 		//testquantity+=TestQuantity?
@@ -347,13 +347,13 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		//TestQuantity
 		public RuleCall getTestquantityTestQuantityParserRuleCall_0_0() { return cTestquantityTestQuantityParserRuleCall_0_0; }
 		
-		//testtype+=TestType+
+		//testtype+=TestType*
 		public Assignment getTesttypeAssignment_1() { return cTesttypeAssignment_1; }
 		
 		//TestType
 		public RuleCall getTesttypeTestTypeParserRuleCall_1_0() { return cTesttypeTestTypeParserRuleCall_1_0; }
 		
-		//message=Log?
+		//message+=Log+
 		public Assignment getMessageAssignment_2() { return cMessageAssignment_2; }
 		
 		//Log
@@ -526,8 +526,8 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//Commands:
 	//	testquantity+=TestQuantity?
-	//	testtype+=TestType+
-	//	message=Log?;
+	//	testtype+=TestType*
+	//	message+=Log+;
 	public CommandsElements getCommandsAccess() {
 		return pCommands;
 	}
