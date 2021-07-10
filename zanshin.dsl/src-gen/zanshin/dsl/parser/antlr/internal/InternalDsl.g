@@ -545,64 +545,78 @@ ruleScope returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_1='Simulation'
-		{
-			newLeafNode(otherlv_1, grammarAccess.getScopeAccess().getSimulationKeyword_1());
-		}
 		(
 			(
-				lv_name_2_0=RULE_ID
-				{
-					newLeafNode(lv_name_2_0, grammarAccess.getScopeAccess().getNameIDTerminalRuleCall_2_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getScopeRule());
-					}
-					setWithLastConsumed(
-						$current,
-						"name",
-						lv_name_2_0,
-						"org.eclipse.xtext.common.Terminals.ID");
-				}
-			)
-		)
-		(
+				(
+					(
+						lv_simulation_1_0='Simulation'
+						{
+							newLeafNode(lv_simulation_1_0, grammarAccess.getScopeAccess().getSimulationSimulationKeyword_1_0_0_0());
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getScopeRule());
+							}
+							addWithLastConsumed($current, "simulation", lv_simulation_1_0, "Simulation");
+						}
+					)
+				)
+				(
+					(
+						lv_name_2_0=RULE_ID
+						{
+							newLeafNode(lv_name_2_0, grammarAccess.getScopeAccess().getNameIDTerminalRuleCall_1_0_1_0());
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getScopeRule());
+							}
+							addWithLastConsumed(
+								$current,
+								"name",
+								lv_name_2_0,
+								"org.eclipse.xtext.common.Terminals.ID");
+						}
+					)
+				)
+				(
+					(
+						lv_length_3_0=RULE_INT
+						{
+							newLeafNode(lv_length_3_0, grammarAccess.getScopeAccess().getLengthINTTerminalRuleCall_1_0_2_0());
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getScopeRule());
+							}
+							addWithLastConsumed(
+								$current,
+								"length",
+								lv_length_3_0,
+								"org.eclipse.xtext.common.Terminals.INT");
+						}
+					)
+				)?
+			)?
 			(
-				lv_length_3_0=RULE_INT
-				{
-					newLeafNode(lv_length_3_0, grammarAccess.getScopeAccess().getLengthINTTerminalRuleCall_3_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getScopeRule());
+				(
+					{
+						newCompositeNode(grammarAccess.getScopeAccess().getCommandsCommandsParserRuleCall_1_1_0());
 					}
-					setWithLastConsumed(
-						$current,
-						"length",
-						lv_length_3_0,
-						"org.eclipse.xtext.common.Terminals.INT");
-				}
-			)
-		)?
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getScopeAccess().getCommandsCommandsParserRuleCall_4_0());
-				}
-				lv_commands_4_0=ruleCommands
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getScopeRule());
+					lv_commands_4_0=ruleCommands
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getScopeRule());
+						}
+						add(
+							$current,
+							"commands",
+							lv_commands_4_0,
+							"zanshin.dsl.Dsl.Commands");
+						afterParserOrEnumRuleCall();
 					}
-					add(
-						$current,
-						"commands",
-						lv_commands_4_0,
-						"zanshin.dsl.Dsl.Commands");
-					afterParserOrEnumRuleCall();
-				}
-			)
+				)
+			)+
 		)*
 	)
 ;

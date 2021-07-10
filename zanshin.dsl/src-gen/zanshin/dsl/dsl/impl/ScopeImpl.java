@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -33,6 +34,7 @@ import zanshin.dsl.dsl.Scope;
  * </p>
  * <ul>
  *   <li>{@link zanshin.dsl.dsl.impl.ScopeImpl#getProject <em>Project</em>}</li>
+ *   <li>{@link zanshin.dsl.dsl.impl.ScopeImpl#getSimulation <em>Simulation</em>}</li>
  *   <li>{@link zanshin.dsl.dsl.impl.ScopeImpl#getName <em>Name</em>}</li>
  *   <li>{@link zanshin.dsl.dsl.impl.ScopeImpl#getLength <em>Length</em>}</li>
  *   <li>{@link zanshin.dsl.dsl.impl.ScopeImpl#getCommands <em>Commands</em>}</li>
@@ -53,44 +55,34 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope
   protected Project project;
 
   /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The cached value of the '{@link #getSimulation() <em>Simulation</em>}' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getSimulation()
+   * @generated
+   * @ordered
+   */
+  protected EList<String> simulation;
+
+  /**
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getName()
    * @generated
    * @ordered
    */
-  protected static final String NAME_EDEFAULT = null;
+  protected EList<String> name;
 
   /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected String name = NAME_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getLength() <em>Length</em>}' attribute.
+   * The cached value of the '{@link #getLength() <em>Length</em>}' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getLength()
    * @generated
    * @ordered
    */
-  protected static final int LENGTH_EDEFAULT = 0;
-
-  /**
-   * The cached value of the '{@link #getLength() <em>Length</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getLength()
-   * @generated
-   * @ordered
-   */
-  protected int length = LENGTH_EDEFAULT;
+  protected EList<Integer> length;
 
   /**
    * The cached value of the '{@link #getCommands() <em>Commands</em>}' containment reference list.
@@ -176,8 +168,26 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getName()
+  public EList<String> getSimulation()
   {
+    if (simulation == null)
+    {
+      simulation = new EDataTypeEList<String>(String.class, this, DslPackage.SCOPE__SIMULATION);
+    }
+    return simulation;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<String> getName()
+  {
+    if (name == null)
+    {
+      name = new EDataTypeEList<String>(String.class, this, DslPackage.SCOPE__NAME);
+    }
     return name;
   }
 
@@ -186,35 +196,13 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setName(String newName)
+  public EList<Integer> getLength()
   {
-    String oldName = name;
-    name = newName;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DslPackage.SCOPE__NAME, oldName, name));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public int getLength()
-  {
+    if (length == null)
+    {
+      length = new EDataTypeEList<Integer>(Integer.class, this, DslPackage.SCOPE__LENGTH);
+    }
     return length;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setLength(int newLength)
-  {
-    int oldLength = length;
-    length = newLength;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DslPackage.SCOPE__LENGTH, oldLength, length));
   }
 
   /**
@@ -261,6 +249,8 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope
     {
       case DslPackage.SCOPE__PROJECT:
         return getProject();
+      case DslPackage.SCOPE__SIMULATION:
+        return getSimulation();
       case DslPackage.SCOPE__NAME:
         return getName();
       case DslPackage.SCOPE__LENGTH:
@@ -285,11 +275,17 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope
       case DslPackage.SCOPE__PROJECT:
         setProject((Project)newValue);
         return;
+      case DslPackage.SCOPE__SIMULATION:
+        getSimulation().clear();
+        getSimulation().addAll((Collection<? extends String>)newValue);
+        return;
       case DslPackage.SCOPE__NAME:
-        setName((String)newValue);
+        getName().clear();
+        getName().addAll((Collection<? extends String>)newValue);
         return;
       case DslPackage.SCOPE__LENGTH:
-        setLength((Integer)newValue);
+        getLength().clear();
+        getLength().addAll((Collection<? extends Integer>)newValue);
         return;
       case DslPackage.SCOPE__COMMANDS:
         getCommands().clear();
@@ -312,11 +308,14 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope
       case DslPackage.SCOPE__PROJECT:
         setProject((Project)null);
         return;
+      case DslPackage.SCOPE__SIMULATION:
+        getSimulation().clear();
+        return;
       case DslPackage.SCOPE__NAME:
-        setName(NAME_EDEFAULT);
+        getName().clear();
         return;
       case DslPackage.SCOPE__LENGTH:
-        setLength(LENGTH_EDEFAULT);
+        getLength().clear();
         return;
       case DslPackage.SCOPE__COMMANDS:
         getCommands().clear();
@@ -337,10 +336,12 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope
     {
       case DslPackage.SCOPE__PROJECT:
         return project != null;
+      case DslPackage.SCOPE__SIMULATION:
+        return simulation != null && !simulation.isEmpty();
       case DslPackage.SCOPE__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+        return name != null && !name.isEmpty();
       case DslPackage.SCOPE__LENGTH:
-        return length != LENGTH_EDEFAULT;
+        return length != null && !length.isEmpty();
       case DslPackage.SCOPE__COMMANDS:
         return commands != null && !commands.isEmpty();
     }
@@ -358,7 +359,9 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
+    result.append(" (simulation: ");
+    result.append(simulation);
+    result.append(", name: ");
     result.append(name);
     result.append(", length: ");
     result.append(length);

@@ -5,6 +5,15 @@ package zanshin.dsl.generator;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.Hashtable;
 import java.util.List;
 import org.eclipse.emf.common.util.EList;
@@ -16,6 +25,7 @@ import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
 import org.eclipse.xtext.xbase.lib.Conversions;
+import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.ExclusiveRange;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
@@ -43,48 +53,163 @@ public class DslGenerator extends AbstractGenerator {
         String _importedNamespace = _project.getImportedNamespace();
         String _replace = _importedNamespace.replace(" ", "");
         String projectName = _replace.replace("\"", "");
-        CharSequence _simulation = this.simulation(e);
-        fsa.generateFile(
-          (((("/" + projectName) + "/") + projectName) + ".java"), _simulation);
+        EList<String> _simulation = e.getSimulation();
+        int _size = _simulation.size();
+        ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _size, true);
+        for (final Integer i : _doubleDotLessThan) {
+          {
+            EList<String> _name = e.getName();
+            String simulationName = _name.get((i).intValue());
+            CharSequence _simulation_1 = this.simulation(e, (i).intValue());
+            fsa.generateFile(
+              (((("/" + projectName) + "/") + simulationName) + ".java"), _simulation_1);
+          }
+        }
         CharSequence _TargetSystem = this.TargetSystem(e);
         fsa.generateFile(
           ((("/" + projectName) + "/SimulatedTargetSystem") + ".java"), _TargetSystem);
         String _firstUpper = StringExtensions.toFirstUpper(projectName);
         String _plus = ((("/" + projectName) + "/Abstract") + _firstUpper);
         String _plus_1 = (_plus + "Simulation");
-        String _plus_2 = (_plus_1 + ".java");
-        CharSequence _AbstractSimulation = this.AbstractSimulation(e);
-        fsa.generateFile(_plus_2, _AbstractSimulation);
+        String path = (_plus_1 + ".java");
+        String _firstUpper_1 = StringExtensions.toFirstUpper(projectName);
+        String _plus_2 = (((("../../dsl-test/teste.dsl/src-gen/" + projectName) + "/") + "Abstract") + _firstUpper_1);
+        String _plus_3 = (_plus_2 + "Simulation");
+        String testPath = (_plus_3 + ".java");
+        File file = new File(testPath);
+        boolean _isFile = file.isFile();
+        if (_isFile) {
+          CharSequence _AbstractSimulation = this.AbstractSimulation(e);
+          fsa.generateFile(path, _AbstractSimulation);
+        } else {
+          CharSequence _AbstractSimulation_1 = this.AbstractSimulation(e);
+          fsa.generateFile(path, _AbstractSimulation_1);
+        }
       }
     }
   }
   
-  public CharSequence simulation(final Scope scope) {
-    CharSequence _xblockexpression = null;
-    {
-      Project _project = scope.getProject();
-      String _importedNamespace = _project.getImportedNamespace();
-      String _replace = _importedNamespace.replace(" ", "");
-      String projectName = _replace.replace("\"", "");
-      String simulationName = scope.getName();
-      Hashtable<String, Integer> elementsList = new Hashtable<String, Integer>();
-      Hashtable<String, Integer> repeatedElements = new Hashtable<String, Integer>();
+  public void AbstractSimulationIncrement(final Scope scope, final String path) {
+    try {
+      String[] requirementsList = new String[500];
+      int lastIndex = 0;
       EList<Commands> _commands = scope.getCommands();
       int _size = _commands.size();
       ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _size, true);
       for (final Integer i : _doubleDotLessThan) {
         {
           EList<Commands> _commands_1 = scope.getCommands();
-          Commands commands = _commands_1.get((i).intValue());
-          EList<TestType> _testtype = commands.getTesttype();
+          Commands command = _commands_1.get((i).intValue());
+          EList<TestType> _testtype = command.getTesttype();
           int _size_1 = _testtype.size();
           ExclusiveRange _doubleDotLessThan_1 = new ExclusiveRange(0, _size_1, true);
+          for (final Integer j : _doubleDotLessThan_1) {
+            if (((!((List<String>)Conversions.doWrapArray(requirementsList)).contains(command.getTesttype().get((j).intValue()).getName())) && ((i).intValue() < 500))) {
+              EList<TestType> _testtype_1 = command.getTesttype();
+              TestType _get = _testtype_1.get((j).intValue());
+              String _name = _get.getName();
+              requirementsList[lastIndex] = _name;
+              lastIndex++;
+            }
+          }
+        }
+      }
+      File file = new File(path);
+      String _parent = file.getParent();
+      File _file = new File(_parent);
+      File temp = File.createTempFile("temp-file", ".tmp", _file);
+      FileReader _fileReader = new FileReader(file);
+      BufferedReader br = new BufferedReader(_fileReader);
+      FileWriter _fileWriter = new FileWriter(temp);
+      PrintWriter pw = new PrintWriter(_fileWriter);
+      String line = null;
+      while ((!Objects.equal((line = br.readLine()), null))) {
+        boolean _contains = line.contains("protected static Object lock = new Object();");
+        if (_contains) {
+          for (final String requirement : requirementsList) {
+            boolean _notEquals = (!Objects.equal(requirement, null));
+            if (_notEquals) {
+              String _replace = requirement.replace("_", " ");
+              String _firstUpper = StringExtensions.toFirstUpper(_replace);
+              String formatedRequeriment = _firstUpper.replace(" ", "");
+              String newLine = (((("\tprotected static final String " + requirement) + " = ") + formatedRequeriment) + "\"; //$NON-NLS-1$");
+              pw.println(newLine);
+            }
+          }
+          pw.println(line);
+        } else {
+          pw.println(line);
+        }
+      }
+      br.close();
+      pw.close();
+      String _parent_1 = file.getParent();
+      Path source = Paths.get(_parent_1);
+      String _parent_2 = file.getParent();
+      Path newdir = Paths.get(_parent_2);
+      file.delete();
+      String _name = file.getName();
+      Path _resolve = newdir.resolve(_name);
+      Files.move(source, _resolve, StandardCopyOption.REPLACE_EXISTING);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  public CharSequence simulation(final Scope scope, final int position) {
+    CharSequence _xblockexpression = null;
+    {
+      Project _project = scope.getProject();
+      String _importedNamespace = _project.getImportedNamespace();
+      String _replace = _importedNamespace.replace(" ", "");
+      String projectName = _replace.replace("\"", "");
+      EList<String> _name = scope.getName();
+      String simulationName = _name.get(position);
+      Hashtable<String, Integer> elementsList = new Hashtable<String, Integer>();
+      Hashtable<String, Integer> repeatedElements = new Hashtable<String, Integer>();
+      int startVector = 0;
+      int finalPosition = 0;
+      int index = 0;
+      int shouldWaitIndex = 0;
+      EList<Integer> _length = scope.getLength();
+      boolean _isEmpty = _length.isEmpty();
+      if (_isEmpty) {
+        startVector = 0;
+        EList<Commands> _commands = scope.getCommands();
+        int _size = _commands.size();
+        finalPosition = _size;
+        EList<Commands> _commands_1 = scope.getCommands();
+        int _size_1 = _commands_1.size();
+        shouldWaitIndex = _size_1;
+      } else {
+        EList<Integer> _length_1 = scope.getLength();
+        Integer _get = _length_1.get(position);
+        int _multiply = (position * (_get).intValue());
+        startVector = _multiply;
+        EList<Integer> _length_2 = scope.getLength();
+        Integer _get_1 = _length_2.get(position);
+        int _plus = (startVector + (_get_1).intValue());
+        finalPosition = _plus;
+        EList<Integer> _length_3 = scope.getLength();
+        Integer _get_2 = _length_3.get(position);
+        shouldWaitIndex = (_get_2).intValue();
+      }
+      EList<Commands> _commands_2 = scope.getCommands();
+      int _size_2 = _commands_2.size();
+      ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _size_2, true);
+      for (final Integer i : _doubleDotLessThan) {
+        {
+          EList<Commands> _commands_3 = scope.getCommands();
+          Commands commands = _commands_3.get((i).intValue());
+          EList<TestType> _testtype = commands.getTesttype();
+          int _size_3 = _testtype.size();
+          ExclusiveRange _doubleDotLessThan_1 = new ExclusiveRange(0, _size_3, true);
           for (final Integer z : _doubleDotLessThan_1) {
             {
               EList<TestType> _testtype_1 = commands.getTesttype();
-              TestType _get = _testtype_1.get((z).intValue());
-              String _name = _get.getName();
-              String requirementWithID = (_name + Integer.valueOf(((i).intValue() + 1)));
+              TestType _get_3 = _testtype_1.get((z).intValue());
+              String _name_1 = _get_3.getName();
+              String requirementWithID = (_name_1 + Integer.valueOf(((i).intValue() + 1)));
               boolean _containsKey = elementsList.containsKey(requirementWithID);
               boolean _not = (!_containsKey);
               if (_not) {
@@ -141,20 +266,16 @@ public class DslGenerator extends AbstractGenerator {
       _builder.append("registerTargetSystem();");
       _builder.newLine();
       {
-        EList<Commands> _commands_1 = scope.getCommands();
-        int _size_1 = _commands_1.size();
-        ExclusiveRange _doubleDotLessThan_1 = new ExclusiveRange(0, _size_1, true);
+        ExclusiveRange _doubleDotLessThan_1 = new ExclusiveRange(startVector, finalPosition, true);
         for(final Integer i_1 : _doubleDotLessThan_1) {
           _builder.append("\t\t");
-          EList<Commands> _commands_2 = scope.getCommands();
-          Commands commands = _commands_2.get((i_1).intValue());
-          _builder.newLineIfNotEmpty();
-          _builder.append("\t\t");
-          int index = ((i_1).intValue() + 1);
+          _builder.append("\t");
+          EList<Commands> _commands_3 = scope.getCommands();
+          Commands commands = _commands_3.get((i_1).intValue());
           _builder.newLineIfNotEmpty();
           _builder.append("\t\t");
           _builder.append("// Adds the part ");
-          _builder.append(index, "\t\t");
+          _builder.append(index = (index + 1), "\t\t");
           _builder.append(" of the simulation to the list.");
           _builder.newLineIfNotEmpty();
           _builder.append("\t\t");
@@ -170,8 +291,8 @@ public class DslGenerator extends AbstractGenerator {
           _builder.newLine();
           {
             EList<TestType> _testtype = commands.getTesttype();
-            int _size_2 = _testtype.size();
-            boolean _notEquals = (_size_2 != 0);
+            int _size_3 = _testtype.size();
+            boolean _notEquals = (_size_3 != 0);
             if (_notEquals) {
               _builder.append("\t\t");
               _builder.append("\t\t");
@@ -202,8 +323,8 @@ public class DslGenerator extends AbstractGenerator {
               _builder.append("\t\t");
               _builder.append("log.info(\"");
               EList<Log> _message_1 = commands.getMessage();
-              Log _get = _message_1.get(0);
-              String _message_2 = _get.getMessage();
+              Log _get_3 = _message_1.get(0);
+              String _message_2 = _get_3.getMessage();
               _builder.append(_message_2, "\t\t\t\t");
               _builder.append("\"); //$NON-NLS-1$");
               _builder.newLineIfNotEmpty();
@@ -214,27 +335,27 @@ public class DslGenerator extends AbstractGenerator {
           _builder.newLine();
           {
             EList<TestType> _testtype_1 = commands.getTesttype();
-            int _size_3 = _testtype_1.size();
-            ExclusiveRange _doubleDotLessThan_2 = new ExclusiveRange(0, _size_3, true);
+            int _size_4 = _testtype_1.size();
+            ExclusiveRange _doubleDotLessThan_2 = new ExclusiveRange(0, _size_4, true);
             for(final Integer z : _doubleDotLessThan_2) {
               _builder.append("\t\t");
               _builder.append("\t");
               EList<TestType> _testtype_2 = commands.getTesttype();
-              TestType _get_1 = _testtype_2.get((z).intValue());
-              String simulationType = _get_1.getSimulationType();
+              TestType _get_4 = _testtype_2.get((z).intValue());
+              String simulationType = _get_4.getSimulationType();
               _builder.newLineIfNotEmpty();
               _builder.append("\t\t");
               _builder.append("\t");
               EList<TestType> _testtype_3 = commands.getTesttype();
-              TestType _get_2 = _testtype_3.get((z).intValue());
-              String requirement = _get_2.getName();
+              TestType _get_5 = _testtype_3.get((z).intValue());
+              String requirement = _get_5.getName();
               _builder.newLineIfNotEmpty();
               _builder.append("\t\t");
               _builder.append("\t");
               EList<TestType> _testtype_4 = commands.getTesttype();
-              TestType _get_3 = _testtype_4.get((z).intValue());
-              String _name = _get_3.getName();
-              String requirementWithID = (_name + Integer.valueOf(((i_1).intValue() + 1)));
+              TestType _get_6 = _testtype_4.get((z).intValue());
+              String _name_1 = _get_6.getName();
+              String requirementWithID = (_name_1 + Integer.valueOf(((i_1).intValue() + 1)));
               _builder.newLineIfNotEmpty();
               {
                 if ((elementsList.containsKey(requirementWithID) && (z.compareTo(elementsList.get(requirementWithID)) <= 0))) {
@@ -249,14 +370,14 @@ public class DslGenerator extends AbstractGenerator {
               }
               {
                 EList<TestType> _testtype_5 = commands.getTesttype();
-                TestType _get_4 = _testtype_5.get((z).intValue());
-                boolean _isArray = _get_4.isArray();
+                TestType _get_7 = _testtype_5.get((z).intValue());
+                boolean _isArray = _get_7.isArray();
                 if (_isArray) {
                   {
                     EList<TestType> _testtype_6 = commands.getTesttype();
-                    TestType _get_5 = _testtype_6.get((z).intValue());
-                    int _length = _get_5.getLength();
-                    ExclusiveRange _doubleDotLessThan_3 = new ExclusiveRange(0, _length, true);
+                    TestType _get_8 = _testtype_6.get((z).intValue());
+                    int _length_4 = _get_8.getLength();
+                    ExclusiveRange _doubleDotLessThan_3 = new ExclusiveRange(0, _length_4, true);
                     for(final Integer j : _doubleDotLessThan_3) {
                       _builder.append("\t\t");
                       _builder.append("\t");
@@ -285,8 +406,8 @@ public class DslGenerator extends AbstractGenerator {
           }
           {
             EList<TestType> _testtype_7 = commands.getTesttype();
-            int _size_4 = _testtype_7.size();
-            boolean _notEquals_1 = (_size_4 != 0);
+            int _size_5 = _testtype_7.size();
+            boolean _notEquals_1 = (_size_5 != 0);
             if (_notEquals_1) {
               _builder.append("\t\t");
               _builder.append("\t\t");
@@ -314,9 +435,7 @@ public class DslGenerator extends AbstractGenerator {
           _builder.append("public boolean shouldWait() {");
           _builder.newLine();
           {
-            int _length_1 = scope.getLength();
-            boolean _equals_1 = (index == _length_1);
-            if (_equals_1) {
+            if ((index == shouldWaitIndex)) {
               _builder.append("\t\t");
               _builder.append("\t\t");
               _builder.append("return false;");

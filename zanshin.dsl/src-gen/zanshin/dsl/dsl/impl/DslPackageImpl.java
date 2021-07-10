@@ -331,7 +331,7 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getScope_Name()
+  public EAttribute getScope_Simulation()
   {
     return (EAttribute)scopeEClass.getEStructuralFeatures().get(1);
   }
@@ -341,7 +341,7 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getScope_Length()
+  public EAttribute getScope_Name()
   {
     return (EAttribute)scopeEClass.getEStructuralFeatures().get(2);
   }
@@ -351,9 +351,19 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getScope_Length()
+  {
+    return (EAttribute)scopeEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EReference getScope_Commands()
   {
-    return (EReference)scopeEClass.getEStructuralFeatures().get(3);
+    return (EReference)scopeEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -450,6 +460,7 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 
     scopeEClass = createEClass(SCOPE);
     createEReference(scopeEClass, SCOPE__PROJECT);
+    createEAttribute(scopeEClass, SCOPE__SIMULATION);
     createEAttribute(scopeEClass, SCOPE__NAME);
     createEAttribute(scopeEClass, SCOPE__LENGTH);
     createEReference(scopeEClass, SCOPE__COMMANDS);
@@ -517,8 +528,9 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 
     initEClass(scopeEClass, Scope.class, "Scope", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getScope_Project(), this.getProject(), null, "project", null, 0, 1, Scope.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getScope_Name(), ecorePackage.getEString(), "name", null, 0, 1, Scope.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getScope_Length(), ecorePackage.getEInt(), "length", null, 0, 1, Scope.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getScope_Simulation(), ecorePackage.getEString(), "simulation", null, 0, -1, Scope.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getScope_Name(), ecorePackage.getEString(), "name", null, 0, -1, Scope.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getScope_Length(), ecorePackage.getEInt(), "length", null, 0, -1, Scope.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getScope_Commands(), this.getCommands(), null, "commands", null, 0, -1, Scope.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(commandsEClass, Commands.class, "Commands", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

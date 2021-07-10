@@ -31,8 +31,8 @@ Log:
 	
 Scope:
 	project = Project
-	'Simulation' name = ID (length=INT)?
-		(commands+=Commands)*;
+	((simulation += 'Simulation' name += ID (length+=INT)?)?
+		(commands+=Commands)+)*;
 		
 Commands:
 	(testquantity+=TestQuantity)?

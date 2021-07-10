@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link zanshin.dsl.dsl.Scope#getProject <em>Project</em>}</li>
+ *   <li>{@link zanshin.dsl.dsl.Scope#getSimulation <em>Simulation</em>}</li>
  *   <li>{@link zanshin.dsl.dsl.Scope#getName <em>Name</em>}</li>
  *   <li>{@link zanshin.dsl.dsl.Scope#getLength <em>Length</em>}</li>
  *   <li>{@link zanshin.dsl.dsl.Scope#getCommands <em>Commands</em>}</li>
@@ -55,56 +56,52 @@ public interface Scope extends EObject
   void setProject(Project value);
 
   /**
-   * Returns the value of the '<em><b>Name</b></em>' attribute.
+   * Returns the value of the '<em><b>Simulation</b></em>' attribute list.
+   * The list contents are of type {@link java.lang.String}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Name</em>' attribute isn't clear,
+   * If the meaning of the '<em>Simulation</em>' attribute list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Name</em>' attribute.
-   * @see #setName(String)
+   * @return the value of the '<em>Simulation</em>' attribute list.
+   * @see zanshin.dsl.dsl.DslPackage#getScope_Simulation()
+   * @model unique="false"
+   * @generated
+   */
+  EList<String> getSimulation();
+
+  /**
+   * Returns the value of the '<em><b>Name</b></em>' attribute list.
+   * The list contents are of type {@link java.lang.String}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Name</em>' attribute list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Name</em>' attribute list.
    * @see zanshin.dsl.dsl.DslPackage#getScope_Name()
-   * @model
+   * @model unique="false"
    * @generated
    */
-  String getName();
+  EList<String> getName();
 
   /**
-   * Sets the value of the '{@link zanshin.dsl.dsl.Scope#getName <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Name</em>' attribute.
-   * @see #getName()
-   * @generated
-   */
-  void setName(String value);
-
-  /**
-   * Returns the value of the '<em><b>Length</b></em>' attribute.
+   * Returns the value of the '<em><b>Length</b></em>' attribute list.
+   * The list contents are of type {@link java.lang.Integer}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Length</em>' attribute isn't clear,
+   * If the meaning of the '<em>Length</em>' attribute list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Length</em>' attribute.
-   * @see #setLength(int)
+   * @return the value of the '<em>Length</em>' attribute list.
    * @see zanshin.dsl.dsl.DslPackage#getScope_Length()
-   * @model
+   * @model unique="false"
    * @generated
    */
-  int getLength();
-
-  /**
-   * Sets the value of the '{@link zanshin.dsl.dsl.Scope#getLength <em>Length</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Length</em>' attribute.
-   * @see #getLength()
-   * @generated
-   */
-  void setLength(int value);
+  EList<Integer> getLength();
 
   /**
    * Returns the value of the '<em><b>Commands</b></em>' containment reference list.

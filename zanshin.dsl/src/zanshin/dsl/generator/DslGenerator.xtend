@@ -9,6 +9,15 @@ import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
 import zanshin.dsl.dsl.Scope
 import java.util.Hashtable
+import java.io.File
+import java.io.BufferedReader
+import java.io.FileReader
+import java.io.PrintWriter
+import java.io.FileWriter
+import java.nio.file.Path
+import java.nio.file.Paths
+import java.nio.file.Files
+import java.nio.file.StandardCopyOption
 
 /**
  * Generates code from your model files on save.
@@ -20,26 +29,111 @@ class DslGenerator extends AbstractGenerator {
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		for(e:resource.allContents.toIterable.filter(Scope)){
 			var String projectName = e.project.importedNamespace.replace(" ", "").replace("\"","");
-
-			fsa.generateFile(
-		   		"/" + projectName + "/" + projectName + ".java", e.simulation
-		   	);
+			
+			for(i:0 ..<e.simulation.size)
+			{
+				var simulationName = e.name.get(i)
+				fsa.generateFile(
+		   		"/" + projectName + "/" + simulationName + ".java", e.simulation(i)
+		   		);
+			}
+			
 			fsa.generateFile(
 		   		 "/" + projectName + "/SimulatedTargetSystem" + ".java", e.TargetSystem
 			);
 			
-			fsa.generateFile(
-		   		 "/" + projectName + "/Abstract" + projectName.toFirstUpper + "Simulation" + ".java", e.AbstractSimulation
-			);
+			var String path =  "/" + projectName + "/Abstract" + projectName.toFirstUpper + "Simulation" + ".java";
+			var String testPath = "../../dsl-test/teste.dsl/src-gen/"+projectName+"/"+"Abstract"+projectName.toFirstUpper + "Simulation" + ".java";
+			var File file = new File(testPath);
+			if(file.isFile()) { 
+				//Activate in final version
+			    //AbstractSimulationIncrement(e, testPath);
+			    
+			    //Delete in final version
+			    fsa.generateFile(path, e.AbstractSimulation);
+			}
+			else{
+				fsa.generateFile(path, e.AbstractSimulation);
+			}
 		}
 	}
 	
- 	def CharSequence simulation(Scope scope){
+	def void AbstractSimulationIncrement(Scope scope, String path)
+	{
+		var String [] requirementsList = newArrayOfSize(500);
+		var int lastIndex = 0;
+		
+		for (i:0 ..< scope.commands.size)
+		{
+			var command = scope.commands.get(i);
+				
+			for (j:0 ..< command.testtype.size)
+			{
+				if(!requirementsList.contains(command.testtype.get(j).name) && i < 500)
+				{
+					requirementsList.set(lastIndex,command.testtype.get(j).name);
+					lastIndex++;
+				}
+			}
+		}
+		
+	    var File file = new File(path); 
+	    var File temp = File.createTempFile("temp-file", ".tmp", new File (file.getParent()));
+	    var BufferedReader br = new BufferedReader(new FileReader(file));
+	    var PrintWriter pw =  new PrintWriter(new FileWriter(temp));
+	    var String line;
+	    while ((line = br.readLine()) != null)
+	    {
+	        if(line.contains("protected static Object lock = new Object();"))
+	        {
+	            for (requirement:requirementsList)
+	            {
+	            	if(requirement != null)
+	            	{	            	
+						var String formatedRequeriment = requirement.replace("_"," ").toFirstUpper.replace(" ","")
+						var String newLine = "	protected static final String " + requirement + " = " + formatedRequeriment + "\"; //$NON-NLS-1$"
+						pw.println(newLine);
+					}
+				}
+	            pw.println(line);
+	        }
+	        else
+	        {
+	        	pw.println(line);
+	        }
+	    }
+	    br.close();
+	    pw.close();
+	    var Path source = Paths.get(file.getParent());
+		var Path newdir = Paths.get(file.getParent());
+		file.delete();
+		Files.move(source, newdir.resolve(file.getName()), StandardCopyOption.REPLACE_EXISTING);
+	    //file.delete();
+	   	//temp.renameTo(file);
+	}
+	
+ 	def CharSequence simulation(Scope scope, int position){
 		var String projectName = scope.project.importedNamespace.replace(" ", "").replace("\"","");
-		var String simulationName = scope.name;
+		var String simulationName = scope.name.get(position);
 		
 		var Hashtable<String, Integer> elementsList= new Hashtable<String, Integer>();
 		var Hashtable<String, Integer> repeatedElements= new Hashtable<String, Integer>();
+		
+		var int startVector = 0
+		var int finalPosition = 0
+		var int index = 0
+		var int shouldWaitIndex = 0
+		
+		if (scope.length.isEmpty){
+			startVector = 0
+			finalPosition = scope.commands.size
+			shouldWaitIndex = scope.commands.size
+		}
+		else{
+			startVector = position*scope.length.get(position)
+			finalPosition = startVector+scope.length.get(position)
+			shouldWaitIndex = scope.length.get(position)
+		}
 		
 		for (i:0 ..< scope.commands.size)
 		{
@@ -75,10 +169,9 @@ class DslGenerator extends AbstractGenerator {
 			public void doInit() throws Exception {
 				// Registers the «projectName» Simulation as target system in Zanshin.
 				registerTargetSystem();
-				«FOR i:0 ..< scope.commands.size»
-				«var commands = scope.commands.get(i)»
-				«var index = i+1»
-				// Adds the part «index» of the simulation to the list.
+				«FOR i:startVector ..< finalPosition»
+					«var commands = scope.commands.get(i)»
+				// Adds the part «index = index+1» of the simulation to the list.
 				parts.add(new SimulationPart() {
 					@Override
 					public void run() throws Exception {
@@ -116,7 +209,7 @@ class DslGenerator extends AbstractGenerator {
 					}
 					@Override
 					public boolean shouldWait() {
-						«IF index == scope.length»
+						«IF index == shouldWaitIndex»
 						return false;
 						«ELSE»
 						return true;

@@ -278,21 +278,23 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cProjectAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cProjectProjectParserRuleCall_0_0 = (RuleCall)cProjectAssignment_0.eContents().get(0);
-		private final Keyword cSimulationKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cNameIDTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
-		private final Assignment cLengthAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cLengthINTTerminalRuleCall_3_0 = (RuleCall)cLengthAssignment_3.eContents().get(0);
-		private final Assignment cCommandsAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cCommandsCommandsParserRuleCall_4_0 = (RuleCall)cCommandsAssignment_4.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Group cGroup_1_0 = (Group)cGroup_1.eContents().get(0);
+		private final Assignment cSimulationAssignment_1_0_0 = (Assignment)cGroup_1_0.eContents().get(0);
+		private final Keyword cSimulationSimulationKeyword_1_0_0_0 = (Keyword)cSimulationAssignment_1_0_0.eContents().get(0);
+		private final Assignment cNameAssignment_1_0_1 = (Assignment)cGroup_1_0.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0_1_0 = (RuleCall)cNameAssignment_1_0_1.eContents().get(0);
+		private final Assignment cLengthAssignment_1_0_2 = (Assignment)cGroup_1_0.eContents().get(2);
+		private final RuleCall cLengthINTTerminalRuleCall_1_0_2_0 = (RuleCall)cLengthAssignment_1_0_2.eContents().get(0);
+		private final Assignment cCommandsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cCommandsCommandsParserRuleCall_1_1_0 = (RuleCall)cCommandsAssignment_1_1.eContents().get(0);
 		
 		//Scope:
-		//	project=Project
-		//	'Simulation' name=ID length=INT?
-		//	commands+=Commands*;
+		//	project=Project ((simulation+='Simulation' name+=ID length+=INT?)?
+		//	commands+=Commands+)*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//project=Project 'Simulation' name=ID length=INT? commands+=Commands*
+		//project=Project ((simulation+='Simulation' name+=ID length+=INT?)? commands+=Commands+)*
 		public Group getGroup() { return cGroup; }
 		
 		//project=Project
@@ -301,26 +303,35 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		//Project
 		public RuleCall getProjectProjectParserRuleCall_0_0() { return cProjectProjectParserRuleCall_0_0; }
 		
-		//'Simulation'
-		public Keyword getSimulationKeyword_1() { return cSimulationKeyword_1; }
+		//((simulation+='Simulation' name+=ID length+=INT?)? commands+=Commands+)*
+		public Group getGroup_1() { return cGroup_1; }
 		
-		//name=ID
-		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
+		//(simulation+='Simulation' name+=ID length+=INT?)?
+		public Group getGroup_1_0() { return cGroup_1_0; }
+		
+		//simulation+='Simulation'
+		public Assignment getSimulationAssignment_1_0_0() { return cSimulationAssignment_1_0_0; }
+		
+		//'Simulation'
+		public Keyword getSimulationSimulationKeyword_1_0_0_0() { return cSimulationSimulationKeyword_1_0_0_0; }
+		
+		//name+=ID
+		public Assignment getNameAssignment_1_0_1() { return cNameAssignment_1_0_1; }
 		
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_2_0() { return cNameIDTerminalRuleCall_2_0; }
+		public RuleCall getNameIDTerminalRuleCall_1_0_1_0() { return cNameIDTerminalRuleCall_1_0_1_0; }
 		
-		//length=INT?
-		public Assignment getLengthAssignment_3() { return cLengthAssignment_3; }
+		//length+=INT?
+		public Assignment getLengthAssignment_1_0_2() { return cLengthAssignment_1_0_2; }
 		
 		//INT
-		public RuleCall getLengthINTTerminalRuleCall_3_0() { return cLengthINTTerminalRuleCall_3_0; }
+		public RuleCall getLengthINTTerminalRuleCall_1_0_2_0() { return cLengthINTTerminalRuleCall_1_0_2_0; }
 		
-		//commands+=Commands*
-		public Assignment getCommandsAssignment_4() { return cCommandsAssignment_4; }
+		//commands+=Commands+
+		public Assignment getCommandsAssignment_1_1() { return cCommandsAssignment_1_1; }
 		
 		//Commands
-		public RuleCall getCommandsCommandsParserRuleCall_4_0() { return cCommandsCommandsParserRuleCall_4_0; }
+		public RuleCall getCommandsCommandsParserRuleCall_1_1_0() { return cCommandsCommandsParserRuleCall_1_1_0; }
 	}
 	public class CommandsElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "zanshin.dsl.Dsl.Commands");
@@ -513,9 +524,8 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Scope:
-	//	project=Project
-	//	'Simulation' name=ID length=INT?
-	//	commands+=Commands*;
+	//	project=Project ((simulation+='Simulation' name+=ID length+=INT?)?
+	//	commands+=Commands+)*;
 	public ScopeElements getScopeAccess() {
 		return pScope;
 	}

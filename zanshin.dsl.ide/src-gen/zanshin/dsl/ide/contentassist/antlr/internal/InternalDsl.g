@@ -1026,7 +1026,6 @@ rule__Scope__Group__1
 	}
 :
 	rule__Scope__Group__1__Impl
-	rule__Scope__Group__2
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -1038,89 +1037,151 @@ rule__Scope__Group__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getScopeAccess().getSimulationKeyword_1()); }
-	'Simulation'
-	{ after(grammarAccess.getScopeAccess().getSimulationKeyword_1()); }
+	{ before(grammarAccess.getScopeAccess().getGroup_1()); }
+	(rule__Scope__Group_1__0)*
+	{ after(grammarAccess.getScopeAccess().getGroup_1()); }
 )
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Scope__Group__2
+
+rule__Scope__Group_1__0
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
-	rule__Scope__Group__2__Impl
-	rule__Scope__Group__3
+	rule__Scope__Group_1__0__Impl
+	rule__Scope__Group_1__1
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Scope__Group__2__Impl
+rule__Scope__Group_1__0__Impl
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 (
-	{ before(grammarAccess.getScopeAccess().getNameAssignment_2()); }
-	(rule__Scope__NameAssignment_2)
-	{ after(grammarAccess.getScopeAccess().getNameAssignment_2()); }
+	{ before(grammarAccess.getScopeAccess().getGroup_1_0()); }
+	(rule__Scope__Group_1_0__0)?
+	{ after(grammarAccess.getScopeAccess().getGroup_1_0()); }
 )
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Scope__Group__3
+rule__Scope__Group_1__1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
-	rule__Scope__Group__3__Impl
-	rule__Scope__Group__4
+	rule__Scope__Group_1__1__Impl
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Scope__Group__3__Impl
+rule__Scope__Group_1__1__Impl
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 (
-	{ before(grammarAccess.getScopeAccess().getLengthAssignment_3()); }
-	(rule__Scope__LengthAssignment_3)?
-	{ after(grammarAccess.getScopeAccess().getLengthAssignment_3()); }
+	(
+		{ before(grammarAccess.getScopeAccess().getCommandsAssignment_1_1()); }
+		(rule__Scope__CommandsAssignment_1_1)
+		{ after(grammarAccess.getScopeAccess().getCommandsAssignment_1_1()); }
+	)
+	(
+		{ before(grammarAccess.getScopeAccess().getCommandsAssignment_1_1()); }
+		(rule__Scope__CommandsAssignment_1_1)*
+		{ after(grammarAccess.getScopeAccess().getCommandsAssignment_1_1()); }
+	)
 )
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Scope__Group__4
+
+rule__Scope__Group_1_0__0
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
-	rule__Scope__Group__4__Impl
+	rule__Scope__Group_1_0__0__Impl
+	rule__Scope__Group_1_0__1
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Scope__Group__4__Impl
+rule__Scope__Group_1_0__0__Impl
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 (
-	{ before(grammarAccess.getScopeAccess().getCommandsAssignment_4()); }
-	(rule__Scope__CommandsAssignment_4)*
-	{ after(grammarAccess.getScopeAccess().getCommandsAssignment_4()); }
+	{ before(grammarAccess.getScopeAccess().getSimulationAssignment_1_0_0()); }
+	(rule__Scope__SimulationAssignment_1_0_0)
+	{ after(grammarAccess.getScopeAccess().getSimulationAssignment_1_0_0()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Scope__Group_1_0__1
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__Scope__Group_1_0__1__Impl
+	rule__Scope__Group_1_0__2
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Scope__Group_1_0__1__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getScopeAccess().getNameAssignment_1_0_1()); }
+	(rule__Scope__NameAssignment_1_0_1)
+	{ after(grammarAccess.getScopeAccess().getNameAssignment_1_0_1()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Scope__Group_1_0__2
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__Scope__Group_1_0__2__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Scope__Group_1_0__2__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getScopeAccess().getLengthAssignment_1_0_2()); }
+	(rule__Scope__LengthAssignment_1_0_2)?
+	{ after(grammarAccess.getScopeAccess().getLengthAssignment_1_0_2()); }
 )
 ;
 finally {
@@ -1427,45 +1488,64 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Scope__NameAssignment_2
+rule__Scope__SimulationAssignment_1_0_0
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getScopeAccess().getNameIDTerminalRuleCall_2_0()); }
+		{ before(grammarAccess.getScopeAccess().getSimulationSimulationKeyword_1_0_0_0()); }
+		(
+			{ before(grammarAccess.getScopeAccess().getSimulationSimulationKeyword_1_0_0_0()); }
+			'Simulation'
+			{ after(grammarAccess.getScopeAccess().getSimulationSimulationKeyword_1_0_0_0()); }
+		)
+		{ after(grammarAccess.getScopeAccess().getSimulationSimulationKeyword_1_0_0_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Scope__NameAssignment_1_0_1
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getScopeAccess().getNameIDTerminalRuleCall_1_0_1_0()); }
 		RULE_ID
-		{ after(grammarAccess.getScopeAccess().getNameIDTerminalRuleCall_2_0()); }
+		{ after(grammarAccess.getScopeAccess().getNameIDTerminalRuleCall_1_0_1_0()); }
 	)
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Scope__LengthAssignment_3
+rule__Scope__LengthAssignment_1_0_2
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getScopeAccess().getLengthINTTerminalRuleCall_3_0()); }
+		{ before(grammarAccess.getScopeAccess().getLengthINTTerminalRuleCall_1_0_2_0()); }
 		RULE_INT
-		{ after(grammarAccess.getScopeAccess().getLengthINTTerminalRuleCall_3_0()); }
+		{ after(grammarAccess.getScopeAccess().getLengthINTTerminalRuleCall_1_0_2_0()); }
 	)
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Scope__CommandsAssignment_4
+rule__Scope__CommandsAssignment_1_1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getScopeAccess().getCommandsCommandsParserRuleCall_4_0()); }
+		{ before(grammarAccess.getScopeAccess().getCommandsCommandsParserRuleCall_1_1_0()); }
 		ruleCommands
-		{ after(grammarAccess.getScopeAccess().getCommandsCommandsParserRuleCall_4_0()); }
+		{ after(grammarAccess.getScopeAccess().getCommandsCommandsParserRuleCall_1_1_0()); }
 	)
 ;
 finally {

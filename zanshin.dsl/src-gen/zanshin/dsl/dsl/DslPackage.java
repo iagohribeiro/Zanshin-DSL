@@ -354,22 +354,31 @@ public interface DslPackage extends EPackage
   int SCOPE__PROJECT = 0;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Simulation</b></em>' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SCOPE__NAME = 1;
+  int SCOPE__SIMULATION = 1;
 
   /**
-   * The feature id for the '<em><b>Length</b></em>' attribute.
+   * The feature id for the '<em><b>Name</b></em>' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SCOPE__LENGTH = 2;
+  int SCOPE__NAME = 2;
+
+  /**
+   * The feature id for the '<em><b>Length</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SCOPE__LENGTH = 3;
 
   /**
    * The feature id for the '<em><b>Commands</b></em>' containment reference list.
@@ -378,7 +387,7 @@ public interface DslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SCOPE__COMMANDS = 3;
+  int SCOPE__COMMANDS = 4;
 
   /**
    * The number of structural features of the '<em>Scope</em>' class.
@@ -387,7 +396,7 @@ public interface DslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SCOPE_FEATURE_COUNT = 4;
+  int SCOPE_FEATURE_COUNT = 5;
 
   /**
    * The meta object id for the '{@link zanshin.dsl.dsl.impl.CommandsImpl <em>Commands</em>}' class.
@@ -616,10 +625,21 @@ public interface DslPackage extends EPackage
   EReference getScope_Project();
 
   /**
-   * Returns the meta object for the attribute '{@link zanshin.dsl.dsl.Scope#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute list '{@link zanshin.dsl.dsl.Scope#getSimulation <em>Simulation</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
+   * @return the meta object for the attribute list '<em>Simulation</em>'.
+   * @see zanshin.dsl.dsl.Scope#getSimulation()
+   * @see #getScope()
+   * @generated
+   */
+  EAttribute getScope_Simulation();
+
+  /**
+   * Returns the meta object for the attribute list '{@link zanshin.dsl.dsl.Scope#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Name</em>'.
    * @see zanshin.dsl.dsl.Scope#getName()
    * @see #getScope()
    * @generated
@@ -627,10 +647,10 @@ public interface DslPackage extends EPackage
   EAttribute getScope_Name();
 
   /**
-   * Returns the meta object for the attribute '{@link zanshin.dsl.dsl.Scope#getLength <em>Length</em>}'.
+   * Returns the meta object for the attribute list '{@link zanshin.dsl.dsl.Scope#getLength <em>Length</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Length</em>'.
+   * @return the meta object for the attribute list '<em>Length</em>'.
    * @see zanshin.dsl.dsl.Scope#getLength()
    * @see #getScope()
    * @generated
@@ -867,7 +887,15 @@ public interface DslPackage extends EPackage
     EReference SCOPE__PROJECT = eINSTANCE.getScope_Project();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Simulation</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute SCOPE__SIMULATION = eINSTANCE.getScope_Simulation();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -875,7 +903,7 @@ public interface DslPackage extends EPackage
     EAttribute SCOPE__NAME = eINSTANCE.getScope_Name();
 
     /**
-     * The meta object literal for the '<em><b>Length</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Length</b></em>' attribute list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated

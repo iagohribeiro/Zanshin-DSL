@@ -146,7 +146,7 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Scope returns Scope
 	 *
 	 * Constraint:
-	 *     (project=Project name=ID length=INT? commands+=Commands*)
+	 *     (project=Project (commands+=Commands (simulation+='Simulation' name+=ID length+=INT?)?)*)
 	 */
 	protected void sequence_Scope(ISerializationContext context, Scope semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
