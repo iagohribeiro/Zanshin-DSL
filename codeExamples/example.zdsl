@@ -1,0 +1,36 @@
+project "ProjectName1"
+Simulation Name1
+	Success [2] "RequirementsName"
+	Failure "Q_DISPATCH"
+	Log "Test Project Name 1"
+
+project "Project Name 2"
+Simulation Name2
+	Failure "RequirementsName"
+	Failure "Q_DISPATCH"
+	Failure "Q_DISPATCH"
+	Log "Test Project Name 2"
+	
+project "acad"
+Simulation AcadAR11FailureSimulation 3
+	Part 1
+	Failure "Q_DISPATCH"
+	Failure "Q_DISPATCH"
+	Log "Current incident took more than 3 minutes to dispatch!"
+	Part 2
+	Failure "T_DISPATCH"
+	Failure "Q_DISPATCH"
+	Failure "Q_DISPATCH"
+	Log "First adaptation attempt was not enough, dispatch is still took more than 3 minutes in another incident!"
+	Part 3
+	Log "OK, for a third incident dispatching now took less than 3 minutes!"
+Simulation AcadAR04FailureSimulation 3
+	Part 1
+	Failure "A_DISPATCH"
+	Log "Current incident took more than 3 minutes to dispatch!"
+	Part 2
+	Failure "B_DISPATCH"
+	Failure "C_DISPATCH"
+	Log "First adaptation attempt was not enough, dispatch is still took more than 3 minutes in another incident!"
+	Part 3
+	Log "OK, for a third incident dispatching now took less than 3 minutes!"
