@@ -1,0 +1,50 @@
+project "acad"
+Simulation AcadAR11FailureSimulation 3
+	Part 1
+	Failure "Q_DISPATCH"
+	Log "Current incident took more than 3 minutes do dispatch!"
+	Part 2
+	Failure "Q_DISPATCH"
+	Log "First adaptation attempt was not enough, dispatch is still took more than 3 minutes in another incident!"
+	Part 3
+	Success "Q_DISPATCH"
+	Log "OK, for a third incident dispatching now took less than 3 minutes!" 
+Simulation AcadAR15FailureSimulation 3
+	Part 1
+	Failure "T_INPUT_INFO"
+	Log "Staff member tries to Input Emergency Information but it fails!"
+	Log "Waiting for a response from Zanshin..."
+	Part 2
+	Success "T_INPUT_INFO"
+	Failure "T_DETECT_LOC"
+	Log "In the 2nd try, Input Emergency Information suceeeds, but Detect Caller Location fails!"
+	Part 3
+	Log "OK. Ending user session..."
+	
+project "scheduler"
+Simulation SchedulerAR1FailureSimulation 4
+	Part 1
+	Failure "T_CHARACT_MEET"
+	Log "Meeting organizer tries to Characterize meeting but it fails!"
+	Part 2
+	Failure "T_CHARACT_MEET"
+	Log "Meeting organizer tries *again* to Characterize meeting but it fails!"
+	Part 3
+	Failure "T_CHARACT_MEET"
+	Log "Meeting organizer tries *one more time* to Characterize meeting but it fails!" 
+	Part 4
+	Log "The system aborts! Today is not a good day to schedule meetings..." 
+Simulation SchedulerAR4FailureSimulation 3
+	Part 1
+	Failure "D_LOCAL_AVAIL"
+	Failure "T_CALL_PARTNER"
+	Failure "T_CALL_HOTEL"
+	Log "No rooms available and both partner and hotels fail!"
+	Part 2
+	Failure "D_LOCAL_AVAIL"
+	Failure "T_CALL_PARTNER"
+	Failure "T_CALL_HOTEL"
+	Log "No rooms available and both partner and hotels fail!"
+	Part 3
+	Success "T_CALL_PARTNER"
+	Log "This time, calling a partner institution succeeds!"
