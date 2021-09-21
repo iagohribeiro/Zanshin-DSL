@@ -15,11 +15,9 @@ public abstract class AbstractAcadSimulation extends AbstractSimulation {
 
 	protected static final String MODEL_FILE_PATH = BASE_PATH + "model.acad"; //$NON-NLS-1$
 	
-	protected static final String Q_DISPATCH = "QDISPATCH"; //$NON-NLS-1$
-	protected static final String T_DISPATCH = "TDISPATCH"; //$NON-NLS-1$
-	protected static final String A_DISPATCH = "ADISPATCH"; //$NON-NLS-1$
-	protected static final String B_DISPATCH = "BDISPATCH"; //$NON-NLS-1$
-	protected static final String C_DISPATCH = "CDISPATCH"; //$NON-NLS-1$
+	protected static final String Q_DISPATCH = "Q_DISPATCH"; //$NON-NLS-1$
+	protected static final String T_INPUT_INFO = "T_INPUT_INFO"; //$NON-NLS-1$
+	protected static final String T_DETECT_LOC = "T_DETECT_LOC"; //$NON-NLS-1$
 	protected static Object lock = new Object();
 
 	protected String targetSystemId;

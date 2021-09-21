@@ -3,9 +3,9 @@ package it.unitn.disi.zanshin.simulation.cases.acad;
 import it.unitn.disi.zanshin.simulation.Logger;
 import it.unitn.disi.zanshin.simulation.cases.SimulationPart;
 
-public final class AcadAR11FailureSimulation extends AbstractAcadSimulation {
+public final class AcadAR15FailureSimulation extends AbstractAcadSimulation {
 	
-	private static final Logger log = new Logger(AcadAR11FailureSimulation.class);
+	private static final Logger log = new Logger(AcadAR15FailureSimulation.class);
 	
 	/** @see it.unitn.disi.zanshin.simulation.cases.AbstractSimulation#doInit() */
 	@Override
@@ -19,11 +19,10 @@ public final class AcadAR11FailureSimulation extends AbstractAcadSimulation {
 				// Creates a user session, as if someone were using the acad.
 				sessionId = zanshin.createUserSession(targetSystemId);
 				log.info("Created a new user session with id: {0}", sessionId); //$NON-NLS-1$
-				log.info("Current incident took more than 3 minutes to dispatch!"); //$NON-NLS-1$
+				log.info("Staff member tries to Input Emergency Information but it fails!"); //$NON-NLS-1$
 				
-				zanshin.logRequirementStart(targetSystemId, sessionId, Q_DISPATCH);
-				zanshin.logRequirementFailure(targetSystemId, sessionId, Q_DISPATCH);
-				zanshin.logRequirementFailure(targetSystemId, sessionId, Q_DISPATCH);
+				zanshin.logRequirementStart(targetSystemId, sessionId, T_INPUT_INFO);
+				zanshin.logRequirementFailure(targetSystemId, sessionId, T_INPUT_INFO);
 				
 				// Ends the user session.
 				zanshin.disposeUserSession(targetSystemId, sessionId);
@@ -40,13 +39,12 @@ public final class AcadAR11FailureSimulation extends AbstractAcadSimulation {
 				// Creates a user session, as if someone were using the acad.
 				sessionId = zanshin.createUserSession(targetSystemId);
 				log.info("Created a new user session with id: {0}", sessionId); //$NON-NLS-1$
-				log.info("First adaptation attempt was not enough, dispatch is still took more than 3 minutes in another incident!"); //$NON-NLS-1$
+				log.info("In the 2nd try, Input Emergency Information suceeeds, but Detect Caller Location fails!"); //$NON-NLS-1$
 				
-				zanshin.logRequirementStart(targetSystemId, sessionId, T_DISPATCH);
-				zanshin.logRequirementFailure(targetSystemId, sessionId, T_DISPATCH);
-				zanshin.logRequirementStart(targetSystemId, sessionId, Q_DISPATCH);
-				zanshin.logRequirementFailure(targetSystemId, sessionId, Q_DISPATCH);
-				zanshin.logRequirementFailure(targetSystemId, sessionId, Q_DISPATCH);
+				zanshin.logRequirementStart(targetSystemId, sessionId, T_INPUT_INFO);
+				zanshin.logRequirementSuccess(targetSystemId, sessionId, T_INPUT_INFO);
+				zanshin.logRequirementStart(targetSystemId, sessionId, T_DETECT_LOC);
+				zanshin.logRequirementFailure(targetSystemId, sessionId, T_DETECT_LOC);
 				
 				// Ends the user session.
 				zanshin.disposeUserSession(targetSystemId, sessionId);
@@ -60,7 +58,7 @@ public final class AcadAR11FailureSimulation extends AbstractAcadSimulation {
 		parts.add(new SimulationPart() {
 			@Override
 			public void run() throws Exception {
-				log.info("OK, for a third incident dispatching now took less than 3 minutes!"); //$NON-NLS-1$
+				log.info("OK. Ending user session..."); //$NON-NLS-1$
 				
 			}
 			@Override
