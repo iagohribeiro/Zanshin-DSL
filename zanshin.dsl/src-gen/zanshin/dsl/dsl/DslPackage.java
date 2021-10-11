@@ -279,34 +279,6 @@ public interface DslPackage extends EPackage
   int FAILURE_FEATURE_COUNT = TEST_TYPE_FEATURE_COUNT + 0;
 
   /**
-   * The meta object id for the '{@link zanshin.dsl.dsl.impl.TestQuantityImpl <em>Test Quantity</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see zanshin.dsl.dsl.impl.TestQuantityImpl
-   * @see zanshin.dsl.dsl.impl.DslPackageImpl#getTestQuantity()
-   * @generated
-   */
-  int TEST_QUANTITY = 5;
-
-  /**
-   * The feature id for the '<em><b>Number</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TEST_QUANTITY__NUMBER = 0;
-
-  /**
-   * The number of structural features of the '<em>Test Quantity</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TEST_QUANTITY_FEATURE_COUNT = 1;
-
-  /**
    * The meta object id for the '{@link zanshin.dsl.dsl.impl.LogImpl <em>Log</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -314,7 +286,7 @@ public interface DslPackage extends EPackage
    * @see zanshin.dsl.dsl.impl.DslPackageImpl#getLog()
    * @generated
    */
-  int LOG = 6;
+  int LOG = 5;
 
   /**
    * The feature id for the '<em><b>Message</b></em>' attribute.
@@ -342,7 +314,7 @@ public interface DslPackage extends EPackage
    * @see zanshin.dsl.dsl.impl.DslPackageImpl#getScope()
    * @generated
    */
-  int SCOPE = 7;
+  int SCOPE = 6;
 
   /**
    * The feature id for the '<em><b>Project</b></em>' containment reference.
@@ -399,23 +371,14 @@ public interface DslPackage extends EPackage
   int SCOPE_FEATURE_COUNT = 5;
 
   /**
-   * The meta object id for the '{@link zanshin.dsl.dsl.impl.CommandsImpl <em>Commands</em>}' class.
+   * The meta object id for the '{@link zanshin.dsl.dsl.impl.commandBlockImpl <em>command Block</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see zanshin.dsl.dsl.impl.CommandsImpl
-   * @see zanshin.dsl.dsl.impl.DslPackageImpl#getCommands()
+   * @see zanshin.dsl.dsl.impl.commandBlockImpl
+   * @see zanshin.dsl.dsl.impl.DslPackageImpl#getcommandBlock()
    * @generated
    */
-  int COMMANDS = 8;
-
-  /**
-   * The feature id for the '<em><b>Testquantity</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int COMMANDS__TESTQUANTITY = 0;
+  int COMMAND_BLOCK = 7;
 
   /**
    * The feature id for the '<em><b>Testtype</b></em>' containment reference list.
@@ -424,7 +387,7 @@ public interface DslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int COMMANDS__TESTTYPE = 1;
+  int COMMAND_BLOCK__TESTTYPE = 0;
 
   /**
    * The feature id for the '<em><b>Message</b></em>' containment reference list.
@@ -433,16 +396,16 @@ public interface DslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int COMMANDS__MESSAGE = 2;
+  int COMMAND_BLOCK__MESSAGE = 1;
 
   /**
-   * The number of structural features of the '<em>Commands</em>' class.
+   * The number of structural features of the '<em>command Block</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int COMMANDS_FEATURE_COUNT = 3;
+  int COMMAND_BLOCK_FEATURE_COUNT = 2;
 
 
   /**
@@ -562,27 +525,6 @@ public interface DslPackage extends EPackage
   EClass getFailure();
 
   /**
-   * Returns the meta object for class '{@link zanshin.dsl.dsl.TestQuantity <em>Test Quantity</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Test Quantity</em>'.
-   * @see zanshin.dsl.dsl.TestQuantity
-   * @generated
-   */
-  EClass getTestQuantity();
-
-  /**
-   * Returns the meta object for the attribute '{@link zanshin.dsl.dsl.TestQuantity#getNumber <em>Number</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Number</em>'.
-   * @see zanshin.dsl.dsl.TestQuantity#getNumber()
-   * @see #getTestQuantity()
-   * @generated
-   */
-  EAttribute getTestQuantity_Number();
-
-  /**
    * Returns the meta object for class '{@link zanshin.dsl.dsl.Log <em>Log</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -669,47 +611,36 @@ public interface DslPackage extends EPackage
   EReference getScope_Commands();
 
   /**
-   * Returns the meta object for class '{@link zanshin.dsl.dsl.Commands <em>Commands</em>}'.
+   * Returns the meta object for class '{@link zanshin.dsl.dsl.commandBlock <em>command Block</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Commands</em>'.
-   * @see zanshin.dsl.dsl.Commands
+   * @return the meta object for class '<em>command Block</em>'.
+   * @see zanshin.dsl.dsl.commandBlock
    * @generated
    */
-  EClass getCommands();
+  EClass getcommandBlock();
 
   /**
-   * Returns the meta object for the containment reference list '{@link zanshin.dsl.dsl.Commands#getTestquantity <em>Testquantity</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Testquantity</em>'.
-   * @see zanshin.dsl.dsl.Commands#getTestquantity()
-   * @see #getCommands()
-   * @generated
-   */
-  EReference getCommands_Testquantity();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link zanshin.dsl.dsl.Commands#getTesttype <em>Testtype</em>}'.
+   * Returns the meta object for the containment reference list '{@link zanshin.dsl.dsl.commandBlock#getTesttype <em>Testtype</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference list '<em>Testtype</em>'.
-   * @see zanshin.dsl.dsl.Commands#getTesttype()
-   * @see #getCommands()
+   * @see zanshin.dsl.dsl.commandBlock#getTesttype()
+   * @see #getcommandBlock()
    * @generated
    */
-  EReference getCommands_Testtype();
+  EReference getcommandBlock_Testtype();
 
   /**
-   * Returns the meta object for the containment reference list '{@link zanshin.dsl.dsl.Commands#getMessage <em>Message</em>}'.
+   * Returns the meta object for the containment reference list '{@link zanshin.dsl.dsl.commandBlock#getMessage <em>Message</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference list '<em>Message</em>'.
-   * @see zanshin.dsl.dsl.Commands#getMessage()
-   * @see #getCommands()
+   * @see zanshin.dsl.dsl.commandBlock#getMessage()
+   * @see #getcommandBlock()
    * @generated
    */
-  EReference getCommands_Message();
+  EReference getcommandBlock_Message();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -833,24 +764,6 @@ public interface DslPackage extends EPackage
     EClass FAILURE = eINSTANCE.getFailure();
 
     /**
-     * The meta object literal for the '{@link zanshin.dsl.dsl.impl.TestQuantityImpl <em>Test Quantity</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see zanshin.dsl.dsl.impl.TestQuantityImpl
-     * @see zanshin.dsl.dsl.impl.DslPackageImpl#getTestQuantity()
-     * @generated
-     */
-    EClass TEST_QUANTITY = eINSTANCE.getTestQuantity();
-
-    /**
-     * The meta object literal for the '<em><b>Number</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute TEST_QUANTITY__NUMBER = eINSTANCE.getTestQuantity_Number();
-
-    /**
      * The meta object literal for the '{@link zanshin.dsl.dsl.impl.LogImpl <em>Log</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -919,22 +832,14 @@ public interface DslPackage extends EPackage
     EReference SCOPE__COMMANDS = eINSTANCE.getScope_Commands();
 
     /**
-     * The meta object literal for the '{@link zanshin.dsl.dsl.impl.CommandsImpl <em>Commands</em>}' class.
+     * The meta object literal for the '{@link zanshin.dsl.dsl.impl.commandBlockImpl <em>command Block</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see zanshin.dsl.dsl.impl.CommandsImpl
-     * @see zanshin.dsl.dsl.impl.DslPackageImpl#getCommands()
+     * @see zanshin.dsl.dsl.impl.commandBlockImpl
+     * @see zanshin.dsl.dsl.impl.DslPackageImpl#getcommandBlock()
      * @generated
      */
-    EClass COMMANDS = eINSTANCE.getCommands();
-
-    /**
-     * The meta object literal for the '<em><b>Testquantity</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference COMMANDS__TESTQUANTITY = eINSTANCE.getCommands_Testquantity();
+    EClass COMMAND_BLOCK = eINSTANCE.getcommandBlock();
 
     /**
      * The meta object literal for the '<em><b>Testtype</b></em>' containment reference list feature.
@@ -942,7 +847,7 @@ public interface DslPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference COMMANDS__TESTTYPE = eINSTANCE.getCommands_Testtype();
+    EReference COMMAND_BLOCK__TESTTYPE = eINSTANCE.getcommandBlock_Testtype();
 
     /**
      * The meta object literal for the '<em><b>Message</b></em>' containment reference list feature.
@@ -950,7 +855,7 @@ public interface DslPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference COMMANDS__MESSAGE = eINSTANCE.getCommands_Message();
+    EReference COMMAND_BLOCK__MESSAGE = eINSTANCE.getcommandBlock_Message();
 
   }
 

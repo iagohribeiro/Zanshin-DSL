@@ -20,10 +20,10 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import zanshin.dsl.dsl.Commands;
 import zanshin.dsl.dsl.DslPackage;
 import zanshin.dsl.dsl.Project;
 import zanshin.dsl.dsl.Scope;
+import zanshin.dsl.dsl.commandBlock;
 
 /**
  * <!-- begin-user-doc -->
@@ -92,7 +92,7 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope
    * @generated
    * @ordered
    */
-  protected EList<Commands> commands;
+  protected EList<commandBlock> commands;
 
   /**
    * <!-- begin-user-doc -->
@@ -210,11 +210,11 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Commands> getCommands()
+  public EList<commandBlock> getCommands()
   {
     if (commands == null)
     {
-      commands = new EObjectContainmentEList<Commands>(Commands.class, this, DslPackage.SCOPE__COMMANDS);
+      commands = new EObjectContainmentEList<commandBlock>(commandBlock.class, this, DslPackage.SCOPE__COMMANDS);
     }
     return commands;
   }
@@ -289,7 +289,7 @@ public class ScopeImpl extends MinimalEObjectImpl.Container implements Scope
         return;
       case DslPackage.SCOPE__COMMANDS:
         getCommands().clear();
-        getCommands().addAll((Collection<? extends Commands>)newValue);
+        getCommands().addAll((Collection<? extends commandBlock>)newValue);
         return;
     }
     super.eSet(featureID, newValue);

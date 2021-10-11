@@ -14,7 +14,6 @@ import org.eclipse.xtext.serializer.ISerializationContext;
 import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
-import zanshin.dsl.dsl.Commands;
 import zanshin.dsl.dsl.DslPackage;
 import zanshin.dsl.dsl.Failure;
 import zanshin.dsl.dsl.Log;
@@ -22,7 +21,7 @@ import zanshin.dsl.dsl.Model;
 import zanshin.dsl.dsl.Project;
 import zanshin.dsl.dsl.Scope;
 import zanshin.dsl.dsl.Success;
-import zanshin.dsl.dsl.TestQuantity;
+import zanshin.dsl.dsl.commandBlock;
 import zanshin.dsl.services.DslGrammarAccess;
 
 @SuppressWarnings("all")
@@ -39,9 +38,6 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == DslPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
-			case DslPackage.COMMANDS:
-				sequence_Commands(context, (Commands) semanticObject); 
-				return; 
 			case DslPackage.FAILURE:
 				sequence_Failure(context, (Failure) semanticObject); 
 				return; 
@@ -60,25 +56,13 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case DslPackage.SUCCESS:
 				sequence_Success(context, (Success) semanticObject); 
 				return; 
-			case DslPackage.TEST_QUANTITY:
-				sequence_TestQuantity(context, (TestQuantity) semanticObject); 
+			case DslPackage.COMMAND_BLOCK:
+				sequence_commandBlock(context, (commandBlock) semanticObject); 
 				return; 
 			}
 		if (errorAcceptor != null)
 			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
 	}
-	
-	/**
-	 * Contexts:
-	 *     Commands returns Commands
-	 *
-	 * Constraint:
-	 *     (testquantity+=TestQuantity? testtype+=TestType* message+=Log+)
-	 */
-	protected void sequence_Commands(ISerializationContext context, Commands semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
 	
 	/**
 	 * Contexts:
@@ -146,7 +130,7 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Scope returns Scope
 	 *
 	 * Constraint:
-	 *     (project=Project (commands+=Commands (simulation+='Simulation' name+=ID length+=INT?)?)*)
+	 *     (project=Project (commands+=commandBlock (simulation+='Simulation' name+=ID length+=INT?)?)*)
 	 */
 	protected void sequence_Scope(ISerializationContext context, Scope semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -168,19 +152,13 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     TestQuantity returns TestQuantity
+	 *     commandBlock returns commandBlock
 	 *
 	 * Constraint:
-	 *     number=INT
+	 *     (testtype+=TestType* message+=Log+)
 	 */
-	protected void sequence_TestQuantity(ISerializationContext context, TestQuantity semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, DslPackage.Literals.TEST_QUANTITY__NUMBER) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DslPackage.Literals.TEST_QUANTITY__NUMBER));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getTestQuantityAccess().getNumberINTTerminalRuleCall_1_0(), semanticObject.getNumber());
-		feeder.finish();
+	protected void sequence_commandBlock(ISerializationContext context, commandBlock semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

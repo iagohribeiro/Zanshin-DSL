@@ -29,11 +29,11 @@ import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.ExclusiveRange;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
-import zanshin.dsl.dsl.Commands;
 import zanshin.dsl.dsl.Log;
 import zanshin.dsl.dsl.Project;
 import zanshin.dsl.dsl.Scope;
 import zanshin.dsl.dsl.TestType;
+import zanshin.dsl.dsl.commandBlock;
 
 /**
  * Generates code from your model files on save.
@@ -93,13 +93,13 @@ public class DslGenerator extends AbstractGenerator {
     try {
       String[] requirementsList = new String[500];
       int lastIndex = 0;
-      EList<Commands> _commands = scope.getCommands();
+      EList<commandBlock> _commands = scope.getCommands();
       int _size = _commands.size();
       ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _size, true);
       for (final Integer i : _doubleDotLessThan) {
         {
-          EList<Commands> _commands_1 = scope.getCommands();
-          Commands command = _commands_1.get((i).intValue());
+          EList<commandBlock> _commands_1 = scope.getCommands();
+          commandBlock command = _commands_1.get((i).intValue());
           EList<TestType> _testtype = command.getTesttype();
           int _size_1 = _testtype.size();
           ExclusiveRange _doubleDotLessThan_1 = new ExclusiveRange(0, _size_1, true);
@@ -175,10 +175,10 @@ public class DslGenerator extends AbstractGenerator {
       boolean _isEmpty = _length.isEmpty();
       if (_isEmpty) {
         startVector = 0;
-        EList<Commands> _commands = scope.getCommands();
+        EList<commandBlock> _commands = scope.getCommands();
         int _size = _commands.size();
         finalPosition = _size;
-        EList<Commands> _commands_1 = scope.getCommands();
+        EList<commandBlock> _commands_1 = scope.getCommands();
         int _size_1 = _commands_1.size();
         shouldWaitIndex = _size_1;
       } else {
@@ -194,13 +194,13 @@ public class DslGenerator extends AbstractGenerator {
         Integer _get_2 = _length_3.get(position);
         shouldWaitIndex = (_get_2).intValue();
       }
-      EList<Commands> _commands_2 = scope.getCommands();
+      EList<commandBlock> _commands_2 = scope.getCommands();
       int _size_2 = _commands_2.size();
       ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _size_2, true);
       for (final Integer i : _doubleDotLessThan) {
         {
-          EList<Commands> _commands_3 = scope.getCommands();
-          Commands commands = _commands_3.get((i).intValue());
+          EList<commandBlock> _commands_3 = scope.getCommands();
+          commandBlock commands = _commands_3.get((i).intValue());
           EList<TestType> _testtype = commands.getTesttype();
           int _size_3 = _testtype.size();
           ExclusiveRange _doubleDotLessThan_1 = new ExclusiveRange(0, _size_3, true);
@@ -270,8 +270,8 @@ public class DslGenerator extends AbstractGenerator {
         for(final Integer i_1 : _doubleDotLessThan_1) {
           _builder.append("\t\t");
           _builder.append("\t");
-          EList<Commands> _commands_3 = scope.getCommands();
-          Commands commands = _commands_3.get((i_1).intValue());
+          EList<commandBlock> _commands_3 = scope.getCommands();
+          commandBlock commands = _commands_3.get((i_1).intValue());
           _builder.newLineIfNotEmpty();
           _builder.append("\t\t");
           _builder.append("// Adds the part ");
@@ -615,13 +615,13 @@ public class DslGenerator extends AbstractGenerator {
       String projectName = _replace.replace("\"", "");
       String[] requirementsList = new String[500];
       int lastIndex = 0;
-      EList<Commands> _commands = scope.getCommands();
+      EList<commandBlock> _commands = scope.getCommands();
       int _size = _commands.size();
       ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _size, true);
       for (final Integer i : _doubleDotLessThan) {
         {
-          EList<Commands> _commands_1 = scope.getCommands();
-          Commands command = _commands_1.get((i).intValue());
+          EList<commandBlock> _commands_1 = scope.getCommands();
+          commandBlock command = _commands_1.get((i).intValue());
           EList<TestType> _testtype = command.getTesttype();
           int _size_1 = _testtype.size();
           ExclusiveRange _doubleDotLessThan_1 = new ExclusiveRange(0, _size_1, true);

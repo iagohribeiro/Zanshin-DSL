@@ -1,8 +1,8 @@
 '.'=12
 '.*'=13
 'Failure'=19
-'Log'=16
-'Part'=15
+'Log'=15
+'Part'=16
 'Simulation'=20
 'Success'=17
 '['=18

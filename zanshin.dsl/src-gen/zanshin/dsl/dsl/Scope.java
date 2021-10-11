@@ -105,7 +105,7 @@ public interface Scope extends EObject
 
   /**
    * Returns the value of the '<em><b>Commands</b></em>' containment reference list.
-   * The list contents are of type {@link zanshin.dsl.dsl.Commands}.
+   * The list contents are of type {@link zanshin.dsl.dsl.commandBlock}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Commands</em>' containment reference list isn't clear,
@@ -117,6 +117,6 @@ public interface Scope extends EObject
    * @model containment="true"
    * @generated
    */
-  EList<Commands> getCommands();
+  EList<commandBlock> getCommands();
 
 } // Scope

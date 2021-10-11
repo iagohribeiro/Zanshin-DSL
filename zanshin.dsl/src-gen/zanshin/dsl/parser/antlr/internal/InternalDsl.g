@@ -428,47 +428,6 @@ ruleFailure returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleTestQuantity
-entryRuleTestQuantity returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getTestQuantityRule()); }
-	iv_ruleTestQuantity=ruleTestQuantity
-	{ $current=$iv_ruleTestQuantity.current; }
-	EOF;
-
-// Rule TestQuantity
-ruleTestQuantity returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		otherlv_0='Part'
-		{
-			newLeafNode(otherlv_0, grammarAccess.getTestQuantityAccess().getPartKeyword_0());
-		}
-		(
-			(
-				lv_number_1_0=RULE_INT
-				{
-					newLeafNode(lv_number_1_0, grammarAccess.getTestQuantityAccess().getNumberINTTerminalRuleCall_1_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getTestQuantityRule());
-					}
-					setWithLastConsumed(
-						$current,
-						"number",
-						lv_number_1_0,
-						"org.eclipse.xtext.common.Terminals.INT");
-				}
-			)
-		)
-	)
-;
-
 // Entry rule entryRuleLog
 entryRuleLog returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getLogRule()); }
@@ -601,9 +560,9 @@ ruleScope returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getScopeAccess().getCommandsCommandsParserRuleCall_1_1_0());
+						newCompositeNode(grammarAccess.getScopeAccess().getCommandsCommandBlockParserRuleCall_1_1_0());
 					}
-					lv_commands_4_0=ruleCommands
+					lv_commands_4_0=rulecommandBlock
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getScopeRule());
@@ -612,7 +571,7 @@ ruleScope returns [EObject current=null]
 							$current,
 							"commands",
 							lv_commands_4_0,
-							"zanshin.dsl.Dsl.Commands");
+							"zanshin.dsl.Dsl.commandBlock");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -621,15 +580,15 @@ ruleScope returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleCommands
-entryRuleCommands returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getCommandsRule()); }
-	iv_ruleCommands=ruleCommands
-	{ $current=$iv_ruleCommands.current; }
+// Entry rule entryRulecommandBlock
+entryRulecommandBlock returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getCommandBlockRule()); }
+	iv_rulecommandBlock=rulecommandBlock
+	{ $current=$iv_rulecommandBlock.current; }
 	EOF;
 
-// Rule Commands
-ruleCommands returns [EObject current=null]
+// Rule commandBlock
+rulecommandBlock returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -638,33 +597,20 @@ ruleCommands returns [EObject current=null]
 }:
 	(
 		(
-			(
-				{
-					newCompositeNode(grammarAccess.getCommandsAccess().getTestquantityTestQuantityParserRuleCall_0_0());
-				}
-				lv_testquantity_0_0=ruleTestQuantity
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getCommandsRule());
-					}
-					add(
-						$current,
-						"testquantity",
-						lv_testquantity_0_0,
-						"zanshin.dsl.Dsl.TestQuantity");
-					afterParserOrEnumRuleCall();
-				}
-			)
+			otherlv_0='Part'
+			{
+				newLeafNode(otherlv_0, grammarAccess.getCommandBlockAccess().getPartKeyword_0());
+			}
 		)?
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getCommandsAccess().getTesttypeTestTypeParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getCommandBlockAccess().getTesttypeTestTypeParserRuleCall_1_0());
 				}
 				lv_testtype_1_0=ruleTestType
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getCommandsRule());
+						$current = createModelElementForParent(grammarAccess.getCommandBlockRule());
 					}
 					add(
 						$current,
@@ -678,12 +624,12 @@ ruleCommands returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getCommandsAccess().getMessageLogParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getCommandBlockAccess().getMessageLogParserRuleCall_2_0());
 				}
 				lv_message_2_0=ruleLog
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getCommandsRule());
+						$current = createModelElementForParent(grammarAccess.getCommandBlockRule());
 					}
 					add(
 						$current,

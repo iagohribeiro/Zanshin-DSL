@@ -18,13 +18,10 @@ TestType:
 	Success | Failure;
 	
 Success:
-	simulationType='Success' (array ?='[' (length=INT)? ']')? name = STRING;
+	simulationType= 'Success' (array ?='[' (length=INT)? ']')? name=STRING;
 
 Failure:
-	simulationType='Failure' (array ?='[' (length=INT)? ']')? name = STRING;
-
-TestQuantity:
-	'Part' number = INT;
+	simulationType= 'Failure' (array ?='[' (length=INT)? ']')? name=STRING;
 
 Log:
 	'Log' message = STRING;
@@ -32,9 +29,9 @@ Log:
 Scope:
 	project = Project
 	((simulation += 'Simulation' name += ID (length+=INT)?)?
-		(commands+=Commands)+)*;
+		(commands += commandBlock)+)*;
 		
-Commands:
-	(testquantity+=TestQuantity)?
-	(testtype+=TestType)*
-	(message+=Log)+;
+commandBlock:
+	('Part')?
+	(testtype += TestType)*
+	(message += Log)+;

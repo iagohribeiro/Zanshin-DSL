@@ -101,11 +101,6 @@ public class DslAdapterFactory extends AdapterFactoryImpl
         return createFailureAdapter();
       }
       @Override
-      public Adapter caseTestQuantity(TestQuantity object)
-      {
-        return createTestQuantityAdapter();
-      }
-      @Override
       public Adapter caseLog(Log object)
       {
         return createLogAdapter();
@@ -116,9 +111,9 @@ public class DslAdapterFactory extends AdapterFactoryImpl
         return createScopeAdapter();
       }
       @Override
-      public Adapter caseCommands(Commands object)
+      public Adapter casecommandBlock(commandBlock object)
       {
-        return createCommandsAdapter();
+        return createcommandBlockAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -218,21 +213,6 @@ public class DslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link zanshin.dsl.dsl.TestQuantity <em>Test Quantity</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see zanshin.dsl.dsl.TestQuantity
-   * @generated
-   */
-  public Adapter createTestQuantityAdapter()
-  {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link zanshin.dsl.dsl.Log <em>Log</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -263,16 +243,16 @@ public class DslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link zanshin.dsl.dsl.Commands <em>Commands</em>}'.
+   * Creates a new adapter for an object of class '{@link zanshin.dsl.dsl.commandBlock <em>command Block</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see zanshin.dsl.dsl.Commands
+   * @see zanshin.dsl.dsl.commandBlock
    * @generated
    */
-  public Adapter createCommandsAdapter()
+  public Adapter createcommandBlockAdapter()
   {
     return null;
   }

@@ -10,7 +10,6 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-import zanshin.dsl.dsl.Commands;
 import zanshin.dsl.dsl.DslFactory;
 import zanshin.dsl.dsl.DslPackage;
 import zanshin.dsl.dsl.Failure;
@@ -19,8 +18,8 @@ import zanshin.dsl.dsl.Model;
 import zanshin.dsl.dsl.Project;
 import zanshin.dsl.dsl.Scope;
 import zanshin.dsl.dsl.Success;
-import zanshin.dsl.dsl.TestQuantity;
 import zanshin.dsl.dsl.TestType;
+import zanshin.dsl.dsl.commandBlock;
 
 /**
  * <!-- begin-user-doc -->
@@ -70,13 +69,6 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass testQuantityEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   private EClass logEClass = null;
 
   /**
@@ -91,7 +83,7 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass commandsEClass = null;
+  private EClass commandBlockEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -271,26 +263,6 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getTestQuantity()
-  {
-    return testQuantityEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getTestQuantity_Number()
-  {
-    return (EAttribute)testQuantityEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getLog()
   {
     return logEClass;
@@ -371,9 +343,9 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getCommands()
+  public EClass getcommandBlock()
   {
-    return commandsEClass;
+    return commandBlockEClass;
   }
 
   /**
@@ -381,9 +353,9 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getCommands_Testquantity()
+  public EReference getcommandBlock_Testtype()
   {
-    return (EReference)commandsEClass.getEStructuralFeatures().get(0);
+    return (EReference)commandBlockEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -391,19 +363,9 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getCommands_Testtype()
+  public EReference getcommandBlock_Message()
   {
-    return (EReference)commandsEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getCommands_Message()
-  {
-    return (EReference)commandsEClass.getEStructuralFeatures().get(2);
+    return (EReference)commandBlockEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -452,9 +414,6 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 
     failureEClass = createEClass(FAILURE);
 
-    testQuantityEClass = createEClass(TEST_QUANTITY);
-    createEAttribute(testQuantityEClass, TEST_QUANTITY__NUMBER);
-
     logEClass = createEClass(LOG);
     createEAttribute(logEClass, LOG__MESSAGE);
 
@@ -465,10 +424,9 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
     createEAttribute(scopeEClass, SCOPE__LENGTH);
     createEReference(scopeEClass, SCOPE__COMMANDS);
 
-    commandsEClass = createEClass(COMMANDS);
-    createEReference(commandsEClass, COMMANDS__TESTQUANTITY);
-    createEReference(commandsEClass, COMMANDS__TESTTYPE);
-    createEReference(commandsEClass, COMMANDS__MESSAGE);
+    commandBlockEClass = createEClass(COMMAND_BLOCK);
+    createEReference(commandBlockEClass, COMMAND_BLOCK__TESTTYPE);
+    createEReference(commandBlockEClass, COMMAND_BLOCK__MESSAGE);
   }
 
   /**
@@ -520,9 +478,6 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
 
     initEClass(failureEClass, Failure.class, "Failure", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(testQuantityEClass, TestQuantity.class, "TestQuantity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getTestQuantity_Number(), ecorePackage.getEInt(), "number", null, 0, 1, TestQuantity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
     initEClass(logEClass, Log.class, "Log", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getLog_Message(), ecorePackage.getEString(), "message", null, 0, 1, Log.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -531,12 +486,11 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage
     initEAttribute(getScope_Simulation(), ecorePackage.getEString(), "simulation", null, 0, -1, Scope.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getScope_Name(), ecorePackage.getEString(), "name", null, 0, -1, Scope.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getScope_Length(), ecorePackage.getEInt(), "length", null, 0, -1, Scope.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getScope_Commands(), this.getCommands(), null, "commands", null, 0, -1, Scope.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getScope_Commands(), this.getcommandBlock(), null, "commands", null, 0, -1, Scope.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(commandsEClass, Commands.class, "Commands", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getCommands_Testquantity(), this.getTestQuantity(), null, "testquantity", null, 0, -1, Commands.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getCommands_Testtype(), this.getTestType(), null, "testtype", null, 0, -1, Commands.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getCommands_Message(), this.getLog(), null, "message", null, 0, -1, Commands.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(commandBlockEClass, commandBlock.class, "commandBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getcommandBlock_Testtype(), this.getTestType(), null, "testtype", null, 0, -1, commandBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getcommandBlock_Message(), this.getLog(), null, "message", null, 0, -1, commandBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

@@ -70,10 +70,9 @@ public class DslFactoryImpl extends EFactoryImpl implements DslFactory
       case DslPackage.TEST_TYPE: return createTestType();
       case DslPackage.SUCCESS: return createSuccess();
       case DslPackage.FAILURE: return createFailure();
-      case DslPackage.TEST_QUANTITY: return createTestQuantity();
       case DslPackage.LOG: return createLog();
       case DslPackage.SCOPE: return createScope();
-      case DslPackage.COMMANDS: return createCommands();
+      case DslPackage.COMMAND_BLOCK: return createcommandBlock();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -139,17 +138,6 @@ public class DslFactoryImpl extends EFactoryImpl implements DslFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public TestQuantity createTestQuantity()
-  {
-    TestQuantityImpl testQuantity = new TestQuantityImpl();
-    return testQuantity;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public Log createLog()
   {
     LogImpl log = new LogImpl();
@@ -172,10 +160,10 @@ public class DslFactoryImpl extends EFactoryImpl implements DslFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Commands createCommands()
+  public commandBlock createcommandBlock()
   {
-    CommandsImpl commands = new CommandsImpl();
-    return commands;
+    commandBlockImpl commandBlock = new commandBlockImpl();
+    return commandBlock;
   }
 
   /**

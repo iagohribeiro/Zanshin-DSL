@@ -9,40 +9,23 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Commands</b></em>'.
+ * A representation of the model object '<em><b>command Block</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link zanshin.dsl.dsl.Commands#getTestquantity <em>Testquantity</em>}</li>
- *   <li>{@link zanshin.dsl.dsl.Commands#getTesttype <em>Testtype</em>}</li>
- *   <li>{@link zanshin.dsl.dsl.Commands#getMessage <em>Message</em>}</li>
+ *   <li>{@link zanshin.dsl.dsl.commandBlock#getTesttype <em>Testtype</em>}</li>
+ *   <li>{@link zanshin.dsl.dsl.commandBlock#getMessage <em>Message</em>}</li>
  * </ul>
  *
- * @see zanshin.dsl.dsl.DslPackage#getCommands()
+ * @see zanshin.dsl.dsl.DslPackage#getcommandBlock()
  * @model
  * @generated
  */
-public interface Commands extends EObject
+public interface commandBlock extends EObject
 {
-  /**
-   * Returns the value of the '<em><b>Testquantity</b></em>' containment reference list.
-   * The list contents are of type {@link zanshin.dsl.dsl.TestQuantity}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Testquantity</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Testquantity</em>' containment reference list.
-   * @see zanshin.dsl.dsl.DslPackage#getCommands_Testquantity()
-   * @model containment="true"
-   * @generated
-   */
-  EList<TestQuantity> getTestquantity();
-
   /**
    * Returns the value of the '<em><b>Testtype</b></em>' containment reference list.
    * The list contents are of type {@link zanshin.dsl.dsl.TestType}.
@@ -53,7 +36,7 @@ public interface Commands extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Testtype</em>' containment reference list.
-   * @see zanshin.dsl.dsl.DslPackage#getCommands_Testtype()
+   * @see zanshin.dsl.dsl.DslPackage#getcommandBlock_Testtype()
    * @model containment="true"
    * @generated
    */
@@ -69,10 +52,10 @@ public interface Commands extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Message</em>' containment reference list.
-   * @see zanshin.dsl.dsl.DslPackage#getCommands_Message()
+   * @see zanshin.dsl.dsl.DslPackage#getcommandBlock_Message()
    * @model containment="true"
    * @generated
    */
   EList<Log> getMessage();
 
-} // Commands
+} // commandBlock

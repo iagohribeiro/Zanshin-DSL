@@ -69,15 +69,6 @@ public interface DslFactory extends EFactory
   Failure createFailure();
 
   /**
-   * Returns a new object of class '<em>Test Quantity</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Test Quantity</em>'.
-   * @generated
-   */
-  TestQuantity createTestQuantity();
-
-  /**
    * Returns a new object of class '<em>Log</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -96,13 +87,13 @@ public interface DslFactory extends EFactory
   Scope createScope();
 
   /**
-   * Returns a new object of class '<em>Commands</em>'.
+   * Returns a new object of class '<em>command Block</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Commands</em>'.
+   * @return a new object of class '<em>command Block</em>'.
    * @generated
    */
-  Commands createCommands();
+  commandBlock createcommandBlock();
 
   /**
    * Returns the package supported by this factory.

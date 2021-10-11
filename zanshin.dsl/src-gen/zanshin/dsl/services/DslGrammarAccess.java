@@ -227,29 +227,6 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		//STRING
 		public RuleCall getNameSTRINGTerminalRuleCall_2_0() { return cNameSTRINGTerminalRuleCall_2_0; }
 	}
-	public class TestQuantityElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "zanshin.dsl.Dsl.TestQuantity");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cPartKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNumberAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNumberINTTerminalRuleCall_1_0 = (RuleCall)cNumberAssignment_1.eContents().get(0);
-		
-		//TestQuantity:
-		//	'Part' number=INT;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//'Part' number=INT
-		public Group getGroup() { return cGroup; }
-		
-		//'Part'
-		public Keyword getPartKeyword_0() { return cPartKeyword_0; }
-		
-		//number=INT
-		public Assignment getNumberAssignment_1() { return cNumberAssignment_1; }
-		
-		//INT
-		public RuleCall getNumberINTTerminalRuleCall_1_0() { return cNumberINTTerminalRuleCall_1_0; }
-	}
 	public class LogElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "zanshin.dsl.Dsl.Log");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -287,14 +264,14 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cLengthAssignment_1_0_2 = (Assignment)cGroup_1_0.eContents().get(2);
 		private final RuleCall cLengthINTTerminalRuleCall_1_0_2_0 = (RuleCall)cLengthAssignment_1_0_2.eContents().get(0);
 		private final Assignment cCommandsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cCommandsCommandsParserRuleCall_1_1_0 = (RuleCall)cCommandsAssignment_1_1.eContents().get(0);
+		private final RuleCall cCommandsCommandBlockParserRuleCall_1_1_0 = (RuleCall)cCommandsAssignment_1_1.eContents().get(0);
 		
 		//Scope:
 		//	project=Project ((simulation+='Simulation' name+=ID length+=INT?)?
-		//	commands+=Commands+)*;
+		//	commands+=commandBlock+)*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//project=Project ((simulation+='Simulation' name+=ID length+=INT?)? commands+=Commands+)*
+		//project=Project ((simulation+='Simulation' name+=ID length+=INT?)? commands+=commandBlock+)*
 		public Group getGroup() { return cGroup; }
 		
 		//project=Project
@@ -303,7 +280,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		//Project
 		public RuleCall getProjectProjectParserRuleCall_0_0() { return cProjectProjectParserRuleCall_0_0; }
 		
-		//((simulation+='Simulation' name+=ID length+=INT?)? commands+=Commands+)*
+		//((simulation+='Simulation' name+=ID length+=INT?)? commands+=commandBlock+)*
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//(simulation+='Simulation' name+=ID length+=INT?)?
@@ -327,36 +304,32 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		//INT
 		public RuleCall getLengthINTTerminalRuleCall_1_0_2_0() { return cLengthINTTerminalRuleCall_1_0_2_0; }
 		
-		//commands+=Commands+
+		//commands+=commandBlock+
 		public Assignment getCommandsAssignment_1_1() { return cCommandsAssignment_1_1; }
 		
-		//Commands
-		public RuleCall getCommandsCommandsParserRuleCall_1_1_0() { return cCommandsCommandsParserRuleCall_1_1_0; }
+		//commandBlock
+		public RuleCall getCommandsCommandBlockParserRuleCall_1_1_0() { return cCommandsCommandBlockParserRuleCall_1_1_0; }
 	}
-	public class CommandsElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "zanshin.dsl.Dsl.Commands");
+	public class CommandBlockElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "zanshin.dsl.Dsl.commandBlock");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cTestquantityAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cTestquantityTestQuantityParserRuleCall_0_0 = (RuleCall)cTestquantityAssignment_0.eContents().get(0);
+		private final Keyword cPartKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cTesttypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cTesttypeTestTypeParserRuleCall_1_0 = (RuleCall)cTesttypeAssignment_1.eContents().get(0);
 		private final Assignment cMessageAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cMessageLogParserRuleCall_2_0 = (RuleCall)cMessageAssignment_2.eContents().get(0);
 		
-		//Commands:
-		//	testquantity+=TestQuantity?
+		//commandBlock:
+		//	'Part'?
 		//	testtype+=TestType*
 		//	message+=Log+;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//testquantity+=TestQuantity? testtype+=TestType* message+=Log+
+		//'Part'? testtype+=TestType* message+=Log+
 		public Group getGroup() { return cGroup; }
 		
-		//testquantity+=TestQuantity?
-		public Assignment getTestquantityAssignment_0() { return cTestquantityAssignment_0; }
-		
-		//TestQuantity
-		public RuleCall getTestquantityTestQuantityParserRuleCall_0_0() { return cTestquantityTestQuantityParserRuleCall_0_0; }
+		//'Part'?
+		public Keyword getPartKeyword_0() { return cPartKeyword_0; }
 		
 		//testtype+=TestType*
 		public Assignment getTesttypeAssignment_1() { return cTesttypeAssignment_1; }
@@ -379,10 +352,9 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	private final TestTypeElements pTestType;
 	private final SuccessElements pSuccess;
 	private final FailureElements pFailure;
-	private final TestQuantityElements pTestQuantity;
 	private final LogElements pLog;
 	private final ScopeElements pScope;
-	private final CommandsElements pCommands;
+	private final CommandBlockElements pCommandBlock;
 	
 	private final Grammar grammar;
 	
@@ -400,10 +372,9 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		this.pTestType = new TestTypeElements();
 		this.pSuccess = new SuccessElements();
 		this.pFailure = new FailureElements();
-		this.pTestQuantity = new TestQuantityElements();
 		this.pLog = new LogElements();
 		this.pScope = new ScopeElements();
-		this.pCommands = new CommandsElements();
+		this.pCommandBlock = new CommandBlockElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -503,16 +474,6 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		return getFailureAccess().getRule();
 	}
 	
-	//TestQuantity:
-	//	'Part' number=INT;
-	public TestQuantityElements getTestQuantityAccess() {
-		return pTestQuantity;
-	}
-	
-	public ParserRule getTestQuantityRule() {
-		return getTestQuantityAccess().getRule();
-	}
-	
 	//Log:
 	//	'Log' message=STRING;
 	public LogElements getLogAccess() {
@@ -525,7 +486,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//Scope:
 	//	project=Project ((simulation+='Simulation' name+=ID length+=INT?)?
-	//	commands+=Commands+)*;
+	//	commands+=commandBlock+)*;
 	public ScopeElements getScopeAccess() {
 		return pScope;
 	}
@@ -534,16 +495,16 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		return getScopeAccess().getRule();
 	}
 	
-	//Commands:
-	//	testquantity+=TestQuantity?
+	//commandBlock:
+	//	'Part'?
 	//	testtype+=TestType*
 	//	message+=Log+;
-	public CommandsElements getCommandsAccess() {
-		return pCommands;
+	public CommandBlockElements getCommandBlockAccess() {
+		return pCommandBlock;
 	}
 	
-	public ParserRule getCommandsRule() {
-		return getCommandsAccess().getRule();
+	public ParserRule getCommandBlockRule() {
+		return getCommandBlockAccess().getRule();
 	}
 	
 	//terminal ID:

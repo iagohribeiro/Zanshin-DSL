@@ -17,39 +17,27 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import zanshin.dsl.dsl.Commands;
 import zanshin.dsl.dsl.DslPackage;
 import zanshin.dsl.dsl.Log;
-import zanshin.dsl.dsl.TestQuantity;
 import zanshin.dsl.dsl.TestType;
+import zanshin.dsl.dsl.commandBlock;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Commands</b></em>'.
+ * An implementation of the model object '<em><b>command Block</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link zanshin.dsl.dsl.impl.CommandsImpl#getTestquantity <em>Testquantity</em>}</li>
- *   <li>{@link zanshin.dsl.dsl.impl.CommandsImpl#getTesttype <em>Testtype</em>}</li>
- *   <li>{@link zanshin.dsl.dsl.impl.CommandsImpl#getMessage <em>Message</em>}</li>
+ *   <li>{@link zanshin.dsl.dsl.impl.commandBlockImpl#getTesttype <em>Testtype</em>}</li>
+ *   <li>{@link zanshin.dsl.dsl.impl.commandBlockImpl#getMessage <em>Message</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class CommandsImpl extends MinimalEObjectImpl.Container implements Commands
+public class commandBlockImpl extends MinimalEObjectImpl.Container implements commandBlock
 {
-  /**
-   * The cached value of the '{@link #getTestquantity() <em>Testquantity</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getTestquantity()
-   * @generated
-   * @ordered
-   */
-  protected EList<TestQuantity> testquantity;
-
   /**
    * The cached value of the '{@link #getTesttype() <em>Testtype</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -75,7 +63,7 @@ public class CommandsImpl extends MinimalEObjectImpl.Container implements Comman
    * <!-- end-user-doc -->
    * @generated
    */
-  protected CommandsImpl()
+  protected commandBlockImpl()
   {
     super();
   }
@@ -88,21 +76,7 @@ public class CommandsImpl extends MinimalEObjectImpl.Container implements Comman
   @Override
   protected EClass eStaticClass()
   {
-    return DslPackage.Literals.COMMANDS;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<TestQuantity> getTestquantity()
-  {
-    if (testquantity == null)
-    {
-      testquantity = new EObjectContainmentEList<TestQuantity>(TestQuantity.class, this, DslPackage.COMMANDS__TESTQUANTITY);
-    }
-    return testquantity;
+    return DslPackage.Literals.COMMAND_BLOCK;
   }
 
   /**
@@ -114,7 +88,7 @@ public class CommandsImpl extends MinimalEObjectImpl.Container implements Comman
   {
     if (testtype == null)
     {
-      testtype = new EObjectContainmentEList<TestType>(TestType.class, this, DslPackage.COMMANDS__TESTTYPE);
+      testtype = new EObjectContainmentEList<TestType>(TestType.class, this, DslPackage.COMMAND_BLOCK__TESTTYPE);
     }
     return testtype;
   }
@@ -128,7 +102,7 @@ public class CommandsImpl extends MinimalEObjectImpl.Container implements Comman
   {
     if (message == null)
     {
-      message = new EObjectContainmentEList<Log>(Log.class, this, DslPackage.COMMANDS__MESSAGE);
+      message = new EObjectContainmentEList<Log>(Log.class, this, DslPackage.COMMAND_BLOCK__MESSAGE);
     }
     return message;
   }
@@ -143,11 +117,9 @@ public class CommandsImpl extends MinimalEObjectImpl.Container implements Comman
   {
     switch (featureID)
     {
-      case DslPackage.COMMANDS__TESTQUANTITY:
-        return ((InternalEList<?>)getTestquantity()).basicRemove(otherEnd, msgs);
-      case DslPackage.COMMANDS__TESTTYPE:
+      case DslPackage.COMMAND_BLOCK__TESTTYPE:
         return ((InternalEList<?>)getTesttype()).basicRemove(otherEnd, msgs);
-      case DslPackage.COMMANDS__MESSAGE:
+      case DslPackage.COMMAND_BLOCK__MESSAGE:
         return ((InternalEList<?>)getMessage()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -163,11 +135,9 @@ public class CommandsImpl extends MinimalEObjectImpl.Container implements Comman
   {
     switch (featureID)
     {
-      case DslPackage.COMMANDS__TESTQUANTITY:
-        return getTestquantity();
-      case DslPackage.COMMANDS__TESTTYPE:
+      case DslPackage.COMMAND_BLOCK__TESTTYPE:
         return getTesttype();
-      case DslPackage.COMMANDS__MESSAGE:
+      case DslPackage.COMMAND_BLOCK__MESSAGE:
         return getMessage();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -184,15 +154,11 @@ public class CommandsImpl extends MinimalEObjectImpl.Container implements Comman
   {
     switch (featureID)
     {
-      case DslPackage.COMMANDS__TESTQUANTITY:
-        getTestquantity().clear();
-        getTestquantity().addAll((Collection<? extends TestQuantity>)newValue);
-        return;
-      case DslPackage.COMMANDS__TESTTYPE:
+      case DslPackage.COMMAND_BLOCK__TESTTYPE:
         getTesttype().clear();
         getTesttype().addAll((Collection<? extends TestType>)newValue);
         return;
-      case DslPackage.COMMANDS__MESSAGE:
+      case DslPackage.COMMAND_BLOCK__MESSAGE:
         getMessage().clear();
         getMessage().addAll((Collection<? extends Log>)newValue);
         return;
@@ -210,13 +176,10 @@ public class CommandsImpl extends MinimalEObjectImpl.Container implements Comman
   {
     switch (featureID)
     {
-      case DslPackage.COMMANDS__TESTQUANTITY:
-        getTestquantity().clear();
-        return;
-      case DslPackage.COMMANDS__TESTTYPE:
+      case DslPackage.COMMAND_BLOCK__TESTTYPE:
         getTesttype().clear();
         return;
-      case DslPackage.COMMANDS__MESSAGE:
+      case DslPackage.COMMAND_BLOCK__MESSAGE:
         getMessage().clear();
         return;
     }
@@ -233,14 +196,12 @@ public class CommandsImpl extends MinimalEObjectImpl.Container implements Comman
   {
     switch (featureID)
     {
-      case DslPackage.COMMANDS__TESTQUANTITY:
-        return testquantity != null && !testquantity.isEmpty();
-      case DslPackage.COMMANDS__TESTTYPE:
+      case DslPackage.COMMAND_BLOCK__TESTTYPE:
         return testtype != null && !testtype.isEmpty();
-      case DslPackage.COMMANDS__MESSAGE:
+      case DslPackage.COMMAND_BLOCK__MESSAGE:
         return message != null && !message.isEmpty();
     }
     return super.eIsSet(featureID);
   }
 
-} //CommandsImpl
+} //commandBlockImpl

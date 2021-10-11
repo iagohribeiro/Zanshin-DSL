@@ -110,13 +110,6 @@ public class DslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case DslPackage.TEST_QUANTITY:
-      {
-        TestQuantity testQuantity = (TestQuantity)theEObject;
-        T result = caseTestQuantity(testQuantity);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case DslPackage.LOG:
       {
         Log log = (Log)theEObject;
@@ -131,10 +124,10 @@ public class DslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case DslPackage.COMMANDS:
+      case DslPackage.COMMAND_BLOCK:
       {
-        Commands commands = (Commands)theEObject;
-        T result = caseCommands(commands);
+        commandBlock commandBlock = (commandBlock)theEObject;
+        T result = casecommandBlock(commandBlock);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -223,22 +216,6 @@ public class DslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Test Quantity</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Test Quantity</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseTestQuantity(TestQuantity object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Log</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -271,17 +248,17 @@ public class DslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Commands</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>command Block</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Commands</em>'.
+   * @return the result of interpreting the object as an instance of '<em>command Block</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseCommands(Commands object)
+  public T casecommandBlock(commandBlock object)
   {
     return null;
   }

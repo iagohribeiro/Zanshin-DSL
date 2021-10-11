@@ -20,9 +20,6 @@
     </genClasses>
     <genClasses ecoreClass="Dsl.ecore#//Success"/>
     <genClasses ecoreClass="Dsl.ecore#//Failure"/>
-    <genClasses ecoreClass="Dsl.ecore#//TestQuantity">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dsl.ecore#//TestQuantity/number"/>
-    </genClasses>
     <genClasses ecoreClass="Dsl.ecore#//Log">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dsl.ecore#//Log/message"/>
     </genClasses>
@@ -33,10 +30,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dsl.ecore#//Scope/length"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//Scope/commands"/>
     </genClasses>
-    <genClasses ecoreClass="Dsl.ecore#//Commands">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//Commands/testquantity"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//Commands/testtype"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//Commands/message"/>
+    <genClasses ecoreClass="Dsl.ecore#//commandBlock">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//commandBlock/testtype"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//commandBlock/message"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
